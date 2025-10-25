@@ -1,6 +1,6 @@
 /**
  * @file userModel.js
- * @description Handles intialization of user model schema for database
+ * @description Defines the User schema for the database
  * @module models/userModel.js
  */
 
