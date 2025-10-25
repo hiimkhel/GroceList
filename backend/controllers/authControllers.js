@@ -8,6 +8,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt")
 
 // [ AUTHENTENTICATION CONTROLLERS ]
+//
 // [1] REGISTER USER
 // @desc Register a new user
 // @route POST /api/auth/register
