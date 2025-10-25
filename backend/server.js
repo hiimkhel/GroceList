@@ -1,3 +1,12 @@
+/**
+ * @file server.js
+ * @description Entry point for the GroceList backend server. 
+ * Handles environment setup, database connection, middleware configuration, 
+ * and API route registration.
+ * @version 1.0.0
+ * @module backend
+ */
+
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDb = require("./config/dbConnection");
@@ -5,7 +14,6 @@ const connectDb = require("./config/dbConnection");
 const app = express();
 dotenv.config();
 connectDb();
-const router = express.Router();
 
 const PORT = 5000;
 

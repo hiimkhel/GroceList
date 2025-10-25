@@ -1,3 +1,9 @@
+/**
+ * @file userModel.js
+ * @description Handles intialization of user model schema for database
+ * @module models/userModel.js
+ */
+
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({

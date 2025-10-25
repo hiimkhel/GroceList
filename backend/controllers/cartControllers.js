@@ -1,3 +1,9 @@
+/**
+ * @file cartControllers.js
+ * @description Handles cart methods and managements logics
+ * @module controllers/cartControllers
+ */
+
 const User = require("../models/userModel");
 const Product = require("../models/productModel");
 

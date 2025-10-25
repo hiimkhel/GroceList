@@ -1,3 +1,9 @@
+/**
+ * @file productModel.js
+ * @description Handles intialization of product model schema for database
+ * @module models/productModel
+ */
+
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
