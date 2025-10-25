@@ -1,6 +1,7 @@
 /**
  * @file cartControllers.js
- * @description Handles cart methods and managements logics
+ * @description Handles all logic related to managing the user's grocery cart.
+ * Provides endpoints for viewing, adding, updating, and removing cart items.
  * @module controllers/cartControllers
  */
 
@@ -25,20 +26,42 @@ const getCart = async (req, res) => {
 }
 
 const addToCart = async (req, res) => {
-    const {userId} = req.params;
-    const {name, price, image, stock, description } = req.body;
+    const { userId } = req.params;
+  const { productId, quantity = 1 } = req.body;
 
-    if(!name || !price || !image || !stock || !description){
-        return res.status(400).json({message: "All fields are mandatory!"});
+  if (!productId) {
+    return res.status(400).json({ message: "Product ID is required" });
+  }
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const product = await Product.findById(productId);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+
+    // Check if the product is already in the cart
+    const existingItem = user.cart.find(
+      (item) => item.productId.toString() === productId
+    );
+
+    if (existingItem) {
+      // Increase quantity
+      existingItem.quantity += quantity;
+    } else {
+      // Add new item
+      user.cart.push({ productId, quantity });
     }
 
-    try{
-        const user = await User.findById(userId);
-        if (!user) return res.status(404).json({ message: "User not found" });
+    await user.save();
 
-    }catch(err){
-        
-    }
+    res.status(200).json({
+      message: "Product added to cart successfully",
+      cart: user.cart,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 }
 
 module.exports = {addToCart, getCart};
