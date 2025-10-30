@@ -15,7 +15,7 @@ const app = express();
 dotenv.config();
 connectDb();
 
-const PORT = 5000;
+const port = 5000;
 
 app.use(express.json());
 
@@ -26,6 +26,6 @@ app.use("/api/auth", require("./routes/authRoutes.js"));
 app.use("/api/cart", require("./routes/cartRoutes.js"));
 
 
-app.listen(PORT, () => {
-    console.log(`Port is running on port ${PORT}`)
+app.listen(port || process.env.PORT, () => {
+    console.log(`Port is running on port ${port || process.env.PORT}`)
 })
