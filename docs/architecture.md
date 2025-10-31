@@ -231,10 +231,10 @@ JWT_SECRET        |     Secret key for JWT signing
 
 
 ### 9. Scalability Notes
-- Implement pagination and infinite scroll for marketplace.
+- Implement pagination for marketplace.
 - Cache frequent product queries using Redis (future).
 - Add admin dashboard for product and order management.
-- Expand to include order tracking and payments in v2.
+- Expand to include order tracking in v2.
 
 
 ### 10. Future Expansion (GroceList v2.0)
