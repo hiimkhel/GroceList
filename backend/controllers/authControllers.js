@@ -1,6 +1,6 @@
 /**
  * @file authController.js
- * @description Handles user authentication and profile management logic.
+ * @description Handles user authentication
  * @module controllers/authController
  */
 

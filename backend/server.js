@@ -26,6 +26,8 @@ app.use("/api/auth", require("./routes/authRoutes.js"));
 app.use("/api/cart", require("./routes/cartRoutes.js"));
 // [3] Marketplace
 app.use("/api/marketplace", require("./routes/marketplaceRoutes.js"));
+// [4] Users
+app.use("/api/user", require("./routes/userRoutes.js"));
 
 app.listen(port || process.env.PORT, () => {
     console.log(`Port is running on port ${port || process.env.PORT}`)

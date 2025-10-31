@@ -1,10 +1,10 @@
 /**
  * @file marketplaceControllers.js
  * @description Handles CRUd methods to marketplace
- * @module controllers/authController
+ * @module controllers/marketplaceControllers
  */
 
-const Product = require("../models/productModel");
+const User = require("../models/productModel");
 
 // [ MARKETPLACE CONTROLLERS ]
 //
