@@ -23,8 +23,9 @@ app.use(express.json());
 // [1] Authentication
 app.use("/api/auth", require("./routes/authRoutes.js"));
 // [2] Grocery Cart
-app.use("/api/cart/:userId", require("./routes/cartRoutes.js"));
-
+app.use("/api/cart", require("./routes/cartRoutes.js"));
+// [3] Marketplace
+app.use("/api/marketplace", require("./routes/marketplaceRoutes.js"));
 
 app.listen(port || process.env.PORT, () => {
     console.log(`Port is running on port ${port || process.env.PORT}`)
