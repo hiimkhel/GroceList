@@ -7,7 +7,7 @@
 - **Database:** MongoDB (Mongoose ODM)  
 - **Authentication:** JSON Web Token (JWT)  
 - **Frontend:** React (Vite)  
-- **Hosting (optional):** Vercel
+- **Hosting (optional):** Vercel & Render
 
 ---
 
