@@ -23,7 +23,7 @@ app.use(express.json());
 // [1] Authentication
 app.use("/api/auth", require("./routes/authRoutes.js"));
 // [2] Grocery Cart
-app.use("/api/cart", require("./routes/cartRoutes.js"));
+app.use("/api/cart/:userId", require("./routes/cartRoutes.js"));
 
 
 app.listen(port || process.env.PORT, () => {

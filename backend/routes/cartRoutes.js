@@ -5,7 +5,7 @@ const { getCart, addToCart } = require("../controllers/cartControllers");
 const router = express.Router();
 
 // [ROUTE ENDPOINTS]
-router.get("/:userId", getCart);
-router.post("/:userId/add", addToCart);
+router.get("/", getCart);
+router.post("/add", addToCart);
 
 module.exports = router;
