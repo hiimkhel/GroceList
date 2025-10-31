@@ -26,4 +26,30 @@ const getUser = async (req, res) => {
     }
 }
 
-module.exports = getUser;
+// [2] DELETE USER
+// @desc Deletes a user
+// @route DELETE /api/:userId/delete
+// @access Public
+const deleteUser  = async (req, res) => {
+    const {userId} = req.params;
+    try{
+        
+        const user = await User.findById(userId);
+        // If user does not exist
+        if(!user) return res.status(400).json({message: "User does not exist"});
+
+         // TODO: Implement JWT authentication then uncomment
+        // if (req.user.id !== userId) {
+        // return res.status(403).json({ success: false, message: "Unauthorized action" });
+        // }
+
+        // Logic
+        await User.findByIdAndDelete(userId);
+        res.status(200).json({
+        message: "User deleted successfully",
+        });
+    }catch(err){
+        res.status(500).json({message: err.message})
+    }
+}
+module.exports = {getUser, deleteUser};
