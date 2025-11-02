@@ -6,6 +6,7 @@
 
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken");
 
 // [ AUTHENTENTICATION CONTROLLERS ]
 //
@@ -40,12 +41,68 @@ const userRegister = async (req, res) => {
             address,
             cart: []
         });
-        res.status(201).json(newUser);
+
+        // Give user a JWT token
+        const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET,{
+            expiresIn: "7d" // Access Token
+        })
+        res.status(201).json({
+            message: "User registered successfully",
+            token,
+            user: {
+                id: newUser._id,
+                name: newUser.name,
+                email: newUser.email,
+                address: newUser.address,
+
+            }
+        });
     }
     catch(err){
-        req.status(400).json({message: err.message});
+        res.status(400).json({message: err.message});
     }
 }
 
+// [1] USER LOGIN
+// @desc Allows user to login
+// @route POST /api/auth/login
+// @access Public
+const userLogin = async (req, res) => {
+    const {email, password} = req.body;
 
-module.exports = userRegister;
+    // Validate req body fields
+    if(!email || !password) return res.status(400).json({message: "All fields are mandatory"});
+
+    try{
+        const user = await User.findOne({ email });
+        
+        // If user does not exist
+        if (!user) return res.status(400).json({message: "User does not exist"});
+
+        // Validate password using bcrypt
+        const isValidPass = await bcrypt.compare(password, user.password);
+
+        // If not valid
+        if(!isValidPass) return res.status(400).json({message: "Invalid password"});
+
+        // Generate JWT Token
+        const token = jwt.sign({id: user._id, email: user.email},
+            process.env.JWT_SECRET,
+            {expiresIn: '7d'}
+        );
+         res.status(200).json({
+            message: "Login successful",
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                address: user.address,
+            },
+            });
+    }catch(err){
+        res.status(500).json({message: err.message});
+    }
+}
+
+module.exports = {userRegister, userLogin};
