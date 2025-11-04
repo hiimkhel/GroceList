@@ -2,80 +2,49 @@
 
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import LandingNavbar from "../components/LandingNavbar";
+import Products from "../assets/Products.svg";
+import Ellipse from "../assets/Ellipse.svg";
 import '../index.css';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-hidden">
       {/* Navbar */}
-      <header className="flex justify-between items-center px-8 py-4 bg-white shadow-sm">
-        <h1 className="text-2xl font-bold text-green-600">GroceList</h1>
-        <nav className="space-x-6">
-          <Link to="/login" className="text-gray-700 hover:text-green-600">
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
-          >
-            Sign Up
-          </Link>
-        </nav>
-      </header>
-
+      <LandingNavbar></LandingNavbar>
+      
       {/* Hero Section */}
-      <main className="flex flex-col md:flex-row flex-grow items-center justify-center px-10 md:px-20 py-16 bg-gray-50">
+      <main className="relative flex flex-col md:flex-row grow items-center justify-start px-50 md:px-20 py-16">
+        {/* Background Ellipse */}
+        <div className="">
+          <img src={Ellipse} alt="" className="absolute h-[981px] w-[944px] bottom-0 right-0 -z-10 translate-x-[20%] translate-y-[10%] md:translate-x-1/3 md:translate-y-1/3"/>
+        </div>
         {/* Left Text Section */}
-        <div className="md:w-1/2 mb-10 md:mb-0">
-          <h1 className="text-4xl font-bold text-green-600">GroceList</h1>
-          <h2 className="text-4xl font-bold mb-4 text-gray-800">
-            Simplify your grocery shopping.
-          </h2>
-          <p className="text-gray-600 mb-6">
-            GroceList helps you plan, track, and manage your groceries efficiently —
-            so you never forget what you need.
-          </p>
-          <Link
-            to="/register"
-            className="bg-green-600 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-green-700 transition"
-          >
-            Get Started
-          </Link>
+        <div className="flex flex-col max-w-3xl w-full mb-10 gap-10 md:mb-0">
+          <div className="flex flex-col gap-3">
+            <h1 className="text-[64px] font-bold text-primary font-secular">Your everyday <span className="text-secondary">groceries</span>, </h1>
+            <h1 className="text-[64px] font-bold text-primary font-secular">one click away.</h1>
+          </div>
+          <div className="max-w-3xl md:max-w-xl">
+            <p className="text-gray-900 mb-6 font-poppins">
+             <b>GroceList</b> is your all-in-one online grocery hub designed for convenience and variety. 
+            </p>
+            <p className="text-gray-900 mb-6 font-poppins">
+              From fresh produce to home essentials, we make shopping simpler, faster, and smarter — all from the comfort of your home.
+            </p>
+          </div>
+          <Button className="primary w-max" size="lg">Shop Now</Button>
         </div>
 
         {/* Right Image Section */}
-        <div className="md:w-1/2 flex justify-center">
-          <img
-            src="/logo.png" // put your app’s logo or hero image in public/
-            alt="GroceList illustration"
-            className="max-w-xs md:max-w-md"
-          />
+        <div className="relative z-10 h-[740px]">
+          <img src={Products} alt="" />
         </div>
-
-        <div>
-        <h1>Testing</h1>
-        <div className="bg-primary text-white p-4">Primary background</div>
-        <div className="bg-secondary text-black p-4">Secondary background</div>
-        <div className="bg-bg text-text p-4">BG + Text test</div>
-        <div className="bg-[rgb(var(--color-primary))] text-[rgb(var(--color-bg))] p-4">BG + Text test
-        </div>
-        <div className="bg-primary text-text p-4">NEW test
-        </div>
-        <div className="flex flex-col gap-4 p-6">
-          <div className="bg-primary text-bg p-4 rounded-xl font-poppins">
-            Tailwind v4 color test 
-          </div>
-          <Button variant="primary">Primary Button</Button>
-          <Button variant="secondary">Secondary Button</Button>
-          <Button variant="outline">Outline Button</Button>
-          <Button size="lg" variant="primary">Large Primary</Button>
-          <button className="bg-primary text-text hover:bg-primary/90 active:bg-secondary active:text-primary">Click Me</button>
-        </div>
-      </div>
       </main>
+      
 
       {/* Footer */}
-      <footer className="text-center py-6 text-gray-500 text-sm bg-white">
+      <footer className="text-center py-6 text-gray-500 text-sm bg-white font-poppins">
         © {new Date().getFullYear()} GroceList. All rights reserved.
       </footer>
     </div>

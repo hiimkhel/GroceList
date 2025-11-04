@@ -1,7 +1,8 @@
 // import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import './App.css'
+import './App.css';
+import './index.css';
 
 function App() {
   return (

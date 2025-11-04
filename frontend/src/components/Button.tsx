@@ -16,27 +16,31 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
 }) => {
   const baseStyles =
-    "rounded-2xl font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "rounded-xl font-semibold transition-colors duration-300 focus:outline-none";
 
   let variantStyles = "";
   if (variant === "primary")
     variantStyles = `
+      border border-primary
       bg-primary
       text-bg 
-      hover:bg-primary/90 
-      active:bg-secondary active:text-primary 
-      focus:ring-primary
+      hover:bg-[#041D26]
+      active:bg-secondary active:text-primary active:border-secondary
    `;
   else if (variant === "secondary")
     variantStyles = `
+      border border-secondary
       bg-secondary
       text-primary 
       hover:bg-secondary/90 
-      focus:ring-secondary
+      active:bg-primary active:text-bg active:border-primary
    `;
   else if (variant === "outline")
     variantStyles =
-      `border border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary`;
+      `border border-primary text-primary hover:bg-primary hover:text-white 
+      active:bg-secondary active:text-primary 
+      active:border-secondary
+      `;
 
   let sizeStyles = "";
   if (size === "sm") sizeStyles = "px-3 py-1 text-sm";

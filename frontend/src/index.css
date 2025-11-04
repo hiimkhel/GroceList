@@ -5,21 +5,6 @@
 @import "tailwindcss";
 
 :root {
-  /* font defaults */
-  font-family: system-ui, Poppins, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  /* brand colors */
-  /* --color-primary: #0B4B53;
-  --color-secondary: #3AECA5;
-  --color-bg: #FFF;
-  --color-text: #000; */
-  --color-primary: 11 75 83;
-  --color-secondary: 58 236 165;
-  --color-bg: 255 255 255;
-  --color-text: 0 0 0;
-
   /* text rendering */
   font-synthesis: none; /* Prevents browsers from faking bold/italic versions */
   text-rendering: optimizeLegibility; /* smoother-looking text */
@@ -27,4 +12,25 @@
   -moz-osx-font-smoothing: grayscale; /*for Firefox on macOS.*/
 }
 
+@theme {
+  --font-poppins: "Poppins", system-ui, sans-serif;
+  --font-secular: "Secular One", sans-serif;
+
+  --color-primary: #0B4B53;
+  --color-secondary: #3AECA5;
+  --color-bg: #FFFFFF;
+  --color-text: #000000;
+}
+
+@layer base {
+  h1 {
+    @apply text-6xl font-bold;
+  }
+  h2 {
+    @apply text-5xl font-bold;
+  }
+  p {
+    @apply text-xl leading-relaxed;
+  }
+}
 /* MEDIA (future mobile) */
