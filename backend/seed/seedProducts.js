@@ -406,6 +406,87 @@ const seedProducts = async () => {
         description: "Cleaned squid rings for frying or grilling.",
         tag: "meat-and-seafood"
       },
+      // [FROZEN FOOD]
+      {
+        name: "Purefoods Tender Juicy Hotdog 1kg",
+        price: 250,
+        image: "",
+        stock: 50,
+        description: "Popular red hotdog, tender and juicy classic favorite.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "CDO Idol Cheesedog 1kg",
+        price: 240,
+        image: "",
+        stock: 50,
+        description: "Hotdogs filled with creamy cheese bits.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "Pampanga’s Best Tocino 500g",
+        price: 180,
+        image: "",
+        stock: 50,
+        description: "Sweet-cured pork tocino ready for frying.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "Mekeni Skinless Longganisa 500g",
+        price: 170,
+        image: "",
+        stock: 50,
+        description: "Filipino-style garlicky sweet longganisa.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "Bounty Fresh Chicken Nuggets 250g",
+        price: 110,
+        image: "",
+        stock: 50,
+        description: "Breaded bite-size chicken pieces for frying.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "Fries King French Fries 1kg",
+        price: 120,
+        image: "",
+        stock: 50,
+        description: "Frozen potato fries for air-fry or deep-fry use.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "Golden Phoenix Frozen Siomai 500g",
+        price: 160,
+        image: "",
+        stock: 50,
+        description: "Ready-to-cook pork siomai for steaming or frying.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "San Miguel Purefoods Ham 500g",
+        price: 250,
+        image: "",
+        stock: 50,
+        description: "Ready-to-eat sweet ham slices for sandwiches or meals.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "Virginia Hotdog Jumbo 1kg",
+        price: 235,
+        image: "",
+        stock: 50,
+        description: "Jumbo-sized hotdogs with firm texture and rich flavor.",
+        tag: "frozen-foods"
+      },
+      {
+        name: "Swift Premium Corned Beef Tapa 250g",
+        price: 165,
+        image: "",
+        stock: 50,
+        description: "Premium corned beef tapa, ready to fry.",
+        tag: "frozen-foods"
+      },
 
 
     ];
