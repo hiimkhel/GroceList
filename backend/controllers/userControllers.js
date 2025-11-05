@@ -11,7 +11,7 @@ const User = require("../models/userModel");
 // @desc Fetch current user
 // @route GET /api/user/:userId
 // @access Public
-const getUser = async (req, res) => {
+const getUser = async (req, res, next) => {
     const {userId} = req.params;
     try{
         const user = await User.findById(userId);
@@ -34,7 +34,7 @@ const getUser = async (req, res) => {
 // @desc Deletes a user
 // @route DELETE /api/:userId
 // @access Public
-const deleteUser  = async (req, res) => {
+const deleteUser  = async (req, res, next) => {
     const {userId} = req.params;
     try{
         

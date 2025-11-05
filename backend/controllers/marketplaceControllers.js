@@ -12,7 +12,7 @@ const User = require("../models/productModel");
 // @desc Displays all the products
 // @route GET /api/marketplace/
 // @access Public
-const getAllProducts = async(req, res) => {
+const getAllProducts = async(req, res, next) => {
     try{
         const products = await Product.find({});
         res.status(200).json({products})

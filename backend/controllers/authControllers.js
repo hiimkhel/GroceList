@@ -14,7 +14,7 @@ const jwt = require("jsonwebtoken");
 // @desc Register a new user
 // @route POST /api/auth/register
 // @access Public
-const userRegister = async (req, res) => {
+const userRegister = async (req, res, next) => {
 
     // Store
     const {name, email, password, address} = req.body;
@@ -75,7 +75,7 @@ const userRegister = async (req, res) => {
 // @desc Allows user to login
 // @route POST /api/auth/login
 // @access Public
-const userLogin = async (req, res) => {
+const userLogin = async (req, res, next) => {
     const {email, password} = req.body;
 
     // Validate req body fields
