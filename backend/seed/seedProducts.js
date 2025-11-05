@@ -228,7 +228,104 @@ const seedProducts = async () => {
         description: "Antibacterial soap for all-around skin protection.",
         tag: "health-and-hygiene"
       },
-
+      // [FRUITS & VEGETABLES]
+      {
+        name: "Bananas (Lakatan) 1kg",
+        price: 80,
+        image: "",
+        stock: 50,
+        description: "Sweet local banana variety rich in potassium.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Mango (Carabao) 1kg",
+        price: 140,
+        image: "",
+        stock: 50,
+        description: "Sweet, juicy tropical mango variety.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Apples (Washington) 1kg",
+        price: 180,
+        image: "",
+        stock: 50,
+        description: "Imported crisp red apples, mildly sweet.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Oranges (Valencia) 1kg",
+        price: 160,
+        image: "",
+        stock: 50,
+        description: "Sweet and tangy imported oranges.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Pineapple (whole)",
+        price: 70,
+        image: "",
+        stock: 50,
+        description: "Fresh whole pineapple, rich in vitamin C.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Tomatoes 1kg",
+        price: 70,
+        image: "",
+        stock: 50,
+        description: "Fresh red tomatoes ideal for cooking and salads.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Onions (Red) 1kg",
+        price: 100,
+        image: "",
+        stock: 50,
+        description: "Locally grown red onions for flavoring dishes.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Garlic 250g",
+        price: 45,
+        image: "",
+        stock: 50,
+        description: "Aromatic garlic for everyday cooking.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Potatoes 1kg",
+        price: 90,
+        image: "",
+        stock: 50,
+        description: "Starchy vegetable used in soups and fries.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "String Beans (Sitaw) 1 bundle",
+        price: 25,
+        image: "",
+        stock: 50,
+        description: "Long green beans for stir-fries and stews.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Cabbage 1 head",
+        price: 65,
+        image: "",
+        stock: 50,
+        description: "Leafy vegetable for soups, salads, and stir-fries.",
+        tag: "fruits-and-vegetabels"
+      },
+      {
+        name: "Ampalaya 1 piece",
+        price: 25,
+        image: "",
+        stock: 50,
+        description: "Bitter melon rich in nutrients and antioxidants.",
+        tag: "fruits-and-vegetabels"
+      },
+      
     ];
 
     // Insert new seed data
