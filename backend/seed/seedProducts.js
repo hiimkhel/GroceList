@@ -325,7 +325,89 @@ const seedProducts = async () => {
         description: "Bitter melon rich in nutrients and antioxidants.",
         tag: "fruits-and-vegetabels"
       },
-      
+      // [FRESH MEAT & SEAFOODS]
+      {
+        name: "Chicken Drumstick 1kg",
+        price: 190,
+        image: "",
+        stock: 50,
+        description: "Fresh chicken legs ideal for frying or stews.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Chicken Breast Fillet 1kg",
+        price: 260,
+        image: "",
+        stock: 50,
+        description: "Boneless, skinless chicken meat for grilling or salads.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Pork Liempo 1kg",
+        price: 330,
+        image: "",
+        stock: 50,
+        description: "Pork belly cut, perfect for grilling or roasting.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Beef Tapa Slices 1kg",
+        price: 480,
+        image: "",
+        stock: 50,
+        description: "Marinated beef slices for traditional Filipino tapa.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Ground Beef 1kg",
+        price: 420,
+        image: "",
+        stock: 50,
+        description: "Freshly ground beef for patties and sauces.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Bangus (Milkfish) 1 piece",
+        price: 180,
+        image: "",
+        stock: 50,
+        description: "Whole milkfish, a popular Filipino staple fish.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Tilapia 1kg",
+        price: 160,
+        image: "",
+        stock: 50,
+        description: "Freshwater fish, mild taste, great for frying.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Galunggong (Round Scad) 1kg",
+        price: 170,
+        image: "",
+        stock: 50,
+        description: "Common local fish, flavorful when fried.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Shrimp (Medium) 1kg",
+        price: 450,
+        image: "",
+        stock: 50,
+        description: "Medium-sized shrimp, good for sinigang or tempura.",
+        tag: "meat-and-seafood"
+      },
+      {
+        name: "Squid (Calamari Rings) 500g",
+        price: 220,
+        image: "",
+        stock: 50,
+        description: "Cleaned squid rings for frying or grilling.",
+        tag: "meat-and-seafood"
+      },
+
+
     ];
 
     // Insert new seed data
