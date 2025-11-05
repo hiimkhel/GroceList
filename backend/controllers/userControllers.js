@@ -17,12 +17,16 @@ const getUser = async (req, res) => {
         const user = await User.findById(userId);
 
         // If user does not exist
-        if(!user) return res.status(400).json({message: "User does not exist"});
+        if(!user){
+            const error = new Error("User does not exist");
+            error.statusCode = 400;
+            throw error;
+        }
 
         res.status(200).json(user);
     
     }catch(err){
-        res.status(500).json({message: err.message});
+        next(err);
     }
 }
 
@@ -36,7 +40,11 @@ const deleteUser  = async (req, res) => {
         
         const user = await User.findById(userId);
         // If user does not exist
-        if(!user) return res.status(400).json({message: "User does not exist"});
+        if(!user){
+            const error = new Error("User does not exist");
+            error.statusCode = 400;
+            throw error;
+        }
 
          // TODO: Implement JWT authentication then uncomment
         // if (req.user.id !== userId) {
@@ -49,7 +57,7 @@ const deleteUser  = async (req, res) => {
         message: "User deleted successfully",
         });
     }catch(err){
-        res.status(500).json({message: err.message})
+        next(err);
     }
 }
 
@@ -64,11 +72,17 @@ const updateAddress = async (req, res) => {
     try{
         // Validate request body
         if (!address) {
-        return res.status(400).json({ message: "Address is required" });
+            const error = new Error("Address field is required!");
+            error.statusCode = 400;
+            throw error;
         }
         const user = await User.findById(userId);
         // If user does not exist
-        if(!user) return res.status(400).json({message: "User does not exist"});
+        if(!user){
+            const error = new Error("User does not exist");
+            error.statusCode = 400;
+            throw error;
+        }
 
          // TODO: Implement JWT authentication then uncomment
         // if (req.user.id !== userId) {
@@ -86,7 +100,7 @@ const updateAddress = async (req, res) => {
         user: updatedUser
         });
     }catch(err){
-        res.status(500).json({message: err.message});
+        next(err);
     }
 }
 module.exports = {getUser, deleteUser, updateAddress};
