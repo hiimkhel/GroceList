@@ -9,44 +9,44 @@ import '../index.css';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
+    <div className="relative min-h-screen min-w-screen flex flex-col overflow-hidden">
       {/* Navbar */}
       <LandingNavbar></LandingNavbar>
       
       {/* Hero Section */}
-      <main className="relative flex flex-col md:flex-row grow items-center justify-start px-50 md:px-20 py-16">
+      <main className="flex flex-col md:flex-row items-center justify-start px-15 ">
         {/* Background Ellipse */}
-        <div className="">
-          <img src={Ellipse} alt="" className="absolute h-[981px] w-[944px] bottom-0 right-0 -z-10 translate-x-[20%] translate-y-[10%] md:translate-x-1/3 md:translate-y-1/3"/>
+        <div className="overflow-hidden">
+          <img src={Ellipse} alt="" className="absolute h-auto w-[720px] bottom-30 right-10 -z-10 translate-x-1/2 translate-y-1/4 md:translate-x-1/3 md:translate-y-1/3 max-w-full"/>
         </div>
         {/* Left Text Section */}
-        <div className="flex flex-col max-w-3xl w-full mb-10 gap-10 md:mb-0">
+        <div className="flex flex-col max-w-3xl w-full gap-10 md:mb-0">
           <div className="flex flex-col gap-3">
-            <h1 className="text-[64px] font-bold text-primary font-secular">Your everyday <span className="text-secondary">groceries</span>, </h1>
-            <h1 className="text-[64px] font-bold text-primary font-secular">one click away.</h1>
+            <h1 className="font-bold text-primary font-secular">Your everyday <span className="text-secondary">groceries</span>, </h1>
+            <h1 className=" font-bold text-primary font-secular">one click away.</h1>
           </div>
-          <div className="max-w-3xl md:max-w-xl">
-            <p className="text-gray-900 mb-6 font-poppins">
+          <div className="flex flex-col gap-6 max-w-3xl md:max-w-xl px-1">
+            <p className="text-gray-900 font-poppins">
              <b>GroceList</b> is your all-in-one online grocery hub designed for convenience and variety. 
             </p>
-            <p className="text-gray-900 mb-6 font-poppins">
+            <p className="text-gray-900 font-poppins">
               From fresh produce to home essentials, we make shopping simpler, faster, and smarter — all from the comfort of your home.
             </p>
           </div>
-          <Button className="primary w-max" size="lg">Shop Now</Button>
+          <Button className="px-1 primary w-max shadow-[0_4px_4px_rgba(0,0,0,0.25)]" size="lg">Shop Now</Button>
         </div>
 
         {/* Right Image Section */}
-        <div className="relative z-10 h-[740px]">
+        <div className="relative z-10 top-5 left-22 w-[580px] h-auto overflow-hidden max-w-full">
           <img src={Products} alt="" />
         </div>
       </main>
       
 
       {/* Footer */}
-      <footer className="text-center py-6 text-gray-500 text-sm bg-white font-poppins">
+      {/* <footer className="text-center py-4 text-gray-500 text-sm bg-white font-poppins">
         © {new Date().getFullYear()} GroceList. All rights reserved.
-      </footer>
+      </footer> */}
     </div>
   );
 }

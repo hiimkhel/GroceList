@@ -24,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
       border border-primary
       bg-primary
       text-bg 
+      cursor-pointer
       hover:bg-[#041D26]
       active:bg-secondary active:text-primary active:border-secondary
    `;
@@ -32,12 +33,14 @@ const Button: React.FC<ButtonProps> = ({
       border border-secondary
       bg-secondary
       text-primary 
+      cursor-pointer
       hover:bg-secondary/90 
       active:bg-primary active:text-bg active:border-primary
    `;
   else if (variant === "outline")
     variantStyles =
-      `border border-primary text-primary hover:bg-primary hover:text-white 
+      `border border-primary text-primary cursor-pointer 
+      hover:bg-primary hover:text-white 
       active:bg-secondary active:text-primary 
       active:border-secondary
       `;

@@ -5,7 +5,7 @@ import Button from "./Button";
 
 const LandingNavbar: React.FC = () => {
   return (
-    <header className="flex justify-between items-center px-8 py-4 bg-white shadow-sm">
+    <header className="flex justify-between items-center px-12 py-4 bg-white shadow-sm">
       <Link to="/" className="flex items-center space-x-2">
         <img
           src={Logo}
@@ -14,7 +14,7 @@ const LandingNavbar: React.FC = () => {
         />
       </Link>
       <nav className="space-x-3">
-        <Button variant="outline" size="md">Login</Button>
+        <Button variant="outline" size="md" className="px-6">Login</Button>
         <Button variant="primary" size="md">Register</Button>
       </nav>
     </header>
