@@ -487,7 +487,80 @@ const seedProducts = async () => {
         description: "Premium corned beef tapa, ready to fry.",
         tag: "frozen-foods"
       },
-
+      // [DAIRY]
+      {
+        name: "Alaska Fresh Milk 1L",
+        price: 95,
+        image: "",
+        stock: 50,
+        description: "Pasteurized full cream milk for daily drinking.",
+        tag: "dairy"
+      },
+      {
+        name: "Bear Brand Powdered Milk Drink 800g",
+        price: 310,
+        image: "",
+        stock: 50,
+        description: "Fortified powdered milk for energy and nutrition.",
+        tag: "dairy"
+      },
+      {
+        name: "Eden Melt Sarap Cheese 165g",
+        price: 60,
+        image: "",
+        stock: 50,
+        description: "Processed cheese block ideal for melting or grating.",
+        tag: "dairy"
+      },
+      {
+        name: "Nestlé Fresh Milk 1L",
+        price: 110,
+        image: "",
+        stock: 50,
+        description: "Pasteurized full cream milk for daily drinking.",
+        tag: "dairy"
+      },
+      {
+        name: "Alaska Fresh Milk 1L",
+        price: 95,
+        image: "",
+        stock: 50,
+        description: "Pasteurized full cream milk for daily drinking.",
+        tag: "dairy"
+      },
+      {
+        name: "Alaska Fresh Milk 1L",
+        price: 95,
+        image: "",
+        stock: 50,
+        description: "Pasteurized full cream milk for daily drinking.",
+        tag: "dairy"
+      },
+      {
+        name: "Alaska Fresh Milk 1L",
+        price: 95,
+        image: "",
+        stock: 50,
+        description: "Pasteurized full cream milk for daily drinking.",
+        tag: "dairy"
+      },
+      {
+        name: "Alaska Fresh Milk 1L",
+        price: 95,
+        image: "",
+        stock: 50,
+        description: "Pasteurized full cream milk for daily drinking.",
+        tag: "dairy"
+      },
+      {
+        name: "Alaska Fresh Milk 1L",
+        price: 95,
+        image: "",
+        stock: 50,
+        description: "Pasteurized full cream milk for daily drinking.",
+        tag: "dairy"
+      },
+  
 
     ];
 
