@@ -4,7 +4,7 @@
  * @module controllers/marketplaceControllers
  */
 
-const User = require("../models/productModel");
+const Product = require("../models/productModel");
 
 // [ MARKETPLACE CONTROLLERS ]
 //
@@ -15,6 +15,11 @@ const User = require("../models/productModel");
 const getAllProducts = async(req, res, next) => {
     try{
         const products = await Product.find({});
+        if (!products || products.length === 0) {
+            const error = new Error("No products found");
+            error.statusCode = 404;
+            throw error;
+        }
         res.status(200).json({products})
     }catch(err){
         next(err);
