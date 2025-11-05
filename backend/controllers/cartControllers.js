@@ -14,20 +14,23 @@ const Product = require("../models/productModel");
 // @desc Fetches user cart
 // @route GET /api/cart/:userId/
 // @access PRIVATE
-const getCart = async (req, res) => {
+const getCart = async (req, res, next) => {
     const {userId} = req.params;
 
     try{
         const user = await User.findById(userId).populate("cart.productId"); 
 
-         if (!user) return res.status(404).json({ message: "User not found" });
-
+        if (!user){
+          const error = new Error("User not found");
+          error.statusCode = 404;
+          throw error;
+        }
         res.status(200).json({
             message: "Cart fetched successfully",
             cart: user.cart,
             });
         }catch(err){
-            res.status(500).json({ message: err.message});
+            next(err);
         }
 }
 
@@ -35,20 +38,30 @@ const getCart = async (req, res) => {
 // @desc Adds a product to user's cart
 // @route POST /api/cart/:userId/add
 // @access PRIVATE
-const addToCart = async (req, res) => {
-    const { userId } = req.params;
+const addToCart = async (req, res, next) => {
+  const { userId } = req.params;
   const { productId, quantity = 1 } = req.body;
 
   if (!productId) {
-    return res.status(400).json({ message: "Product ID is required" });
+    const error = new Error("Product ID field is required");
+    error.statusCode = 400;
+    throw error;
   }
 
   try {
     const user = await User.findById(userId);
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user){
+      const error = new Error("User not found");
+      error.statusCode = 404;
+      throw error;
+    }
 
     const product = await Product.findById(productId);
-    if (!product) return res.status(404).json({ message: "Product not found" });
+    if (!product){
+      const error = new Error("Product not found");
+      error.statusCode = 404;
+      throw error;
+    }
 
     // Check if the product is already in the cart
     const existingItem = user.cart.find(
@@ -70,7 +83,7 @@ const addToCart = async (req, res) => {
       cart: user.cart,
     });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    next(err);
   }
 }
 
@@ -78,27 +91,41 @@ const addToCart = async (req, res) => {
 // @desc Updates quantity of product in user's cart
 // @route PUT /api/cart/:userId/update/:productID
 // @access PRIVATE
-const updateProductQuantity = async (req, res) => {
+const updateProductQuantity = async (req, res, next) => {
     const {quantity} = req.body;
     const {userId, productId} = req.params;
 
     try{
       // Validate req parameters
-      if(!userId || !productId || quantity === undefined) return res.status(400).json({message: "All fields are required"});
+      if(!userId || !productId || quantity === undefined){
+        const error = new Error("All field are mandatory");
+        error.statusCode = 400;
+        throw error;
+      }
 
       // Validate that stock is a positive number
       if (typeof quantity !== "number" || quantity < 0) {
-        return res.status(400).json({ message: "Invalid quantity value" });
+        const error = new Error("Quantity field value invalid");
+        error.statusCode = 400;
+        throw error;
       }
       const user = await User.findById(userId);
       
       // If user does not exist
-      if (!user) return res.status(400).json({message: "User does not exist"});
+      if (!user){
+        const error = new Error("User not found");
+        error.statusCode = 400;
+        throw error;
+      }
 
       const product = await Product.findById(productId);
 
       // If product does not exist
-      if (!product) return res.status(400).json({message: "Product does not exist"});
+      if (!product){
+        const error = new Error("Product not found");
+        error.statusCode = 404;
+        throw error;
+      }
 
       // Copy current user's cart
       const updatedCart = [...user.cart];
@@ -108,8 +135,11 @@ const updateProductQuantity = async (req, res) => {
         (item) => item.productId.toString() === productId
       );
 
-      if (productIndex === -1)
-      return res.status(404).json({ message: "Product not found in cart" });
+      if (productIndex === -1){
+        const error = new Error("Product not found in cart");
+        error.statusCode = 404;
+        throw error;
+      }
 
       // Update quantity (make sure it's positive)
       updatedCart[productIndex].quantity = Math.max(1, Number(quantity));
@@ -124,7 +154,7 @@ const updateProductQuantity = async (req, res) => {
       })
      
     }catch(err){
-      res.status(500).json({message: err.message});
+      next(err);
     }
 }
 
