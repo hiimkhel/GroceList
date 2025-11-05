@@ -517,51 +517,196 @@ const seedProducts = async () => {
         price: 110,
         image: "",
         stock: 50,
-        description: "Pasteurized full cream milk for daily drinking.",
+        description: "Premium UHT milk rich in calcium and protein.",
         tag: "dairy"
       },
       {
-        name: "Alaska Fresh Milk 1L",
-        price: 95,
+        name: "Selecta Ice Cream (Cookies & Cream) 1.5L",
+        price: 330,
         image: "",
         stock: 50,
-        description: "Pasteurized full cream milk for daily drinking.",
+        description: "Creamy ice cream with cookie bits.",
         tag: "dairy"
       },
       {
-        name: "Alaska Fresh Milk 1L",
-        price: 95,
+        name: "Selecta Ice Cream (Rocky Road) 1.5L",
+        price: 330,
         image: "",
         stock: 50,
-        description: "Pasteurized full cream milk for daily drinking.",
+        description: "Chocolate ice cream with mallows and nuts.",
         tag: "dairy"
       },
       {
-        name: "Alaska Fresh Milk 1L",
-        price: 95,
+        name: "Nestlé Cream 250ml",
+        price: 80,
         image: "",
         stock: 50,
-        description: "Pasteurized full cream milk for daily drinking.",
+        description: "All-purpose cream for desserts and cooking.",
         tag: "dairy"
       },
       {
-        name: "Alaska Fresh Milk 1L",
-        price: 95,
+        name: "Anchor Butter Salted 227g",
+        price: 185,
         image: "",
         stock: 50,
-        description: "Pasteurized full cream milk for daily drinking.",
+        description: "Premium New Zealand dairy butter.",
         tag: "dairy"
       },
       {
-        name: "Alaska Fresh Milk 1L",
+        name: "Dutch Mill Yogurt Drink 180ml",
+        price: 25,
+        image: "",
+        stock: 50,
+        description: "Sweet cultured yogurt drink with probiotics.",
+        tag: "dairy"
+      },
+      // [BAKERY]
+      {
+        name: "Angelina Classic White Bread 600g",
+        price: 85,
+        image: "",
+        stock: 50,
+        description: "Soft white loaf bread ideal for sandwiches and breakfast.",
+        tag: "bakery"
+      },
+      {
+        name: "Angelina Whole Wheat Bread 600g",
         price: 95,
         image: "",
         stock: 50,
-        description: "Pasteurized full cream milk for daily drinking.",
-        tag: "dairy"
+        description: "Healthy whole wheat loaf rich in fiber.",
+        tag: "bakery"
       },
-  
-
+      // [SNACKS]
+      {
+        name: "Piattos Cheese 85g",
+        price: 45,
+        image: "",
+        stock: 50,
+        description: "Hexagon-shaped potato crisps with cheese flavor.",
+        tag: "snacks"
+      },
+      {
+        name: "Nova Multigrain Snacks 80g",
+        price: 40,
+        image: "",
+        stock: 50,
+        description: "Crunchy multigrain chips high in fiber.",
+        tag: "snacks"
+      },
+      {
+        name: "Vcut Spicy BBQ 80g",
+        price: 40,
+        image: "",
+        stock: 50,
+        description: "Wavy potato chips with spicy barbecue flavor.",
+        tag: "snacks"
+      },
+      {
+        name: "Oishi Prawn Crackers 60g",
+        price: 35,
+        image: "",
+        stock: 50,
+        description: "Crispy shrimp-flavored cracker snack.",
+        tag: "snacks"
+      },
+      {
+        name: "Chippy BBQ 110g",
+        price: 40,
+        image: "",
+        stock: 50,
+        description: "Corn chips with smoky barbecue seasoning.",
+        tag: "snacks"
+      },
+      {
+        name: "Roller Coaster Cheese 60g",
+        price: 35,
+        image: "",
+        stock: 50,
+        description: "Ring-shaped crunchy chips with cheese flavor.",
+        tag: "snacks"
+      },
+      {
+        name: "Cloud 9 Chocolate Bar 25g",
+        price: 20,
+        image: "",
+        stock: 50,
+        description: "Chewy chocolate bar with caramel and peanuts.",
+        tag: "snacks"
+      },
+      // [BEVERAGE]
+      {
+        name: "Wilkins Distilled Water 1L",
+        price: 30,
+        image: "",
+        stock: 50,
+        description: "Purified bottled water for safe hydration.",
+        tag: "beverage"
+      },
+      {
+        name: "Natures Spring Drinking Water 500ml",
+        price: 15,
+        image: "",
+        stock: 50,
+        description: "Affordable purified water in handy size.",
+        tag: "beverage"
+      },
+      {
+        name: "Coca-Cola 1.5L",
+        price: 85,
+        image: "",
+        stock: 50,
+        description: "Classic carbonated soft drink.",
+        tag: "beverage"
+      },
+      {
+        name: "Sprite 1.5L",
+        price: 85,
+        image: "",
+        stock: 50,
+        description: "Lemon-lime flavored soda.",
+        tag: "beverage"
+      },
+      {
+        name: "Pepsi 1.5L",
+        price: 80,
+        image: "",
+        stock: 50,
+        description: "Refreshing cola-flavored soft drink.",
+        tag: "beverage"
+      },
+      {
+        name: "Mountain Dew 1L",
+        price: 60,
+        image: "",
+        stock: 50,
+        description: "Citrus-flavored soft drink with caffeine.",
+        tag: "beverage"
+      },
+      {
+        name: "Red Horse Beer 500ml",
+        price: 60,
+        image: "",
+        stock: 50,
+        description: "Extra strong beer with bold flavor.",
+        tag: "beverage"
+      },
+      {
+        name: "San Miguel Pale Pilsen 330ml",
+        price: 55,
+        image: "",
+        stock: 50,
+        description: "Classic Filipino lager beer.",
+        tag: "beverage"
+      },
+      {
+        name: "Tanduay Light 350ml",
+        price: 75,
+        image: "",
+        stock: 50,
+        description: "Light rum with smooth and mellow taste.",
+        tag: "beverage"
+      },
     ];
 
     // Insert new seed data
