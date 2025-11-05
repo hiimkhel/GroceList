@@ -113,7 +113,7 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Classic stir-fry noodles with savory seasoning.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Lucky Me! Pancit Canton (Calamansi)",
@@ -121,7 +121,7 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Tangy calamansi-flavored stir-fry noodles.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Lucky Me! Pancit Canton (Chilimansi)",
@@ -129,7 +129,7 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Spicy and tangy version of classic pancit canton.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Nissin Ramen (Seafood Flavor)",
@@ -137,7 +137,7 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Instant ramen with rich seafood broth.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Nissin Cup Noodles (Beef Flavor)",
@@ -145,7 +145,7 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Quick beef-flavored instant cup noodles.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Payless Xtra Big Pancit Canton (Sweet & Spicy)",
@@ -153,7 +153,7 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Larger serving with sweet and spicy flavor.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Lucky Me! Instant Mami (Beef)",
@@ -161,7 +161,7 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Savory beef-flavored noodle soup.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Century Tuna Caldereta 155g",
@@ -169,15 +169,15 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Tuna flakes in rich caldereta-style sauce.",
-        tag: "pantry"
+        tag: "instant-food"
       },
       {
         name: "Argentina Corned Beef 150g",
-        price: 99,
+        price: 44,
         image: "",
         stock: 50,
-        description: "Premium corned beef with rich beef flavor.",
-        tag: "pantry"
+        description: "Classic Filipino-style corned beef.",
+        tag: "instant-food"
       },
       {
         name: "Delimondo Corned Beef 260g",
@@ -185,7 +185,48 @@ const seedProducts = async () => {
         image: "",
         stock: 50,
         description: "Premium corned beef with rich beef flavor.",
-        tag: "pantry"
+        tag: "instant-food"
+      },
+      // [HEALTH & HYGIENE]
+      {
+        name: "Head & Shoulders Anti-Dandruff Shampoo 170ml",
+        price: 145,
+        image: "",
+        stock: 50,
+        description: "Refreshing shampoo that removes dandruff and soothes scalp.",
+        tag: "health-and-hygiene"
+      },
+      {
+        name: "Palmolive Naturals Conditioner 180ml",
+        price: 130,
+        image: "",
+        stock: 50,
+        description: "Smooth, nourishing conditioner with natural extracts.",
+        tag: "health-and-hygiene"
+      },
+      {
+        name: "Colgate Triple Action Toothpaste 100g",
+        price: 75,
+        image: "",
+        stock: 50,
+        description: "Toothpaste for cavity protection, whitening, and fresh breath.",
+        tag: "health-and-hygiene"
+      },
+      {
+        name: "Oral-B Toothbrush (2-pack)",
+        price: 120,
+        image: "",
+        stock: 50,
+        description: "Durable soft-bristle toothbrush for daily oral care.",
+        tag: "health-and-hygiene"
+      },
+      {
+        name: "Safeguard Pure White Bar Soap 90g",
+        price: 34,
+        image: "",
+        stock: 50,
+        description: "Antibacterial soap for all-around skin protection.",
+        tag: "health-and-hygiene"
       },
 
     ];
