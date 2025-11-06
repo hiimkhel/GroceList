@@ -1,8 +1,8 @@
 const express = require("express");
-const getAllProducts = require("../controllers/marketplaceControllers")
+const {getAllProducts, getProductByCategory} = require("../controllers/marketplaceControllers")
 const router = express.Router();
 
 // [ROUTE ENDPOINTS]
-router.get("/", getAllProducts);
+router.get("/", getAllProducts, getProductByCategory);
 
 module.exports = router;
