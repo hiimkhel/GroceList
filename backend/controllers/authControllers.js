@@ -14,18 +14,26 @@ const jwt = require("jsonwebtoken");
 // @desc Register a new user
 // @route POST /api/auth/register
 // @access Public
-const userRegister = async (req, res) => {
+const userRegister = async (req, res, next) => {
 
     // Store
     const {name, email, password, address} = req.body;
 
     // Validation
-    if( !name || !email || !password || !address) return res.status(400).json({message: "All fields are mandatory!"});
+    if( !name || !email || !password || !address){
+        const error = new Error("All fields are mandatory!");
+        error.statusCode = 400;
+        throw error;
+    }
 
     // Check for existing users
     const userAvailable = await User.findOne({email});
 
-    if(userAvailable) return res.status(400).json({message: "User is already registered!"});
+    if(userAvailable){
+        const error = new Error("User is already registered!");
+        error.statusCode = 400;
+        throw error
+    }
 
 
     try{
@@ -59,7 +67,7 @@ const userRegister = async (req, res) => {
         });
     }
     catch(err){
-        res.status(400).json({message: err.message});
+        next(err);
     }
 }
 
@@ -67,23 +75,35 @@ const userRegister = async (req, res) => {
 // @desc Allows user to login
 // @route POST /api/auth/login
 // @access Public
-const userLogin = async (req, res) => {
+const userLogin = async (req, res, next) => {
     const {email, password} = req.body;
 
     // Validate req body fields
-    if(!email || !password) return res.status(400).json({message: "All fields are mandatory"});
+    if(!email || !password) {
+        const error = new Error("All fields are mandatory!");
+        error.statusCode = 400;
+        throw error;
+    }
 
     try{
         const user = await User.findOne({ email });
         
         // If user does not exist
-        if (!user) return res.status(400).json({message: "User does not exist"});
+        if (!user){
+            const error = new Error("User does not exist");
+            error.statusCode = 400;
+            throw error;
+        }
 
         // Validate password using bcrypt
         const isValidPass = await bcrypt.compare(password, user.password);
 
         // If not valid
-        if(!isValidPass) return res.status(400).json({message: "Invalid password"});
+        if(!isValidPass){
+            const error = new Error("Invalid credentials");
+            error.statusCode = 401;
+            throw error;
+        }
 
         // Generate JWT Token
         const token = jwt.sign({id: user._id, email: user.email},
@@ -101,7 +121,7 @@ const userLogin = async (req, res) => {
             },
             });
     }catch(err){
-        res.status(500).json({message: err.message});
+        next(err);
     }
 }
 
