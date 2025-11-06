@@ -59,38 +59,4 @@ const getAllProducts = async(req, res, next) => {
     
 }
 
-const getProductByCategory = async(req, res, next) => {
-    const {category} = req.query;
-
-    try{
-
-        if(!category){
-            const error = new Error("Category field is required!");
-            error.statusCode = 400;
-            throw error;
-        }
-
-        if(!PRODUCT_CATEGORIES.includes(category)){
-            const error = new Error("Invalid category!");
-            error.statusCode = 400;
-            throw error;
-        }
-        // Store the category to fetch
-        const products = await Product.find({tag: category});
-
-        // Handle if products in that category is 0
-        if(!products || products.length === 0){
-            const error = new Error(`No products found for ${category} category`);
-            error.statusCode = 400;
-            throw error;
-        }
-
-        res.status(200).json(products);
-
-
-    }catch(err){
-        next(err);
-    }
-}
-
-module.exports = {getAllProducts, getProductByCategory};
+module.exports = {getAllProducts};
