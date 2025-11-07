@@ -3,6 +3,7 @@
  * @description Defines the Grocery List schema for the database
  * @module models/groceryListModel.js
  */
+const mongoose = require("mongoose");
 
 const groceryListSchema = new mongoose.Schema({
     userId:{
@@ -17,6 +18,7 @@ const groceryListSchema = new mongoose.Schema({
     },
     items:[
         {
+            // TODO: Add a reference field for product ID
             name: String,
             quantity: {type: Number, default: 1},
             isChecked: {type: Boolean, default: false},
@@ -31,4 +33,4 @@ const groceryListSchema = new mongoose.Schema({
     
 });
 
-module.exports = mongoose.model("Grocery-List", groceryListSchema);
+module.exports = mongoose.model("GroceryList", groceryListSchema);

@@ -10,7 +10,7 @@ const User = require("../models/userModel");
 // [1] GET CURRENT USER
 // @desc Fetch current user
 // @route GET /api/user/:userId
-// @access Public
+// @access Private
 const getUser = async (req, res, next) => {
     const {userId} = req.params;
     try{
@@ -46,10 +46,9 @@ const deleteUser  = async (req, res, next) => {
             throw error;
         }
 
-         // TODO: Implement JWT authentication then uncomment
-        // if (req.user.id !== userId) {
-        // return res.status(403).json({ success: false, message: "Unauthorized action" });
-        // }
+        if (req.user.id !== userId) {
+        return res.status(403).json({ success: false, message: "Unauthorized action" });
+        }
 
         // Logic
         await User.findByIdAndDelete(userId);
@@ -83,11 +82,9 @@ const updateAddress = async (req, res) => {
             error.statusCode = 400;
             throw error;
         }
-
-         // TODO: Implement JWT authentication then uncomment
-        // if (req.user.id !== userId) {
-        // return res.status(403).json({ success: false, message: "Unauthorized action" });
-        // }
+        if (req.user.id !== userId) {
+        return res.status(403).json({ success: false, message: "Unauthorized action" });
+        }
 
         // Logic
          const updatedUser = await User.findByIdAndUpdate(
