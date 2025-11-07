@@ -158,4 +158,52 @@ const updateProductQuantity = async (req, res, next) => {
     }
 }
 
-module.exports = {addToCart, getCart, updateProductQuantity};
+// [4] DELETE PRODUCT
+// @desc Deletes a product from user's cart
+// @route PUT /api/cart/:userId/delete/:productId
+// @access PRIVATE
+const removeFromCart = async (req, res, next) => {
+  const {userId, productId} = req.params;
+  try{
+    if(!userId || !productId){
+      const error = new Error("All fields are mandatory!");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    const user = await User.findById(userId);
+
+    // If user does not exist
+      if (!user){
+        const error = new Error("User not found");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      const product = await Product.findById(productId);
+
+      // If product does not exist
+      if (!product){
+        const error = new Error("Product not found");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      
+      const productIndex = await user.cart.findIndex((p)=> p.productId.toString() === productId);
+      // If product not found in the cart
+      if (productIndex === -1) {
+        const error = new Error("Product not found in cart");
+        error.statusCode = 404;
+        throw error;
+      }
+      user.cart.splice(productIndex, 1);
+      await user.save();
+      
+      res.status(200).json({message: "Product removed successfully"});
+
+  }catch(err){
+    next(err);
+  }
+}
+module.exports = {addToCart, getCart, updateProductQuantity, removeFromCart};
