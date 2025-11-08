@@ -104,4 +104,35 @@ const updateGroceryList = async (req, res, next) => {
         next(err);
     }
 }
-module.exports = {getGroceryLists, addGroceryList, updateGroceryList};
+
+// [3] DELETE A GROCERY LIST
+// @desc Deletes a grocery list
+// @route DELETE /api/list/:userId/:listId/delete
+// @access Private
+const deleteGroceryList = async (req, res, next) => {
+    const {userId, listId} =  req.params;
+
+    try{
+        if(!userId || !listId){
+            const error = new Error("All fields are required!");
+            error.statusCode = 400;
+            throw error;
+        }
+
+        const list = GroceryList.findOne({_id: listId, userId});
+
+        if(!list){
+            const error = new Error("Grocery list not found!");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        await GroceryList.findByIdAndDelete(listId);
+        res.status(200).json({message: "Grocery list deleted successfully!"});
+
+
+    }catch(err){
+        next(err);
+    }
+}
+module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList};
