@@ -30,7 +30,8 @@ app.use("/api/cart", require("./routes/cartRoutes.js"));
 app.use("/api/marketplace", require("./routes/marketplaceRoutes.js"));
 // [4] Users
 app.use("/api/user", require("./routes/userRoutes.js"));
-
+// [5] Grocery Lists
+app.use("/api/lists", require("./routes/groceryListRoutes.js"));
 
 // Apply our global error handler middleware
 app.use(errorHandler);

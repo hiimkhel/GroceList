@@ -1,0 +1,453 @@
+{
+	"info": {
+		"_postman_id": "31030de3-53cb-433a-acc9-f41a9829cbab",
+		"name": "🛒 GroceList API Documentation (v1)",
+		"description": "Welcome to the **GroceList API**, the backend service powering the **GroceList Web App** — a modern grocery management and marketplace platform that helps users **shop smarter** and **manage grocery lists** efficiently.\n\nThe API provides endpoints for **user authentication**, **marketplace product browsing**, **cart management**, and\n\nEndFragment\n\n## 🚀 Getting Started\n\nTo start using the **GroceList API**, follow these steps:\n\n1. **Base URL**\n    \n    - Local: `http://localhost:5000/api`\n        \n    - Production: `https://grocelist-backend.onrender.com/api`\n        \n2. **Register or Log In**\n    \n    - Register a new account: `POST /auth/register`\n        \n    - Log in to get your JWT access token: `POST /auth/login`  \n          \n        \n\n`List the steps or points required to start using your APIs. Make sure to cover everything required to reach success with your API as quickly as possible.`\n\nTo start using the ((add APIs here)), you need to -\n\n`The points given below are from The Postman API's documentation. You can reference it to write your own getting started guide.`\n\n- You must use a valid API Key to send requests to the API endpoints. You can get your API key from Postman's [integrations dashboard](https://go.postman.co/settings/me/api-keys).\n    \n- The API has [rate and usage limits](https://learning.postman.com/docs/developer/postman-api/postman-api-rate-limits/).\n    \n- The API only responds to HTTPS-secured communications. Any requests sent via HTTP return an HTTP 301 redirect to the corresponding HTTPS resources.\n    \n- The API returns request responses in JSON format. When an API request returns an error, it is sent in the JSON response as an error key.\n    \n\n## Authentication\n\n`Add details on the authorization keys/tokens required, steps that cover how to get them, and the relevant error codes.`\n\nThe ((product name)) API uses ((add your API's authorization type)) for authentication.\n\n`The details given below are from the Postman API's documentation. You can reference it to write your own authentication section.`\n\nPostman uses API keys for authentication. You can generate a Postman API key in the [API keys](https://postman.postman.co/settings/me/api-keys) section of your Postman account settings.\n\nYou must include an API key in each request to the Postman API with the X-Api-Key request header.\n\n### Authentication error response\n\nIf an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.\n\n## Rate and usage limits\n\n`Use this section to cover your APIs' terms of use. Include API limits, constraints, and relevant error codes, so consumers understand the permitted API usage and practices.`\n\n`The example given below is from The Postman API's documentation. Use it as a reference to write your APIs' terms of use.`\n\nAPI access rate limits apply at a per-API key basis in unit time. The limit is 300 requests per minute. Also, depending on your plan, you may have usage limits. If you exceed either limit, your request will return an HTTP 429 Too Many Requests status code.\n\nEach API response returns the following set of headers to help you identify your use status:\n\n| Header | Description |\n| --- | --- |\n| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make per minute. |\n| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |\n| `X-RateLimit-Reset` | The time at which the current rate limit window resets in UTC epoch seconds. |\n\n### 503 response\n\nAn HTTP `503` response from our servers indicates there is an unexpected spike in API access traffic. The server is usually operational within the next five minutes. If the outage persists or you receive any other form of an HTTP `5XX` error, [contact support](https://support.postman.com/hc/en-us/requests/new/).\n\n### **Need some help?**\n\n`Add links that customers can refer to whenever they need help.`\n\nIn case you have questions, go through our tutorials ((link to your video or help documentation here)). Or visit our FAQ page ((link to the relevant page)).\n\nOr you can check out our community forum, there’s a good chance our community has an answer for you. Visit our developer forum ((link to developer forum)) to review topics, ask questions, and learn from others.\n\n`You can also document or add links to libraries, code examples, and other resources needed to make a request.`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42468385"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Juan dela Cruz\",\r\n    \"email\": \"juandelacruz@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"address\": \"testaddress\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/register",
+						"description": "Gets information about the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Bearer",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDZlODVlNTM2Nzk3NzliMmJlZWQ3ZCIsImlhdCI6MTc2MjA2MDM4MiwiZXhwIjoxNzYyNjY1MTgyfQ.Uo5MKbODEA4nL-2tsgLl5tiUd5PGvAPPTVrTsWH9Chg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"juandelacruz@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/login"
+					},
+					"response": []
+				}
+			],
+			"description": "The `/auth` endpoints handles user authentication"
+		},
+		{
+			"name": "Marketplace",
+			"item": [
+				{
+					"name": "Fetch all products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/marketplace",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"marketplace"
+							],
+							"query": [
+								{
+									"key": "workspace",
+									"value": "{{workspaceId}}",
+									"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Creates a collection using the [Postman Collection v2 schema format](https://schema.postman.com/json/collection/v2.1.0/docs/index.html). Include a `collection` object in the request body that contains the following required properties:\n\n*   `info` — An **object** that contains the following properties:\n    *   `name` — A **string** value that contains the collection's name.\n    *   `schema` — A **string** that contains a URL to the collection's schema. For example, the `https://schema.getpostman.com/collection/v1` URL.\n*   `item` — An **object** that contains the HTTP request and response information.\n    *   `request` — An **object** that contains the collection's request information. For a complete list of values, refer to the `definitions.request` entry in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json). If you pass an empty object for this value, the system defaults to an untitled GET request.\n\n**Note:**\n\n*   For a complete list of available property values for this endpoint, use the following references available in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json):\n    *   `info` object — Use the `definitions.info` entry.\n    *   `item` object — Use the `definitions.items` entry.\n*   For all other possible values, refer to the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get products by category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/marketplace?category=beverage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"marketplace"
+							],
+							"query": [
+								{
+									"key": "workspace",
+									"value": "{{workspaceId}}",
+									"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "beverage"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/marketplace/690c2fb4d8e9d7a6fe2cadde"
+					},
+					"response": []
+				}
+			],
+			"description": "The `/marketplace` endpoints let you manage your products."
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get current user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGVlNmYyMGYzNjg0NzliNDkyM2M1ZSIsImlhdCI6MTc2MjU4NDMwNiwiZXhwIjoxNzYzMTg5MTA2fQ.QhXMIEkwTSc2ktE5rYDLP9MbbABcvwdFxsMM_iyO_Uc",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:5000/api/user/690ee6f20f368479b4923c5e"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGVlNmYyMGYzNjg0NzliNDkyM2M1ZSIsImlhdCI6MTc2MjU4NDMwNiwiZXhwIjoxNzYzMTg5MTA2fQ.QhXMIEkwTSc2ktE5rYDLP9MbbABcvwdFxsMM_iyO_Uc",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:5000/api/user/690ee6f20f368479b4923c5e"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user address",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGVlNmYyMGYzNjg0NzliNDkyM2M1ZSIsImVtYWlsIjoianVhbmRlbGFjcnV6QGdtYWlsLmNvbSIsImlhdCI6MTc2MjU4NDM0OCwiZXhwIjoxNzYzMTg5MTQ4fQ.o9mJXtb8abqyoUNjcHHOj-wuO8XZ9hivZV4S7-Fp3I0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"Jaro iloilo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/user/690ee6f20f368479b4923c5e/address"
+					},
+					"response": []
+				}
+			],
+			"description": "The `/user` endpoints handles user profile management logic"
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get user cart",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGVlNmYyMGYzNjg0NzliNDkyM2M1ZSIsImVtYWlsIjoianVhbmRlbGFjcnV6QGdtYWlsLmNvbSIsImlhdCI6MTc2MjU4NDM0OCwiZXhwIjoxNzYzMTg5MTQ4fQ.o9mJXtb8abqyoUNjcHHOj-wuO8XZ9hivZV4S7-Fp3I0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://localhost:5000/api/cart/690ee6f20f368479b4923c5e/"
+					},
+					"response": []
+				},
+				{
+					"name": "Add to Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGRmNjA5N2E3ZGFmYThlYzAwYTVjMiIsImlhdCI6MTc2MjUyMjYzMywiZXhwIjoxNzYzMTI3NDMzfQ.c-OT-aSJO7ahjnkQY87zB82mZpBLkJYDJp_ik6DMlOA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"690c2fb4d8e9d7a6fe2cadde\",\r\n    \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/cart/690ee6f20f368479b4923c5e/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Quanitity",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/cart/690ee6f20f368479b4923c5e/update/690c2fb4d8e9d7a6fe2cadde"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGRmNjA5N2E3ZGFmYThlYzAwYTVjMiIsImlhdCI6MTc2MjUyMjYzMywiZXhwIjoxNzYzMTI3NDMzfQ.c-OT-aSJO7ahjnkQY87zB82mZpBLkJYDJp_ik6DMlOA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://localhost:5000/api/cart/690ee6f20f368479b4923c5e/remove/690c2fb4d8e9d7a6fe2cadde"
+					},
+					"response": []
+				}
+			],
+			"description": "The `/cart` endpoints handles all logic related to managing the user's grocery cart"
+		},
+		{
+			"name": "GroceryList",
+			"item": [
+				{
+					"name": "Get all lists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGRmNjA5N2E3ZGFmYThlYzAwYTVjMiIsImlhdCI6MTc2MjUyMjYzMywiZXhwIjoxNzYzMTI3NDMzfQ.c-OT-aSJO7ahjnkQY87zB82mZpBLkJYDJp_ik6DMlOA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://localhost:5000/api/lists/690ee6f20f368479b4923c5e"
+					},
+					"response": []
+				},
+				{
+					"name": "Add list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGRmNjA5N2E3ZGFmYThlYzAwYTVjMiIsImlhdCI6MTc2MjUyMjYzMywiZXhwIjoxNzYzMTI3NDMzfQ.c-OT-aSJO7ahjnkQY87zB82mZpBLkJYDJp_ik6DMlOA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"First grocery\",\r\n    \"items\": [\r\n        {\"name\": \"hatdog\", \"quantity\": 1, \"isChecked\": \"false\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/lists/690ee6f20f368479b4923c5e/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Update grocery list",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGRmNjA5N2E3ZGFmYThlYzAwYTVjMiIsImlhdCI6MTc2MjUyMjYzMywiZXhwIjoxNzYzMTI3NDMzfQ.c-OT-aSJO7ahjnkQY87zB82mZpBLkJYDJp_ik6DMlOA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"First grocery updated\",\r\n    \"items\": [\r\n        {\"name\": \"hatdog\", \"quantity\": 1, \"isChecked\": \"false\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/lists/690ee6f20f368479b4923c5e/690f390992566a0f6cbfa8b3/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete grocery list",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGRmNjA5N2E3ZGFmYThlYzAwYTVjMiIsImlhdCI6MTc2MjUyMjYzMywiZXhwIjoxNzYzMTI3NDMzfQ.c-OT-aSJO7ahjnkQY87zB82mZpBLkJYDJp_ik6DMlOA",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:5000/api/lists/690ee6f20f368479b4923c5e/690f390992566a0f6cbfa8b3/delete"
+					},
+					"response": []
+				}
+			],
+			"description": "The `/lists` endpoints manages user's grocery list"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGVlNmYyMGYzNjg0NzliNDkyM2M1ZSIsImVtYWlsIjoianVhbmRlbGFjcnV6QGdtYWlsLmNvbSIsImlhdCI6MTc2MjU4NDM0OCwiZXhwIjoxNzYzMTg5MTQ4fQ.o9mJXtb8abqyoUNjcHHOj-wuO8XZ9hivZV4S7-Fp3I0"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}

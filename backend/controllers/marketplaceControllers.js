@@ -15,7 +15,7 @@ const PRODUCT_CATEGORIES = ["pantry", "instant-food", "health-and-hygiene",
 // @desc Displays all the products also allows query parameter
 // @route GET /api/marketplace/ && /api/marketplace?category=category
 // @access Public
-const getAllProducts = async(req, res, next) => {
+const getAllProducts = async(req, res) => {
     const {category} = req.query;
 
     // Apply query parameter if the URL has one
@@ -59,4 +59,36 @@ const getAllProducts = async(req, res, next) => {
     
 }
 
-module.exports = {getAllProducts};
+// [2] GET PRODUCT
+// @desc Fetches a product
+// @route GET /api/marketplace/:productId
+// @access Public
+
+const getProduct = async(req, res) => {
+    const {productId} = req.params;
+
+    try{
+        if(!productId){
+            const error = new Error("Product ID is missing!");
+            error.statusCode = 400;
+            throw error;
+        }
+
+        const product = await Product.findById(productId);
+
+        if(!product){
+            const error = new Error("Product is not found!");
+            error.statusCode = 400;
+            throw error;
+        }
+
+        res.status(200).json({
+            product
+        })
+    }catch(err){
+        next(err);
+    }
+}
+
+
+module.exports = {getAllProducts, getProduct};
