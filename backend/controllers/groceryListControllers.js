@@ -17,6 +17,12 @@ const getGroceryLists = async (req, res, next) => {
     const {userId} = req.params;
 
     try{
+        if (req.user.id !== userId) {
+            const error = new Error("Unauthorized action!");
+            error.statusCode = 401;
+            throw error;
+        }
+        
         if(!userId){
             const error = new Error("User ID parameter is required!");
             error.statusCode = 400;
