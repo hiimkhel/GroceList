@@ -1,6 +1,6 @@
 /* GLOBAL GROCELIST CSS FILE */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Secular+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Secular+One&display=swap");
 
 @import "tailwindcss";
 
@@ -16,9 +16,9 @@
   --font-poppins: "Poppins", system-ui, sans-serif;
   --font-secular: "Secular One", sans-serif;
 
-  --color-primary: #0B4B53;
-  --color-secondary: #3AECA5;
-  --color-bg: #FFFFFF;
+  --color-primary: #0b4b53;
+  --color-secondary: #3aeca5;
+  --color-bg: #ffffff;
   --color-text: #000000;
 }
 
@@ -29,8 +29,12 @@
   h2 {
     @apply text-3xl font-bold;
   }
+
+  h4 {
+    @apply font-poppins;
+  }
   p {
-    @apply text-base leading-relaxed;
+    @apply font-poppins text-base leading-relaxed;
   }
 }
 /* MEDIA (future mobile) */

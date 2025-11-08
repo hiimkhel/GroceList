@@ -47,14 +47,14 @@ const SideBar: React.FC = () => {
 
   return (
     <main className="bg-primary flex h-screen w-[250px] flex-col justify-between p-4 text-white">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5">
         {/* Menu */}
         <Link to="/">
-          <img src={Menu} alt="Menu" />
+          <img className="h-5 w-5" src={Menu} alt="Menu" />
         </Link>
 
+        {/* User Info */}
         <div className="mx-auto flex h-auto w-full flex-col items-center justify-center rounded-lg bg-white px-6 py-3">
-          {/* User Card Info */}
           {/* Ternary Operator to display loading if is not yet fetched */}
           {user ? (
             <>
@@ -83,30 +83,44 @@ const SideBar: React.FC = () => {
               </a>
             </>
           ) : (
-            <p>Loading...</p>
+            <p className="text-primary text-sm italic">Loading...</p>
           )}
         </div>
 
         {/* Menu */}
         <div className="flex flex-col space-y-4">
-          <Link to="/marketplace" className="flex items-center space-x-2">
-            <img src="../assets/Marketplace.svg" />
-            <h3>Marketplace</h3>
+          <Link
+            to="/marketplace"
+            className="border-secondary hover:bg-secondary/20 flex flex-row items-center gap-4 border-t-2 px-3 py-2.5"
+          >
+            <img className="h-5 w-auto" src={Marketplace} />
+            <h4>Marketplace</h4>
           </Link>
-          <Link to="/checklist" className="flex items-center space-x-2">
-            <img src="../assets/Checklist.svg" />
-            <h3>Checklist</h3>
+          <Link
+            to="/checklist"
+            className="border-secondary hover:bg-secondary/20 flex flex-row items-center gap-4 border-t-2 px-3 py-2.5"
+          >
+            <img className="h-5 w-auto" src={Checklist} />
+            <h4>Checklist</h4>
           </Link>
-          <Link to="/cart" className="flex items-center space-x-2">
-            <img src="../assets/ShoppingCart.svg" />
-            <h3>Shopping Cart</h3>
+          <Link
+            to="/cart"
+            className="border-secondary hover:bg-secondary/20 flex flex-row items-center gap-4 border-t-2 px-3 py-2.5"
+          >
+            <img className="h-5 w-auto" src={Cart} />
+            <h4>Shopping Cart</h4>
           </Link>
         </div>
       </div>
 
-      <div className="mx-auto flex w-4/5 items-center justify-center rounded-lg py-2">
-        <img src="../assets/Logout.svg" className="mr-2 h-5 w-5" />
-        <h3>Logout</h3>
+      <div className="">
+        <Link
+          to="/"
+          className="border-secondary flex flex-row items-center gap-4 border-t-2 px-3 py-2.5 hover:bg-red-500/50"
+        >
+          <img className="h-5 w-auto" src={Logout} />
+          <h4>Log Out</h4>
+        </Link>
       </div>
     </main>
   );
