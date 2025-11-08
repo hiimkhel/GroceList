@@ -16,7 +16,7 @@ const SideBar: React.FC = () => {
     useEffect(() => {
 
         // TODO: Implement dynamic fetching of the current user userId
-        const userId = "690ee6f20f368479b4923c5e";
+        const userId = "6906e85e53679779b2beed7d";
 
         // Async function to fetch the user data
         const fetchUserData = async () => {
