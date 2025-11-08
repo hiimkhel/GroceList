@@ -11,11 +11,12 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDb = require("./config/dbConnection");
 const errorHandler = require("./middleware/errorHandler.js");
+const cors = require('cors');
 
 const app = express();
 dotenv.config();
 connectDb();
-
+app.use(cors());
 const port = 5000;
 
 app.use(express.json());
