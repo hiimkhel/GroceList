@@ -38,7 +38,7 @@ const SideBar: React.FC = () => {
     }, []);
     
   return (
-    <div className="h-screen w-[300px] bg-primary p-4 flex flex-col justify-between text-white">
+    <div className="h-screen w-[500px] bg-primary p-4 flex flex-col justify-between text-white">
       <div className="space-y-6">
         <Link to="/">
           <img src="../assets/Hamburger.svg" alt="Menu" />

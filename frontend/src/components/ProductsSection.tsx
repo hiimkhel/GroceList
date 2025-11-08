@@ -1,0 +1,67 @@
+// Section of all Products
+// src/pages/Marketplace.tsx
+import React, { useEffect, useState } from "react";
+import MarketplaceItem from "../components/MarketplaceItem";
+
+interface Product {
+    _id: string,
+    name: string,
+    description: string,
+    price: number,
+    imageUrl: string,
+    quantity: number,
+}
+
+const ProductsSection: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/marketplace/");
+        if (!response.ok) {
+          console.error("Failed to fetch products:", response.status);
+          setLoading(false);
+          return;
+        }
+        const data = await response.json();
+
+        setProducts(data.products || []);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleAddToCart = (productId: string) => {
+    console.log("Add to cart clicked for product:", productId);
+    // TODO: Implement add to cart logic
+  };
+  
+  if (loading) return <p>Loading products...</p>;
+  if (products.length === 0) return <p>No products found.</p>;
+
+  return (
+    <div className="p-4 w-auto grid grid-cols-3 gap-2">
+      {products.map((product) => (
+        <MarketplaceItem
+          key={product._id}
+          id={product._id}
+          name={product.name}
+          quantity={product.quantity}
+          price={product.price}
+          imageUrl={product.imageUrl}
+          description={product.description}
+          onAddToCart={handleAddToCart}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default ProductsSection;

@@ -1,10 +1,12 @@
+import ProductsSection from "../components/ProductsSection";
 import SideBar from "../components/Sidebar";
 import '../index.css'
 
 const MarketPlacePage = () => {
     return(
-        <div>
+        <div className="flex">
             <SideBar></SideBar>
+            <ProductsSection></ProductsSection>
         </div>
     )
 }
