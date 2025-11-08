@@ -1,101 +1,128 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import React from 'react';
-import '../index.css';
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import React from "react";
+import Menu from "../assets/Hamburger.svg";
+import Marketplace from "../assets/Marketplace.svg";
+import Checklist from "../assets/Checklist.svg";
+import Cart from "../assets/ShoppingCart.svg";
+import Location from "../assets/Location.svg";
+import Logout from "../assets/Exit.svg";
 
-interface User{
-    name: String,
-    email: String,
-    address: String
+import "../index.css";
+
+interface User {
+  name: String;
+  email: String;
+  address: String;
 }
 const SideBar: React.FC = () => {
-    // A react state to store user fetched data
-    const [user, setUser] = useState<User |null>(null);
+  // A react state to store user fetched data
+  const [user, setUser] = useState<User | null>(null);
 
-    // fetches the users data from the backend
-    useEffect(() => {
+  // fetches the users data from the backend
+  useEffect(() => {
+    // TODO: Implement dynamic fetching of the current user userId
+    const userId = "6906e85e53679779b2beed7d";
 
-        // TODO: Implement dynamic fetching of the current user userId
-        const userId = "690ee6f20f368479b4923c5e";
+    // Async function to fetch the user data
+    const fetchUserData = async () => {
+      try {
+        // store the response of the upcoming data from backend
+        const response = await fetch(
+          `http://localhost:5000/api/user/${userId}`,
+        );
 
-        // Async function to fetch the user data
-        const fetchUserData = async () => {
-            try{
-                // store the response of the upcoming data from backend
-                const response = await fetch(`http://localhost:5000/api/user/${userId}`);
+        // Store that data to a json
+        const data = await response.json();
 
-                // Store that data to a json
-                const data = await response.json();
+        // Update user state
+        setUser(data);
+      } catch (err) {
+        console.error("Error fetching data: ", err);
+      }
+    };
 
-                // Update user state
-                setUser(data);
-            }catch(err){
-                console.error('Error fetching data: ', err);
-            }
-        };
+    fetchUserData();
+  }, []);
 
-        fetchUserData();
-    }, []);
-    
   return (
-    <div className="h-screen w-[500px] bg-primary p-4 flex flex-col justify-between text-white">
-      <div className="space-y-6">
+    <main className="bg-primary flex h-screen w-[250px] flex-col justify-between p-4 text-white">
+      <div className="flex flex-col gap-5">
+        {/* Menu */}
         <Link to="/">
-          <img src="../assets/Hamburger.svg" alt="Menu" />
+          <img className="h-5 w-5" src={Menu} alt="Menu" />
         </Link>
 
-        <div className="flex flex-col h-[150px] w-[95%] rounded-lg bg-white mx-auto items-center justify-center text-black">
-            {/* User Card Info */}
-            {/* Ternary Operator to display loading if is not yet fetched */}
+        {/* User Info */}
+        <div className="mx-auto flex h-auto w-full flex-col items-center justify-center rounded-lg bg-white px-6 py-3">
+          {/* Ternary Operator to display loading if is not yet fetched */}
           {user ? (
-                <>
-                <div className="flex items-center space-x-3">
-                    {/* User Avatar */}
-                    <div className="h-[50px] w-[50px] rounded-full bg-primary"></div>
+            <>
+              <div className="flex items-center gap-3">
+                {/* User Avatar */}
+                <div className="bg-secondary h-12 w-12 rounded-full"></div>
 
-                    {/* Card Info */}
-                    <div>
-                    <p className="font-semibold">{user.name}</p>
-                    <p className="text-sm">{user.email}</p>
-                    <div className="flex items-center space-x-1 text-sm">
-                        <img src="../assets/Location.svg"/>
-                        <p>{user.address}</p>
-                    </div>
-                    </div>
+                {/* Card Info */}
+                <div>
+                  <p className="font-secular font-semibold text-black">
+                    {user.name}
+                  </p>
+                  <p className="text-primary text-sm">{user.email}</p>
+                  <div className="flex items-center space-x-1 text-sm">
+                    <img src={Location} />
+                    <p className="text-sm text-gray-600 italic">
+                      {user.address}
+                    </p>
+                  </div>
                 </div>
+              </div>
 
-                {/* Link to view profile */}
-                <a href="#" className="mt-2 text-blue-600 text-sm">
-                    View Profile
-                </a>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
-            </div>
-            
+              {/* Link to view profile */}
+              <a href="#" className="mt-2 text-sm text-blue-600">
+                View Profile
+              </a>
+            </>
+          ) : (
+            <p className="text-primary text-sm italic">Loading...</p>
+          )}
+        </div>
+
         {/* Menu */}
         <div className="flex flex-col space-y-4">
-          <Link to="/marketplace" className="flex items-center space-x-2">
-            <img src="../assets/Marketplace.svg"/>
-            <h3>Marketplace</h3>
+          <Link
+            to="/marketplace"
+            className="border-secondary hover:bg-secondary/20 flex flex-row items-center gap-4 border-t-2 px-3 py-2.5"
+          >
+            <img className="h-5 w-auto" src={Marketplace} />
+            <h4>Marketplace</h4>
           </Link>
-          <Link to="/checklist" className="flex items-center space-x-2">
-            <img src="../assets/Checklist.svg" />
-            <h3>Checklist</h3>
+          <Link
+            to="/checklist"
+            className="border-secondary hover:bg-secondary/20 flex flex-row items-center gap-4 border-t-2 px-3 py-2.5"
+          >
+            <img className="h-5 w-auto" src={Checklist} />
+            <h4>Checklist</h4>
           </Link>
-          <Link to="/cart" className="flex items-center space-x-2">
-            <img src="../assets/ShoppingCart.svg"/>
-            <h3>Shopping Cart</h3>
+          <Link
+            to="/cart"
+            className="border-secondary hover:bg-secondary/20 flex flex-row items-center gap-4 border-t-2 px-3 py-2.5"
+          >
+            <img className="h-5 w-auto" src={Cart} />
+            <h4>Shopping Cart</h4>
           </Link>
         </div>
       </div>
 
-      <div className="w-4/5 mx-auto rounded-lg py-2 flex items-center justify-center">
-        <img src="../assets/Logout.svg" className="w-5 h-5 mr-2" />
-        <h3>Logout</h3>
+      <div className="">
+        <Link
+          to="/"
+          className="border-secondary flex flex-row items-center gap-4 border-t-2 px-3 py-2.5 hover:bg-red-500/50"
+        >
+          <img className="h-5 w-auto" src={Logout} />
+          <h4>Log Out</h4>
+        </Link>
       </div>
-    </div>
+    </main>
   );
 };
 
