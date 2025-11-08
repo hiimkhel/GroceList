@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import Logo from '../assets/GrocelistLogo.svg';
 import React from 'react';
 
-const SideBar: React.FC = () => {
-
-    return(
+const Sidebar: React.FC = () => 
+{
+    return (
     <div>
         <div>
             <Link to="/">
@@ -12,7 +11,8 @@ const SideBar: React.FC = () => {
             </Link>
             
             <div className='h-[200px] w-[400px] rounded-lg bg-white'></div> {/* User profile card */}
-            <div> {/* Menu */}
+            <div> 
+                {/* Menu */}
                 <Link to="/marketplace">
                     <img src="../assets/Marketplace.svg"></img>
                     <h3>Marketplace</h3>
@@ -36,5 +36,6 @@ const SideBar: React.FC = () => {
             
         </div>
     </div>
-)
-}
+    );
+};
+export default Sidebar;
