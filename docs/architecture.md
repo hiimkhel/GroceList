@@ -201,11 +201,11 @@ backend/
 
 ### 5. APIs and Routes Overview
 **Module**  | **Endpoint Base Path** |  **Description**
-Auth	    |      /api/auth	     |   Register, Login
-Users	    |     /api/users	     |   Profile CRUD, get user info
-Products	|     /api/products      |	 Get or search products
-Cart	    |     /api/cart	         |   Get or add cart items
-GroceryList |	  /api/lists     |	 Manage saved grocery lists
+Auth	      |      /api/auth	       |   Register, Login
+Users	      |     /api/user          |   Profile CRUD, get user info
+Marketplace	|     /api/products      |	 Get or search products from marketplace
+Cart	      |     /api/cart	         |   Get or add cart items
+GroceryList |	  /api/lists           |	 Manage saved grocery lists
 
 
 ### 6. Environment Variables
