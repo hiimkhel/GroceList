@@ -65,4 +65,43 @@ const addGroceryList = async(req, res, next) => {
         next(err);
     }
 }
-module.exports = {getGroceryLists, addGroceryList};
+
+// [3] UPDATE A GROCERY LIST
+// @desc Updates a grocery list to database
+// @route PATCH /api/list/:userId/:listId/update
+// @access Private
+const updateGroceryList = async (req, res, next) => {
+    const {userId, listId} = req.params;
+    const {title, items, isChecked} = req.body;
+
+    try{
+
+        const list = await GroceryList.findOne({_id: listId, userId});
+
+        if(!list){
+            const error = new Error("Grocery list is not found");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        // Update title
+        if(title) list.title =  title
+
+        // Update items
+        if (Array.isArray(items)){
+            list.items = items.map((item) => ({
+                name: item.name,
+                quantity: item.quantity || 1,
+                isChecked: item.isChecked || false
+            }));
+        }
+
+        list.updatedAt = Date.now();
+
+        await list.save();
+        res.status(200).json(list);
+    }catch(err){
+        next(err);
+    }
+}
+module.exports = {getGroceryLists, addGroceryList, updateGroceryList};
