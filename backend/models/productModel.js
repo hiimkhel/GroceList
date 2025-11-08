@@ -12,11 +12,7 @@ const productSchema = mongoose.Schema({
     image: {type: String},
     stock: {type: Number, default: 0},
     description: {type: String},
-    tags: {
-      type: [String],
-      default: [],
-      index: true,
-    },
+    tag: {type: String, required: true}
 });
 
 module.exports = mongoose.model("Product", productSchema);

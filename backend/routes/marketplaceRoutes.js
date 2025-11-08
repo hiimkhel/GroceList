@@ -1,5 +1,5 @@
 const express = require("express");
-const getAllProducts = require("../controllers/marketplaceControllers")
+const {getAllProducts} = require("../controllers/marketplaceControllers")
 const router = express.Router();
 
 // [ROUTE ENDPOINTS]
