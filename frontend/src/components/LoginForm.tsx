@@ -34,7 +34,7 @@ const LoginForm: React.FC = () => {
               <img className="h-2.5 w-auto" src={Password} alt="" />
               <h2 className="text-sm text-primary">Password</h2>
             </div>
-            <Input placeholder="********" />
+            <Input type="password" placeholder="********" />
           </div>
         </div>
           
@@ -69,7 +69,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={Password} alt="" />
                 <h2 className="text-sm text-primary">Password</h2>
               </div>
-              <Input placeholder="********" />
+              <Input type="password" placeholder="********" />
             </div>
 
             {/* Confirm Password */}
@@ -78,7 +78,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={Password} alt="" />
                 <h2 className="text-sm text-primary">Confirm Password</h2>
               </div>
-              <Input placeholder="********" />
+              <Input type="password" placeholder="********" />
             </div>
           </div>
         </>
