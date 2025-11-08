@@ -7,6 +7,6 @@ const {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList} = 
 // [ROUTE ENDPOINTS]
 router.get("/:userId", verifyToken, getGroceryLists);
 router.post("/:userId/add", verifyToken, addGroceryList);
-router.patch("/:userId/:listId/update", updateGroceryList);
-router.delete("/:userId/:listId/delete", deleteGroceryList);
+router.patch("/:userId/:listId/update", verifyToken, updateGroceryList);
+router.delete("/:userId/:listId/delete", verifyToken, deleteGroceryList);
 module.exports = router;
