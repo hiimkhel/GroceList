@@ -116,7 +116,7 @@ const SideBar: React.FC = () => {
       <div className="">
         <Link
           to="/"
-          className="border-secondary flex flex-row items-center gap-4 border-t-2 px-3 py-2.5 hover:bg-red-500/50"
+          className="border-secondary flex flex-row items-center gap-4 border-t-2 px-3 py-2.5 hover:bg-red-500/80"
         >
           <img className="h-5 w-auto" src={Logout} />
           <h4>Log Out</h4>
