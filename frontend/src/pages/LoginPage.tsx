@@ -11,4 +11,4 @@ export default function LoginPage() {
       <LoginForm></LoginForm>
     </div>
   );
-}
+};
