@@ -19,7 +19,12 @@ const getCart = async (req, res, next) => {
 
     try{
         const user = await User.findById(userId).populate("cart.productId"); 
-
+        
+        if (req.user.id !== userId) {
+          const error = new Error("Unauthorized action!");
+          error.statusCode = 401;
+          throw error;
+        }
         if (!user){
           const error = new Error("User not found");
           error.statusCode = 404;
@@ -50,6 +55,13 @@ const addToCart = async (req, res, next) => {
 
   try {
     const user = await User.findById(userId);
+
+    if (req.user.id !== userId) {
+      const error = new Error("Unauthorized action!");
+      error.statusCode = 401;
+      throw error;
+    }
+      
     if (!user){
       const error = new Error("User not found");
       error.statusCode = 404;
@@ -110,6 +122,12 @@ const updateProductQuantity = async (req, res, next) => {
         throw error;
       }
       const user = await User.findById(userId);
+
+       if (req.user.id !== userId) {
+        const error = new Error("Unauthorized action!");
+        error.statusCode = 401;
+        throw error;
+      }
       
       // If user does not exist
       if (!user){
@@ -173,6 +191,11 @@ const removeFromCart = async (req, res, next) => {
 
     const user = await User.findById(userId);
 
+    if (req.user.id !== userId) {
+      const error = new Error("Unauthorized action!");
+      error.statusCode = 401;
+      throw error;
+    }
     // If user does not exist
       if (!user){
         const error = new Error("User not found");

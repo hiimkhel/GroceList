@@ -76,6 +76,12 @@ const updateGroceryList = async (req, res, next) => {
 
     try{
 
+        if (req.user.id !== userId) {
+            const error = new Error("Unauthorized action!");
+            error.statusCode = 401;
+            throw error;
+        }
+
         const list = await GroceryList.findOne({_id: listId, userId});
 
         if(!list){
@@ -113,6 +119,12 @@ const deleteGroceryList = async (req, res, next) => {
     const {userId, listId} =  req.params;
 
     try{
+
+        if (req.user.id !== userId) {
+            const error = new Error("Unauthorized action!");
+            error.statusCode = 401;
+            throw error;
+        }
         if(!userId || !listId){
             const error = new Error("All fields are required!");
             error.statusCode = 400;
