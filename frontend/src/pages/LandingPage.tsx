@@ -14,7 +14,7 @@ export default function LandingPage() {
       <LandingNavbar></LandingNavbar>
       
       {/* Hero Section */}
-      <main className="flex flex-col md:flex-row items-center justify-start px-15 ">
+      <main className="flex flex-col md:flex-row items-center justify-start px-15 gap-8">
         {/* Background Ellipse */}
         <div className="overflow-hidden">
           <img src={Ellipse} alt="" className="absolute h-auto w-[720px] bottom-30 right-10 -z-10 translate-x-1/2 translate-y-1/4 md:translate-x-1/3 md:translate-y-1/3 max-w-full"/>

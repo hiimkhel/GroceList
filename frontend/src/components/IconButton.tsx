@@ -1,6 +1,6 @@
 import React from "react";
 
-type ButtonProps = {
+type IconProps = {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type ButtonProps = {
   className?: string; // for optional extra Tailwind classes
 };
 
-const Button: React.FC<ButtonProps> = ({
+const IconButton: React.FC<IconProps> = ({
   variant = "primary",
   size = "md",
   children,
@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
       bg-secondary
       text-primary 
       cursor-pointer
-      hover:bg-secondary/70 
+      hover:bg-secondary/90 
       active:bg-primary active:text-bg active:border-primary
    `;
   else if (variant === "outline")
@@ -60,4 +60,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default IconButton;
