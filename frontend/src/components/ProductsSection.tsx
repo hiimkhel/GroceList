@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import MarketplaceItem from "../components/MarketplaceItem";
 
+const API_BASE = import.meta.env.VITE_API_BASE; // BACKEND API 
 interface Product {
     _id: string,
     name: string,
@@ -19,7 +20,7 @@ const ProductsSection: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/marketplace/");
+        const response = await fetch(`${API_BASE}/api/marketplace/`);
         if (!response.ok) {
           console.error("Failed to fetch products:", response.status);
           setLoading(false);

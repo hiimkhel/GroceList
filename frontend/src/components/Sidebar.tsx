@@ -10,6 +10,7 @@ import Logout from "../assets/Exit.svg";
 
 import "../index.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE;
 interface User {
   name: String;
   email: String;
@@ -29,7 +30,7 @@ const SideBar: React.FC = () => {
       try {
         // store the response of the upcoming data from backend
         const response = await fetch(
-          `http://localhost:5000/api/user/${userId}`,
+          `${API_BASE}/api/user/${userId}`,
         );
 
         // Store that data to a json
