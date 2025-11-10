@@ -10,7 +10,10 @@ import Logout from "../assets/Exit.svg";
 
 import "../index.css";
 
+// Import backend url from .env
 const API_BASE = import.meta.env.VITE_API_BASE;
+
+// Create a blueprint for the expected data
 interface User {
   name: String;
   email: String;
