@@ -4,7 +4,9 @@
  */
 const jwt = require("jsonwebtoken");
 const verifyToken = async (req, res, next) => {
-  
+    if(process.env.NODE_ENV === "development"){
+        return next();
+    }
     const authHeader = req.headers.authorization;
 
 
