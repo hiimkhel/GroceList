@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const verifyToken = async (req, res, next) => {
     if(process.env.NODE_ENV === "development"){
         // Temporary user for development
-        req.user ={id: "690ee6f20f368479b4923c5e"};
+        req.user ={id: req.params.userId};
         return next();
     }
     const authHeader = req.headers.authorization;
