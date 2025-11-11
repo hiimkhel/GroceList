@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProductsSection from "../components/ProductsSection";
 import Navbar from "../components/AppNavbar";
 import Sidebar from "../components/Sidebar";
+import Search from "../components/Search";
 import "../index.css";
 
 const MarketPlacePage = () => {
@@ -18,8 +19,9 @@ const MarketPlacePage = () => {
         <main className="flex flex-col">
           <section className="flex flex-col gap-5 px-20 py-5">
             <h2>Marketplace</h2>
-            <div className="flex flex-row">
+            <div className="flex w-full flex-row">
               {/* Search.tsx */}
+              <Search></Search>
               {/* Filter.tsx */}
             </div>
             <div className="border border-red-400">
