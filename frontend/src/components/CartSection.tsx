@@ -22,7 +22,7 @@ const CartSection: React.FC = () => {
     const [cartItems, setCartItems] = useState<Item[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const userId = "690ee6f20f368479b4923c5e"; // temporary mock user
+    const userId = "6906e85e53679779b2beed7d"; // temporary mock user
 
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -55,13 +55,15 @@ const CartSection: React.FC = () => {
 
     return (
         <div className="space-y-4">
-            {cartItems.map((item) => (
+            {cartItems
+            .filter(item => item.productId) // only keep items with a valid product
+            .map(item => (
                 <CartItem
-                    key={item._id}
-                    name={item.productId.name}
-                    image={item.productId.image}
-                    quantity={item.quantity}
-                    price={item.productId.price}
+                key={item._id}
+                name={item.productId.name}
+                image={item.productId.image}
+                quantity={item.quantity}
+                price={item.productId.price}
                 />
             ))}
         </div>
