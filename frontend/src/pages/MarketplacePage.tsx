@@ -1,13 +1,34 @@
+import React, { useState } from "react";
 import ProductsSection from "../components/ProductsSection";
-import SideBar from "../components/Sidebar";
-import '../index.css'
+import Navbar from "../components/AppNavbar";
+import Sidebar from "../components/Sidebar";
+import "../index.css";
 
 const MarketPlacePage = () => {
-    return(
-        <div className="flex">
-            <SideBar></SideBar>
-            <ProductsSection></ProductsSection>
-        </div>
-    )
-}
+  const [isOpen, setIsOpen] = useState(false); // state controlling sidebar
+  return (
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+      {/* Page content */}
+      <div className={`} flex flex-1 flex-col transition-all duration-300`}>
+        {/* Navbar */}
+        <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+        {/* Main content */}
+        <main className="flex flex-col">
+          <section className="flex flex-col gap-5 px-20 py-5">
+            <h2>Marketplace</h2>
+            <div className="flex flex-row">
+              {/* Search.tsx */}
+              {/* Filter.tsx */}
+            </div>
+            <div className="border border-red-400">
+              <ProductsSection></ProductsSection>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  );
+};
 export default MarketPlacePage;
