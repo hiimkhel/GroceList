@@ -6,6 +6,8 @@ type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string; // for optional extra Tailwind classes
+  icon?: string; // optional icon/image URL
+  iconPosition?: "left" | "right"; // position of the icon
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,6 +16,8 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   className = "",
+  icon,
+  iconPosition = "left",
 }) => {
   const baseStyles =
     "rounded-xl font-semibold transition-colors duration-300 focus:outline-none";
@@ -38,8 +42,7 @@ const Button: React.FC<ButtonProps> = ({
       active:bg-primary active:text-bg active:border-primary
    `;
   else if (variant === "outline")
-    variantStyles =
-      `border border-primary text-primary cursor-pointer 
+    variantStyles = `border border-primary text-primary cursor-pointer 
       hover:bg-primary hover:text-white 
       active:bg-secondary active:text-primary 
       active:border-secondary
@@ -55,7 +58,13 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={`${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
     >
+      {icon && iconPosition === "left" && (
+        <img src={icon} alt="" className="h-4 w-4" />
+      )}
       {children}
+      {icon && iconPosition === "right" && (
+        <img src={icon} alt="" className="h-4 w-4" />
+      )}
     </button>
   );
 };
