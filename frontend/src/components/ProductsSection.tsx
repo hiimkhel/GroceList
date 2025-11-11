@@ -10,7 +10,7 @@ interface Product {
     description: string,
     price: number,
     image: string,
-    quantity: number,
+    stock: number,
 }
 
 const ProductsSection: React.FC = () => {
@@ -54,7 +54,7 @@ const ProductsSection: React.FC = () => {
           key={product._id}
           id={product._id}
           name={product.name}
-          quantity={product.quantity}
+          quantity={product.stock}
           price={product.price}
           imageUrl={product.image}
           description={product.description}
