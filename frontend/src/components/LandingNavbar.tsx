@@ -16,11 +16,15 @@ const LandingNavbar: React.FC = () => {
           variant="outline"
           size="md"
           className="px-6"
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/auth/login")}
         >
           Login
         </Button>
-        <Button variant="primary" size="md" onClick={() => navigate("/login")}>
+        <Button
+          variant="primary"
+          size="md"
+          onClick={() => navigate("/auth/login")}
+        >
           Register
         </Button>
       </nav>

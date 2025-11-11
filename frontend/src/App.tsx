@@ -1,9 +1,9 @@
 // import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import MarketPlacePage from "./pages/MarketplacePage"
-import './App.css';
-import './index.css';
+import MarketPlacePage from "./pages/MarketplacePage";
+import "./App.css";
+import "./index.css";
 import LoginPage from "./pages/LoginPage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
 
@@ -12,9 +12,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/auth/login" element={<LoginPage>} /> */}
-        {/* <Route path="/auth/register" element={<RegisterPage/>} /> */}
+        <Route path="/auth/login" element={<LoginPage />} />
+
         <Route path="/marketplace" element={<MarketPlacePage />} />
         {/* <Route path="/lists" element={<GroceryListPage />} /> */}
         <Route path="/cart" element={<ShoppingCartPage />} />
@@ -24,4 +23,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

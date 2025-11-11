@@ -48,7 +48,7 @@ export default function LandingPage() {
           <Button
             className="primary w-max px-1 shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
             size="lg"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/auth/login")}
           >
             Shop Now
           </Button>
