@@ -16,7 +16,7 @@ const MarketplaceItem: React.FC<ItemProps> = ({id, name, description, price, ima
     return(
         
         <div className='h-100 flex flex-col items-center p-4 border-2 border-secondary rounded-3xl '> {/* Item card */}
-            <img src={imageUrl}></img>
+            <img src={imageUrl} alt={name}   className="object-cover w-[150px] h-[150px] rounded-lg mb-2"></img>
             <p>{name}</p>
             {/* Price and Quantity */}
             <div className='flex gap-2'>

@@ -9,7 +9,7 @@ interface Product {
     name: string,
     description: string,
     price: number,
-    imageUrl: string,
+    image: string,
     quantity: number,
 }
 
@@ -56,7 +56,7 @@ const ProductsSection: React.FC = () => {
           name={product.name}
           quantity={product.quantity}
           price={product.price}
-          imageUrl={product.imageUrl}
+          imageUrl={product.image}
           description={product.description}
           onAddToCart={handleAddToCart}
         />
