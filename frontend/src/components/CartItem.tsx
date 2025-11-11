@@ -1,13 +1,23 @@
 import React from 'react';
 
 interface Item{
+    id:string,
     name: string,
     image: string,
     quantity: number,
-    price: number
+    price: number,
+    onQuantityChange: (id: string, newQuantity: number) => void
 }
 
-const CartItem: React.FC<Item> = ({name, image, quantity, price}) => {
+const CartItem: React.FC<Item> = ({id, name, image, quantity, price, onQuantityChange}) => {
+        
+    const handleIncrement = () => {
+        onQuantityChange(id, quantity + 1);
+    };
+
+    const handleDecrement = () => {
+        if (quantity > 1) onQuantityChange(id, quantity - 1);
+    };
     return(
         <div className='flex gap-12 border border-b border-secondary h-40 w-200 p-4'>
             {/* Item Image */}
@@ -23,12 +33,12 @@ const CartItem: React.FC<Item> = ({name, image, quantity, price}) => {
 
                 {/* Quantity Button */}
                 <div className='flex'>
-                    <button>+</button>
+                    <button onClick={handleDecrement}>-</button>
                     {/* quantity */}
                     <div>
                         {quantity}
                     </div>
-                    <button>-</button>
+                    <button onClick={handleIncrement}>+</button>
                 </div>
             </div>
 
