@@ -5,6 +5,7 @@ import MarketPlacePage from "./pages/MarketplacePage"
 import './App.css';
 import './index.css';
 import LoginPage from "./pages/LoginPage";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         {/* <Route path="/auth/register" element={<RegisterPage/>} /> */}
         <Route path="/marketplace" element={<MarketPlacePage />} />
         {/* <Route path="/lists" element={<GroceryListPage />} /> */}
-        {/* <Route path="/cart" element={<ShoppingCartPage />} /> */}
+        <Route path="/cart" element={<ShoppingCartPage />} />
         {/* <Route path="/user" element={<ProfilePage />} /> */}
       </Routes>
     </BrowserRouter>

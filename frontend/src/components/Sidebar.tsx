@@ -10,6 +10,10 @@ import Logout from "../assets/Exit.svg";
 
 import "../index.css";
 
+// Import backend url from .env
+const API_BASE = import.meta.env.VITE_API_BASE;
+
+// Create a blueprint for the expected data
 interface User {
   name: String;
   email: String;
@@ -29,7 +33,7 @@ const SideBar: React.FC = () => {
       try {
         // store the response of the upcoming data from backend
         const response = await fetch(
-          `http://localhost:5000/api/user/${userId}`,
+          `${API_BASE}/api/user/${userId}`,
         );
 
         // Store that data to a json
@@ -46,7 +50,7 @@ const SideBar: React.FC = () => {
   }, []);
 
   return (
-    <main className="bg-primary flex h-screen w-[250px] flex-col justify-between p-4 text-white">
+    <main className="bg-primary flex h-screen w-[300px] flex-col justify-between p-4 text-white">
       <div className="flex flex-col gap-5">
         {/* Menu */}
         <Link to="/">
