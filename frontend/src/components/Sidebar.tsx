@@ -50,7 +50,7 @@ const SideBar: React.FC = () => {
   }, []);
 
   return (
-    <main className="bg-primary flex h-screen w-[250px] flex-col justify-between p-4 text-white">
+    <main className="bg-primary flex h-screen w-[300px] flex-col justify-between p-4 text-white">
       <div className="flex flex-col gap-5">
         {/* Menu */}
         <Link to="/">
