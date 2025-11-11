@@ -50,7 +50,7 @@ const MarketplaceItem: React.FC<ItemProps> = ({
           {quantity ? (
             <>
               {/* Display green if available */}
-              <div className="bg-secondary flex h-max items-center justify-center rounded-2xl px-4 py-0.5">
+              <div className="bg-secondary/30 flex h-max items-center justify-center rounded-2xl px-4 py-0.5">
                 <p className="text-primary text-xs italic">
                   In stock: {quantity}
                 </p>
@@ -60,7 +60,7 @@ const MarketplaceItem: React.FC<ItemProps> = ({
             <>
               {/* Display gray if not available */}
               <div className="flex h-max items-center justify-center rounded-2xl bg-gray-200 px-4 py-0.5">
-                <p className="text-xs text-gray-700 italic">In stock: 0</p>
+                <p className="text-xs text-gray-700 italic">Out of Stock</p>
               </div>
             </>
           )}
