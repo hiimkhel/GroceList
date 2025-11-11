@@ -49,6 +49,34 @@ const CartSection: React.FC = () => {
         fetchCartItems();
     }, []);
 
+    // Function to update the backend when quantity changes
+    const handleQuantityChange = async (itemId: string, newQuantity: number) => {
+
+        // Update frontend UI
+        setCartItems((prev) =>
+        prev.map((item) => item._id === itemId ? { ...item, quantity: newQuantity} : item));
+
+        // Update the backend
+        try{
+            const item = cartItems.find((i) => i._id === itemId);
+            if(!item || !item.productId) return;
+
+            const res = await fetch(
+            `${API_BASE}/api/cart/${userId}/update/${item.productId._id}`,
+            {
+                method: "PATCH", // <-- changed here
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ quantity: newQuantity }),
+            }
+            );
+
+            if (!res.ok) {
+            console.error("Failed to update quantity", await res.text());
+            }
+        }catch(err){
+            console.error(err);
+        }
+    }
     if (loading) return <p className="text-center mt-4">Loading your cart...</p>;
     if (cartItems.length === 0)
         return <p className="text-center mt-4 text-gray-500">Your cart is empty.</p>;
@@ -60,10 +88,12 @@ const CartSection: React.FC = () => {
             .map(item => (
                 <CartItem
                 key={item._id}
+                id={item._id}
                 name={item.productId.name}
                 image={item.productId.image}
                 quantity={item.quantity}
                 price={item.productId.price}
+                onQuantityChange={handleQuantityChange}
                 />
             ))}
         </div>
