@@ -8,6 +8,13 @@
 
 const mongoose = require("mongoose");
 const Product = require("../models/productModel");
+
+//Modular Variable for getting images
+function getProductImage(filename) {
+  return `/products/${filename}`;  // relative path served by the frontend
+}
+
+
 require('dotenv').config({ path: '../.env' });
 
 console.log("Loaded DATABASE_URI:", process.env.DATABASE_URI);
@@ -27,8 +34,8 @@ const seedProducts = async () => {
         // [PANTRY]
       {
         name: "Harvesters Rice Thai Jasmine | 2kg",
-        price: 248,
-        image: "",
+        price: 250,
+        image: getProductImage("ThaiJasmine.jpg"),
         stock: 50,
         description: "Harvester's Thai Jasmine Rice is a great balance between superior great tasting aromatic Thai jasmine rice and a good price. Has a soft texture, aroma reminiscent of pandan, and the good eating quality. Healthy and satisfying meal without compromising the taste and quality of your rice. Its soft delicious texture makes it perfect for your favorite meals.",
         tag: "pantry"
@@ -36,7 +43,7 @@ const seedProducts = async () => {
       {
         name: "Lady’s Choice Mayonnaise 220ml",
         price: 65,
-        image: "",
+        image: getProductImage("LadyChoiceMayo.jpg"),
         stock: 50,
         description: "Rich, creamy mayo for sandwiches and salads.",
         tag: "pantry"
@@ -44,7 +51,7 @@ const seedProducts = async () => {
       {
         name: "UFC Banana Ketchup 320g",
         price: 32,
-        image: "",
+        image: getProductImage("UFCBanana.jpg"),
         stock: 50,
         description: "Sweet-spicy banana ketchup perfect for Filipino dishes.",
         tag: "pantry"
@@ -52,7 +59,7 @@ const seedProducts = async () => {
       {
         name: "Golden Fiesta Canola Oil 1L",
         price: 175,
-        image: "",
+        image: getProductImage("UFC_GoldenFiesta.jpg"),
         stock: 50,
         description: "Heart-healthy cooking oil made from pure canola.",
         tag: "pantry"
@@ -60,7 +67,7 @@ const seedProducts = async () => {
       {
         name: "Datu Puti Soy Sauce 1L",
         price: 47,
-        image: "",
+        image: getProductImage("DatuPutiSoySauce.jpg"),
         stock: 50,
         description: "Classic Filipino soy sauce for marinades and dips.",
         tag: "pantry"
@@ -68,7 +75,7 @@ const seedProducts = async () => {
       {
         name: "Silver Swan Soy Sauce 1L",
         price: 45,
-        image: "",
+        image: getProductImage("SilverSwanSoySauce.jpg"),
         stock: 50,
         description: "Everyday soy sauce with balanced saltiness.",
         tag: "pantry"
@@ -76,15 +83,15 @@ const seedProducts = async () => {
       {
         name: "Datu Puti Vinegar 1L",
         price: 35,
-        image: "",
+        image: getProductImage("DatuPutiVinegar.jpg"),
         stock: 50,
         description: "Traditional cane vinegar for cooking and pickling.",
         tag: "pantry"
       },
       {
-        name: "Silver Swan Soy Sauce 1L",
+        name: "Silver Swan Soy Vinegar 1L",
         price: 33,
-        image: "",
+        image: getProductImage("SilverSwanVinegar.jpg"),
         stock: 50,
         description: "All-purpose vinegar with mild acidity.",
         tag: "pantry"
@@ -92,7 +99,7 @@ const seedProducts = async () => {
       {
         name: "Maggi Magic Sarap 8g (pack of 12)",
         price: 90,
-        image: "",
+        image: getProductImage("MagicSarap.jpg"),
         stock: 50,
         description: "All-in-one seasoning granules for enhanced flavor.",
         tag: "pantry"
