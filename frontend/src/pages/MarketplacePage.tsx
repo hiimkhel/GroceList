@@ -24,7 +24,7 @@ const MarketPlacePage = () => {
               <Search></Search>
               {/* Filter.tsx */}
             </div>
-            <div className="border border-red-400">
+            <div className="">
               <ProductsSection></ProductsSection>
             </div>
           </section>

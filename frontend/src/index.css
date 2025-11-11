@@ -36,11 +36,18 @@
     @apply text-3xl;
   }
 
+  h3 {
+    @apply font-secular text-xl text-black;
+  }
+
   h4 {
     @apply font-poppins;
   }
   p {
     @apply font-poppins text-base leading-relaxed;
+  }
+  p.description {
+    @apply font-poppins text-sm leading-relaxed text-gray-700;
   }
 }
 /* MEDIA (future mobile) */

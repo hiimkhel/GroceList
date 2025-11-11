@@ -3,14 +3,14 @@
 import React, { useEffect, useState } from "react";
 import MarketplaceItem from "../components/MarketplaceItem";
 
-const API_BASE = import.meta.env.VITE_API_BASE; // BACKEND API 
+const API_BASE = import.meta.env.VITE_API_BASE; // BACKEND API
 interface Product {
-    _id: string,
-    name: string,
-    description: string,
-    price: number,
-    image: string,
-    quantity: number,
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  quantity: number;
 }
 
 const ProductsSection: React.FC = () => {
@@ -43,12 +43,12 @@ const ProductsSection: React.FC = () => {
     console.log("Add to cart clicked for product:", productId);
     // TODO: Implement add to cart logic
   };
-  
+
   if (loading) return <p>Loading products...</p>;
   if (products.length === 0) return <p>No products found.</p>;
 
   return (
-    <div className="p-4 w-auto grid grid-cols-3 gap-2">
+    <div className="grid w-auto grid-cols-2 gap-2 md:grid-cols-5">
       {products.map((product) => (
         <MarketplaceItem
           key={product._id}
