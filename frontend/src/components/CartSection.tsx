@@ -61,7 +61,7 @@ const CartSection: React.FC = () => {
             const item = cartItems.find((i) => i._id === itemId);
             if(!item || !item.productId) return;
 
-            const res = await fetch(
+            const response = await fetch(
             `${API_BASE}/api/cart/${userId}/update/${item.productId._id}`,
             {
                 method: "PATCH", // <-- changed here
@@ -69,9 +69,10 @@ const CartSection: React.FC = () => {
                 body: JSON.stringify({ quantity: newQuantity }),
             }
             );
-
-            if (!res.ok) {
-            console.error("Failed to update quantity", await res.text());
+            const updatedCart = await response.json();
+            setCartItems(updatedCart.cart);
+            if (!response.ok) {
+            console.error("Failed to update quantity", await response.text());
             }
         }catch(err){
             console.error(err);
