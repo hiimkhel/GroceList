@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CartItem from "./CartItem";
-
+import { getAuthHeaders, getUserId } from "../utils/authUtils";
 const API_BASE = import.meta.env.VITE_API_BASE;
 
 interface Item {
@@ -22,13 +22,18 @@ const CartSection: React.FC = () => {
     const [cartItems, setCartItems] = useState<Item[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const userId = "6906e85e53679779b2beed7d"; // temporary mock user
+    // Apply utility
+    const userId = getUserId(); 
+    const headers = getAuthHeaders();
+
 
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                // Remove trailing slash
-                const response = await fetch(`${API_BASE}/api/cart/${userId}/`);
+                
+                  if (!userId) return;
+
+                const response = await fetch(`${API_BASE}/api/cart/${userId}/`, {headers});
 
                 if (!response.ok) {
                     console.error("[ERROR]", response.status, await response.text());

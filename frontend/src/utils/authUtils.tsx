@@ -12,7 +12,7 @@ export const getUser = (): any | null => {
 
 export const getUserId = (): string | null => {
   const user = getUser();
-  return user?._id || null;
+  return user?.id || null;
 };
 
 // Returns headers for authenticated requests

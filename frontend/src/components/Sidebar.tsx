@@ -7,11 +7,13 @@ import Checklist from "../assets/Checklist.svg";
 import Cart from "../assets/ShoppingCart.svg";
 import Location from "../assets/Location.svg";
 import Logout from "../assets/Exit.svg";
-
+import { getAuthHeaders, getUserId } from "../utils/authUtils";
 import "../index.css";
 
 // Import backend url from .env
 const API_BASE = import.meta.env.VITE_API_BASE;
+
+   
 
 // Create a blueprint for the expected data
 interface User {
@@ -33,14 +35,20 @@ const Sidebar: React.FC<{
 
   // fetches the users data from the backend
   useEffect(() => {
-    // TODO: Implement dynamic fetching of the current user userId
-    const userId = "6906e85e53679779b2beed7d";
 
     // Async function to fetch the user data
     const fetchUserData = async () => {
       try {
+         // Apply utility
+         const userId = getUserId();
+        if (!userId) {
+          console.warn("User not logged in");
+          return;
+        }
         // store the response of the upcoming data from backend
-        const response = await fetch(`${API_BASE}/api/user/${userId}`);
+        const response = await fetch(`${API_BASE}/api/user/${userId}`, {
+          headers: getAuthHeaders()
+        });
 
         // Store that data to a json
         const data = await response.json();

@@ -43,10 +43,11 @@ const LoginForm: React.FC = () => {
 
     // Request Backend using the values inputted
     try{
+      const address = "testaddress" // temporary variable since wala pa address sa registration
       const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, address }),
       });
 
       const data = await response.json();
@@ -57,7 +58,7 @@ const LoginForm: React.FC = () => {
       // Store token and user to localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/");
+      navigate("/marketplace");
     }catch(err: any){ 
       setError(err.message);
     }
@@ -79,7 +80,7 @@ const LoginForm: React.FC = () => {
       // Store token and user to localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/");  
+      navigate("/marketplace");  
       console.log("Log in success")
     }catch(err: any){
       setError(err.message);

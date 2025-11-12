@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { getUserId } from "../utils/authUtils";
 const API_BASE = import.meta.env.VITE_API_BASE;
 
 // Expected Response
@@ -19,11 +19,12 @@ const OrderSummary: React.FC = () => {
   const [cartItems, setCartItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const userId = "6906e85e53679779b2beed7d";
+  
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
+        const userId = getUserId();
         const response = await fetch(`${API_BASE}/api/cart/${userId}`);
         if (!response.ok) {
           console.error("[ERROR]", response.status, await response.text());
