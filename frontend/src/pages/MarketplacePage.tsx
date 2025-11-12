@@ -3,6 +3,7 @@ import ProductsSection from "../components/ProductsSection";
 import Navbar from "../components/AppNavbar";
 import Sidebar from "../components/Sidebar";
 import Search from "../components/Search";
+import Filter from "../components/Filter";
 import "../index.css";
 
 const MarketPlacePage = () => {
@@ -19,10 +20,12 @@ const MarketPlacePage = () => {
         <main className="flex flex-col">
           <section className="flex flex-col gap-5 px-20 py-5">
             <h2>Marketplace</h2>
-            <div className="flex w-full flex-row">
+            <div className="flex w-full flex-row items-center gap-2">
               {/* Search.tsx */}
-              <Search></Search>
-              {/* Filter.tsx */}
+              <div className="flex-1">
+                <Search></Search>
+              </div>
+              <Filter></Filter>
             </div>
             <div className="">
               <ProductsSection></ProductsSection>

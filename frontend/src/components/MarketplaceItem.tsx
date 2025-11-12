@@ -1,6 +1,7 @@
 //item card for each item in market place
 import React, { useState } from "react";
 import Button from "./Button";
+import Cart from "../components/Cart";
 
 interface ItemProps {
   id: string;
@@ -93,10 +94,11 @@ const MarketplaceItem: React.FC<ItemProps> = ({
         {onAddToCart && (
           <Button
             variant="primary"
-            size="sm"
-            className="w-full py-2"
+            size="md"
+            className="flex w-full flex-row items-center justify-center gap-4 text-white"
             onClick={() => onAddToCart(id)}
           >
+            <Cart className="h-4 w-4 text-white"></Cart>
             Add to Cart
           </Button>
         )}

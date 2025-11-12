@@ -73,12 +73,12 @@ const Sidebar: React.FC<{
       >
         {/* Sidebar */}
         <main
-          className={`bg-primary fixed top-0 left-0 z-30 h-screen w-[300px] flex-col justify-between p-4 text-white transition-transform duration-300 ${
+          className={`bg-primary fixed top-0 left-0 z-30 flex h-screen w-[300px] flex-col justify-between p-4 text-white transition-transform duration-300 ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
           <div className="flex flex-col gap-5">
-            {/* Menu */}
+            {/* Hamburger Menu */}
             <button onClick={() => setIsOpen(false)}>
               <Menu className="cursor-pointer text-white"></Menu>
             </button>
