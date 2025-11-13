@@ -43,12 +43,12 @@ const LoginForm: React.FC = () => {
 
     // Request Backend using the values inputted
     try{
-      const address = "testaddress" // temporary variable since wala pa address sa registration
-      const response = await fetch(`${API_BASE}/api/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, address }),
-      });
+        const address = "testaddress" // temporary variable since wala pa address sa registration
+        const response = await fetch(`${API_BASE}/api/auth/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, address }),
+        });
 
       const data = await response.json();
 
@@ -72,6 +72,7 @@ const LoginForm: React.FC = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await response.json();
 
       // Error handling 

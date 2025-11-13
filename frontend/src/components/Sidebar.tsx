@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, } from "react";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import Menu from "../components/Menu";
 import Marketplace from "../assets/Marketplace.svg";
@@ -32,6 +33,7 @@ const Sidebar: React.FC<{
 }> = ({ isOpen, setIsOpen }) => {
   // A react state to store user fetched data
   const [user, setUser] = useState<User | null>(null);
+  const redirect = useNavigate();
 
   // fetches the users data from the backend
   useEffect(() => {
@@ -62,6 +64,14 @@ const Sidebar: React.FC<{
 
     fetchUserData();
   }, []);
+
+  // Function to handle user logout
+  const handleLogout = async () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    redirect("/");
+  }
 
   return (
     <>
@@ -143,14 +153,14 @@ const Sidebar: React.FC<{
             </div>
           </div>
 
-          <div className="">
-            <Link
-              to="/"
-              className="border-secondary flex flex-row items-center gap-4 border-t-2 px-3 py-2.5 hover:bg-red-500/80"
+          <div className="border-secondary flex flex-row items-center gap-4 border-t-2 px-3 py-2.5 hover:bg-red-500/80">
+            <button
+              onClick={handleLogout}
+              className="flex"
             >
               <img className="h-5 w-auto" src={Logout} />
               <h4>Log Out</h4>
-            </Link>
+            </button>
           </div>
         </main>
       </div>
