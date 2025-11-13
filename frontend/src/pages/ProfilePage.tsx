@@ -9,7 +9,11 @@ const ProfilePage = () => {
     return(
         <div className="flex h-screen">
             <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
-            <Profile />
+            <div className="flex">
+                <Profile />
+                {/* Address component */}
+            </div>
+            
         </div>
     )
 }
