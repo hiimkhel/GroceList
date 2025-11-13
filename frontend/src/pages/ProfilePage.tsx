@@ -13,7 +13,7 @@ const ProfilePage = () => {
             <div className="flex">
                 <Profile />
                 {/* Address component */}
-                <ProfileAddress/>
+                <ProfileAddress />
             </div>
             
         </div>

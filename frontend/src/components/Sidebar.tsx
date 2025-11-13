@@ -100,7 +100,7 @@ const Sidebar: React.FC<{
                 <>
                   <div className="flex items-center gap-3">
                     {/* User Avatar */}
-                    <div className="bg-secondary h-12 w-12 rounded-full"></div>
+                    <div className="bg-secondary h-12 w-12 rounded-full flex-shrink-0"></div>
 
                     {/* Card Info */}
                     <div>
@@ -110,7 +110,7 @@ const Sidebar: React.FC<{
                       <p className="text-primary text-sm">{user.email}</p>
                       <div className="flex items-center space-x-1 text-sm">
                         <img src={Location} />
-                        <p className="text-sm text-gray-600 italic">
+                        <p className="text-sm text-gray-600 italic line-clamp-2">
                           {user.address}
                         </p>
                       </div>

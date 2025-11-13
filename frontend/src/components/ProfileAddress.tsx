@@ -66,7 +66,7 @@ const ProfileAddress: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${API_BASE}/api/users/${userId}/address`,
+        `${API_BASE}/api/user/${userId}/address`,
         {
           method: "PATCH",
           headers: {
@@ -76,8 +76,8 @@ const ProfileAddress: React.FC = () => {
           },
           body: JSON.stringify({
             address,
-            latitude: position[0],
-            longitude: position[1],
+            lat: position[0],
+            long: position[1],
           }),
         }
       );
