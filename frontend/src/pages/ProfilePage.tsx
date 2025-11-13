@@ -2,6 +2,7 @@ import Sidebar from "../components/Sidebar";
 import React from "react";
 import Profile from "../components/Profile";
 import { useState } from "react";
+import ProfileAddress from "../components/ProfileAddress";
 
 const ProfilePage = () => {
 
@@ -12,6 +13,7 @@ const ProfilePage = () => {
             <div className="flex">
                 <Profile />
                 {/* Address component */}
+                <ProfileAddress/>
             </div>
             
         </div>
