@@ -137,7 +137,7 @@ const Sidebar: React.FC<{
                 <h4>Marketplace</h4>
               </Link>
               <Link
-                to="/checklist"
+                to="/lists"
                 className="border-secondary hover:bg-secondary/20 flex flex-row items-center gap-4 border-t-2 px-3 py-2.5"
               >
                 <img className="h-5 w-auto" src={Checklist} />
