@@ -21,8 +21,15 @@ const userSchema = mongoose.Schema({
         required: true
     },
     address:{
-        type: String,
-        default: null
+        type: {
+            type: String,
+            enum: ["Point"],
+            default: "Point"
+        },
+        coordinates: {
+            type: [Number],
+            default: [0, 0]
+        }
     },
     cart:[
         {

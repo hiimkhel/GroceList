@@ -66,7 +66,7 @@ const deleteUser  = async (req, res, next) => {
 // @access Public
 const updateAddress = async (req, res, next) => {
     const {userId} = req.params;
-    const {address} = req.body;
+    const {address, lat, long} = req.body;
 
     try{
         // Validate request body
@@ -88,9 +88,15 @@ const updateAddress = async (req, res, next) => {
 
         // Logic
          const updatedUser = await User.findByIdAndUpdate(
-            userId,
-            { address },
-            { new: true } // return updated document
+             userId,
+            {
+                address,
+                location: {
+                type: "Point",
+                coordinates: [longitude, latitude], // GeoJSON format
+                },
+            },
+            { new: true }
             );
         res.status(200).json({
         message: "User updated successfully",
