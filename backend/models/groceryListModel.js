@@ -18,7 +18,7 @@ const groceryListSchema = new mongoose.Schema({
     },
     items:[
         {
-            // TODO: Add a reference field for product ID
+            productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
             name: String,
             quantity: {type: Number, default: 1},
             isChecked: {type: Boolean, default: false},
@@ -28,9 +28,8 @@ const groceryListSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    createdAt: {type: Date, default: Date.now},
-    updatedAt: {type: Date, default: Date.now}
+   
     
-});
+},  {timestamps: true});
 
 module.exports = mongoose.model("GroceryList", groceryListSchema);

@@ -51,19 +51,13 @@ const getGroceryLists = async (req, res, next) => {
 // @access Private
 const addGroceryList = async(req, res, next) => {
     const {userId} = req.params;
-    const {title, items} = req.body;
+    const {title} = req.body;
 
     try{
-        if(!Array.isArray(items)){
-            const error = new Error("Items should be an array!");
-            error.statusCode = 400;
-            throw error;
-        }
-
         const newList = await GroceryList.create({
             userId,
             title,
-            items
+            items : [] // Initialize an empty array
         });
 
         res.status(200).json(newList);
@@ -117,7 +111,7 @@ const updateGroceryList = async (req, res, next) => {
     }
 }
 
-// [3] DELETE A GROCERY LIST
+// [4] DELETE A GROCERY LIST
 // @desc Deletes a grocery list
 // @route DELETE /api/list/:userId/:listId/delete
 // @access Private
@@ -137,7 +131,7 @@ const deleteGroceryList = async (req, res, next) => {
             throw error;
         }
 
-        const list = GroceryList.findOne({_id: listId, userId});
+        const list = await GroceryList.findOne({_id: listId, userId});
 
         if(!list){
             const error = new Error("Grocery list not found!");
@@ -153,4 +147,88 @@ const deleteGroceryList = async (req, res, next) => {
         next(err);
     }
 }
-module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList};
+
+// [5] ADD ITEM TO LIST
+// @desc Adds an item to the grocery list
+// @route POST /api/list/:userId/:listId/add-item
+// @access Private
+const addItemToList = async (req, res, next) => {
+    const {userId, listId} = req.params;
+    const {item} = req.body;
+
+    try{
+        if (req.user.id !== userId) {
+            const error = new Error("Unauthorized action!");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        if(!userId || !item){
+            const error = new Error("All fields are required!");
+            error.statusCode = 400;
+            throw error;
+        }
+
+        const list = await GroceryList.findOne({_id: listId, userId});
+
+        if (!list) {
+            const error = new Error("Grocery list not found");
+            error.statusCode = 404;
+            throw error;
+        }
+        // Add the item to the list
+        const newItem = {
+            name: item.name,
+            quantity: item.quantity || 1,
+            isChecked: false,
+        };
+        list.items.push(newItem);
+        list.updatedAt = Date.now();
+
+        await list.save();
+
+        res.status(200).json(list);
+    }catch(err){
+        next(err);
+    }
+}
+
+// [6] DELETE ITEM FROM LIST
+// @desc Deletes an item from a grocery list
+// @route DELETE /api/list/:userId/:listId/delete-item/:itemId
+// @access Private
+const deleteItemFromList = async (req, res, next) => {
+    const { userId, listId, itemId } = req.params;
+
+    try {
+        if (req.user.id !== userId) {
+            const error = new Error("Unauthorized action!");
+            error.statusCode = 401;
+            throw error;
+        }
+
+        const list = await GroceryList.findOne({ _id: listId, userId });
+        if (!list) {
+            const error = new Error("Grocery list not found");
+            error.statusCode = 404;
+            throw error;
+        }
+
+        const item = list.items.id(itemId);
+        if (!item) {
+            const error = new Error("Item not found in list");
+            error.statusCode = 404;
+            throw error;
+        }
+
+         // Remove the item
+        list.items = list.items.filter(item => item._id.toString() !== itemId);
+        list.updatedAt = Date.now();
+        await list.save();
+
+        res.status(200).json({ message: "Item removed successfully!", list });
+    } catch (err) {
+        next(err);
+    }
+};
+module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, addItemToList, deleteItemFromList};
