@@ -2,6 +2,7 @@
 // src/pages/Marketplace.tsx
 import React, { useEffect, useState } from "react";
 import MarketplaceItem from "../components/MarketplaceItem";
+import { getUserId, getAuthHeaders } from "../utils/authUtils";
 
 const API_BASE = import.meta.env.VITE_API_BASE; // BACKEND API
 interface Product {
@@ -39,9 +40,27 @@ const ProductsSection: React.FC = () => {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (productId: string) => {
-    console.log("Add to cart clicked for product:", productId);
+  const handleAddToCart = async (productId: string) => {
     // TODO: Implement add to cart logic
+      const userId = getUserId();
+      try{
+        const response = await fetch(`${API_BASE}/api/cart/${userId}/add`,
+          {
+            method: "POST",
+            headers: getAuthHeaders(),
+            body: JSON.stringify({ productId, quantity: 1})
+          }
+        )
+
+        const data = await response.json();
+        
+        // Error handling 
+       if (!response.ok) throw new Error(data.message || "Add to cart failed");
+      alert("Product added to cart successfully")
+      }catch(err){
+        console.error(err);
+      }
+
   };
 
   if (loading) return <p>Loading products...</p>;
