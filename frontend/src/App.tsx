@@ -9,22 +9,27 @@
   import ProfilePage from "./pages/ProfilePage";
   import GroceryListPage from "./pages/GroceryListPage";
   import AddNewGroceryListPage from "./pages/AddNewGroceryListPage";
-
+import PrivateRoutes from "./components/PrivateRoutes";
   function App() {
     return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth/login" element={<LoginPage />} />
+        
 
-          <Route path="/marketplace" element={<MarketPlacePage />} />
-          <Route path="/lists" element={<GroceryListPage />} /> 
-          <Route path="/cart" element={<ShoppingCartPage />} />
-          <Route path="/user" element={<ProfilePage />} />
+          {/* All protected routes */}
+          <Route element={<PrivateRoutes />}>
+            <Route path="/marketplace" element={<MarketPlacePage />} />
+            <Route path="/lists" element={<GroceryListPage />} /> 
+            <Route path="/cart" element={<ShoppingCartPage />} />
+            <Route path="/user" element={<ProfilePage />} />
 
-          {/* Sub Pages */}
-          <Route path="/lists/add" element={<AddNewGroceryListPage />}/>
-        </Routes>
+            {/* Sub Pages */}
+            <Route path="/lists/add" element={<AddNewGroceryListPage />}/>
+          </Route>
+       </Routes>
+        
       </BrowserRouter>
     );
   }
