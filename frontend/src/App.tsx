@@ -6,6 +6,7 @@ import "./App.css";
 import "./index.css";
 import LoginPage from "./pages/LoginPage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/marketplace" element={<MarketPlacePage />} />
         {/* <Route path="/lists" element={<GroceryListPage />} /> */}
         <Route path="/cart" element={<ShoppingCartPage />} />
-        {/* <Route path="/user" element={<ProfilePage />} /> */}
+        <Route path="/user" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   );

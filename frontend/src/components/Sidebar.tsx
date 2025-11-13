@@ -108,9 +108,9 @@ const Sidebar: React.FC<{
                   </div>
 
                   {/* Link to view profile */}
-                  <a href="#" className="mt-2 text-sm text-blue-600">
+                  <Link to="/user" className="mt-2 text-sm text-blue-600">
                     View Profile
-                  </a>
+                  </Link>
                 </>
               ) : (
                 <p className="text-primary text-sm italic">Loading...</p>
