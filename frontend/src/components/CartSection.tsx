@@ -1,104 +1,122 @@
 import { useEffect, useState } from "react";
 import CartItem from "./CartItem";
-
+import { getAuthHeaders, getUserId } from "../utils/authUtils";
 const API_BASE = import.meta.env.VITE_API_BASE;
 
 interface Item {
+  _id: string;
+  productId: {
     _id: string;
-    productId: {
-        _id: string;
-        name: string;
-        price: number;
-        image: string;
-        tag: string;
-        stock: number;
-        description: string;
-    };
-    quantity: number;
-    addedAt: string;
+    name: string;
+    price: number;
+    image: string;
+    tag: string;
+    stock: number;
+    description: string;
+  };
+  quantity: number;
+  addedAt: string;
 }
 
 const CartSection: React.FC = () => {
-    const [cartItems, setCartItems] = useState<Item[]>([]);
-    const [loading, setLoading] = useState(true);
+  const [cartItems, setCartItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const userId = "6906e85e53679779b2beed7d"; // temporary mock user
+  // Apply utility
+  const userId = getUserId();
+  const headers = getAuthHeaders();
 
-    useEffect(() => {
-        const fetchCartItems = async () => {
-            try {
-                // Remove trailing slash
-                const response = await fetch(`${API_BASE}/api/cart/${userId}/`);
+  // Fetch cart items
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        if (!userId) return;
 
-                if (!response.ok) {
-                    console.error("[ERROR]", response.status, await response.text());
-                    setLoading(false);
-                    return;
-                }
+        const response = await fetch(`${API_BASE}/api/cart/${userId}/`, {
+          headers,
+        });
+        const data = await response.json();
 
-                const data = await response.json();
-                setCartItems(data.cart || []);
+        if (!response.ok)
+          throw new Error(data.message || "Failed to fetch cart");
+        setCartItems(data.cart || []);
+      } catch (err) {
+        console.error("Fetch cart failed:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+    fetchCartItems();
+  }, [userId]);
 
-        fetchCartItems();
-    }, []);
+  // Remove item
+  const handleRemoveFromCart = async (itemId: string) => {
+    try {
+      const item = cartItems.find((i) => i._id === itemId);
+      if (!item) return;
 
-    // Function to update the backend when quantity changes
-    const handleQuantityChange = async (itemId: string, newQuantity: number) => {
+      const response = await fetch(
+        `${API_BASE}/api/cart/${userId}/remove/${item.productId._id}`,
+        { method: "DELETE", headers },
+      );
 
-        // Update frontend UI
-        setCartItems((prev) =>
-        prev.map((item) => item._id === itemId ? { ...item, quantity: newQuantity} : item));
-
-        // Update the backend
-        try{
-            const item = cartItems.find((i) => i._id === itemId);
-            if(!item || !item.productId) return;
-
-            const response = await fetch(
-            `${API_BASE}/api/cart/${userId}/update/${item.productId._id}`,
-            {
-                method: "PATCH", // <-- changed here
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ quantity: newQuantity }),
-            }
-            );
-            const updatedCart = await response.json();
-            setCartItems(updatedCart.cart);
-            if (!response.ok) {
-            console.error("Failed to update quantity", await response.text());
-            }
-        }catch(err){
-            console.error(err);
-        }
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Remove failed");
+      
+      setCartItems((prev) => prev.filter((i) => i._id !== itemId));
+    } catch (err) {
+      console.error("Remove failed:", err);
     }
-    if (loading) return <p className="text-center mt-4">Loading your cart...</p>;
-    if (cartItems.length === 0)
-        return <p className="text-center mt-4 text-gray-500">Your cart is empty.</p>;
+  };
 
+  // Update quantity
+  const handleQuantityChange = async (itemId: string, newQuantity: number) => {
+    try {
+      const item = cartItems.find((i) => i._id === itemId);
+      if (!item) return;
+
+      const response = await fetch(
+        `${API_BASE}/api/cart/${userId}/update/${item.productId._id}`,
+        {
+          method: "PATCH",
+          headers: { ...headers, "Content-Type": "application/json" },
+          body: JSON.stringify({ quantity: newQuantity }),
+        },
+      );
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Update failed");
+
+      setCartItems(data.cart || []);
+    } catch (err) {
+      console.error("Update quantity failed:", err);
+    }
+  };
+
+  // UI states
+  if (loading) return <p className="mt-4 text-center">Loading your cart...</p>;
+  if (cartItems.length === 0)
     return (
-        <div className="space-y-4">
-            {cartItems
-            .filter(item => item.productId) // only keep items with a valid product
-            .map(item => (
-                <CartItem
-                key={item._id}
-                id={item._id}
-                name={item.productId.name}
-                image={item.productId.image}
-                quantity={item.quantity}
-                price={item.productId.price}
-                onQuantityChange={handleQuantityChange}
-                />
-            ))}
-        </div>
+      <p className="mt-4 text-center text-gray-500">Your cart is empty.</p>
     );
-};
 
+  return (
+    <div className="flex grow flex-col gap-5">
+      {cartItems
+        .filter((item) => item.productId) // only keep items with a valid product
+        .map((item) => (
+          <CartItem
+            key={item._id}
+            id={item._id}
+            name={item.productId.name}
+            image={item.productId.image}
+            quantity={item.quantity}
+            price={item.productId.price}
+            onRemoveProduct={() => handleRemoveFromCart(item._id)}
+            onQuantityChange={handleQuantityChange}
+          />
+        ))}
+    </div>
+  );
+};
 export default CartSection;

@@ -8,11 +8,86 @@ import Password from "../assets/Password.svg";
 import Input from "../components/Input";
 import Google from "../assets/GoogleIcon.svg";
 import User from "../assets/User.svg";
+import { useNavigate } from "react-router-dom";
 import "../index.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE;
+
 const LoginForm: React.FC = () => {
+  // Dynamic changes for either login or register form
   const [mode, setMode] = useState<"login" | "register">("login");
 
+  // Form data
+  // Login state
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // Register state
+  const [name, setName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  // Error state
+  const [error, setError] = useState("");
+
+  // variable to redirect if success
+  const navigate = useNavigate();
+
+  // Function to apply backend route for register
+  const handleRegister = async () => {
+
+    // Check if confirm password is valid
+    if(password !== confirmPassword){
+      setError("Password does not match");
+      return;
+    }
+
+    // Request Backend using the values inputted
+    try{
+        const address = "testaddress" // temporary variable since wala pa address sa registration
+        const response = await fetch(`${API_BASE}/api/auth/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, address }),
+        });
+
+      const data = await response.json();
+
+      // Error handling 
+       if (!response.ok) throw new Error(data.message || "Registration failed");
+
+      // Store token and user to localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/marketplace");
+    }catch(err: any){ 
+      setError(err.message);
+    }
+  }
+
+  // Function to apply backend route for login
+  const handleLogin = async () => {
+    try{
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      // Error handling 
+       if (!response.ok) throw new Error(data.message || "Login failed");
+
+      // Store token and user to localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/marketplace");  
+      console.log("Log in success")
+    }catch(err: any){
+      setError(err.message);
+    }
+
+  }
   // Conditional input fields for register
   const renderInputs = () => {
     if (mode === "login") {
@@ -25,7 +100,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={Email} alt="" />
                 <h2 className="text-primary text-sm">Email</h2>
               </div>
-              <Input placeholder="example@domain.com" />
+              <Input placeholder="example@domain.com" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             {/* Password */}
@@ -34,7 +109,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={Password} alt="" />
                 <h2 className="text-primary text-sm">Password</h2>
               </div>
-              <Input type="password" placeholder="********" />
+              <Input type="password" placeholder="********"  value={password} onChange={(e) => setPassword(e.target.value)}  />
             </div>
           </div>
         </>
@@ -50,7 +125,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={User} alt="" />
                 <h2 className="text-primary text-sm">Full Name</h2>
               </div>
-              <Input placeholder="John Doe" />
+              <Input placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)}/>
             </div>
 
             {/* Email */}
@@ -59,7 +134,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={Email} alt="" />
                 <h2 className="text-primary text-sm">Email</h2>
               </div>
-              <Input placeholder="example@domain.com" />
+              <Input placeholder="example@domain.com" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             {/* Password */}
@@ -68,7 +143,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={Password} alt="" />
                 <h2 className="text-primary text-sm">Password</h2>
               </div>
-              <Input type="password" placeholder="********" />
+              <Input type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
 
             {/* Confirm Password */}
@@ -77,7 +152,7 @@ const LoginForm: React.FC = () => {
                 <img className="h-2.5 w-auto" src={Password} alt="" />
                 <h2 className="text-primary text-sm">Confirm Password</h2>
               </div>
-              <Input type="password" placeholder="********" />
+              <Input type="password" placeholder="********" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
             </div>
           </div>
         </>
@@ -159,6 +234,7 @@ const LoginForm: React.FC = () => {
               className="flex flex-row items-center gap-2 !rounded-4xl"
               variant="primary"
               size="md"
+              onClick={mode === "login" ? handleLogin : handleRegister} // Ternary operator to handle mode logic
             >
               {mode === "login" ? "Login" : "Register"}
               <Arrow className="mb-1 h-4 w-auto rotate-180 transform" />

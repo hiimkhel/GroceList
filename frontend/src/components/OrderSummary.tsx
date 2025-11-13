@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-
+import { getUserId } from "../utils/authUtils";
+import Button from "./Button";
+import Input from "./Input";
+import Send from "../assets/Send.svg";
 const API_BASE = import.meta.env.VITE_API_BASE;
 
 // Expected Response
@@ -19,11 +22,10 @@ const OrderSummary: React.FC = () => {
   const [cartItems, setCartItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const userId = "6906e85e53679779b2beed7d";
-
   useEffect(() => {
     const fetchItems = async () => {
       try {
+        const userId = getUserId();
         const response = await fetch(`${API_BASE}/api/cart/${userId}`);
         if (!response.ok) {
           console.error("[ERROR]", response.status, await response.text());
@@ -42,10 +44,14 @@ const OrderSummary: React.FC = () => {
   }, []);
 
   // Prevent errors while loading
-  if (loading) return <p className="text-center mt-4">Loading order summary...</p>;
+  if (loading)
+    return <p className="mt-4 text-center">Loading order summary...</p>;
 
   // Subtotal calculation
-  const subtotal = cartItems.reduce((acc, item) => acc + (item.productId?.price || 0) * item.quantity, 0);
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + (item.productId?.price || 0) * item.quantity,
+    0,
+  );
 
   // VAT (12%)
   const VAT = subtotal * 0.12;
@@ -54,55 +60,58 @@ const OrderSummary: React.FC = () => {
   const total = subtotal + VAT + DELIVERY_FEE;
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
-      <h3 className="text-lg font-semibold mb-2">Order Summary</h3>
+    <main className="bg-primary sticky flex h-140 flex-col justify-between rounded-lg px-6 py-8 text-white shadow-md">
+      <section className="w-full">
+        <h3 className="mb-2 text-3xl font-semibold text-white">
+          Order Summary
+        </h3>
 
-      <hr className="my-2" />
+        <hr className="text-secondary my-2" />
 
-      {/* Subtotal */}
-      <div className="flex justify-between">
-        <h4>Subtotal</h4>
-        <p>₱{subtotal.toFixed(2)}</p>
-      </div>
+        {/* Subtotal */}
+        <div className="flex justify-between">
+          <h4>Subtotal</h4>
+          <p>₱{subtotal.toFixed(2)}</p>
+        </div>
 
-      <div className="flex justify-between">
-        <h4>VAT (12%)</h4>
-        <p>₱{VAT.toFixed(2)}</p>
-      </div>
+        <hr className="text-secondary my-2" />
+        <div className="flex justify-between">
+          <h4>VAT (12%)</h4>
+          <p>₱{VAT.toFixed(2)}</p>
+        </div>
+        <hr className="text-secondary my-2" />
+        <div className="flex justify-between">
+          <h4>Delivery Fee</h4>
+          <p>₱{DELIVERY_FEE.toFixed(2)}</p>
+        </div>
 
-      <div className="flex justify-between">
-        <h4>Delivery Fee</h4>
-        <p>₱{DELIVERY_FEE.toFixed(2)}</p>
-      </div>
+        <hr className="text-secondary my-2" />
 
-      <hr className="my-2" />
-
-     
-
-      {/* Coupon Section */}
-      <h4 className="font-medium mb-2">Add a coupon</h4>
-      <div className="flex gap-2">
-        <input
+        {/* Coupon Section */}
+        <h4 className="mb-2 font-medium">Add a coupon</h4>
+        <Input
+          className="bg-white text-black"
           type="text"
           placeholder="Enter coupon code..."
-        />
-        <button>
-          Apply {/* Change to submit icon */}
-        </button>
-      </div>
+          icon={Send}
+          iconPosition="right"
+        ></Input>
 
-       {/* Total */}
-       
-      <hr className="my-2" />
-      <div className="flex justify-between font-semibold text-lg">
-        <h4>Total</h4>
-        <p>₱{total.toFixed(2)}</p>
-      </div>
+        {/* Total */}
 
-      <button>
-        Proceed to Checkout
-      </button>
-    </div>
+        <hr className="text-secondary my-2" />
+
+        <div className="flex justify-between text-lg font-semibold">
+          <h4>Total</h4>
+          <p>₱{total.toFixed(2)}</p>
+        </div>
+      </section>
+      <section className="w-full">
+        <Button className="w-full" variant="secondary">
+          Proceed to Checkout
+        </Button>
+      </section>
+    </main>
   );
 };
 
