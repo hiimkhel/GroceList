@@ -26,6 +26,7 @@ const CartSection: React.FC = () => {
   const userId = getUserId();
   const headers = getAuthHeaders();
 
+  // Fetch cart items
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -34,56 +35,65 @@ const CartSection: React.FC = () => {
         const response = await fetch(`${API_BASE}/api/cart/${userId}/`, {
           headers,
         });
-
-        if (!response.ok) {
-          console.error("[ERROR]", response.status, await response.text());
-          setLoading(false);
-          return;
-        }
-
         const data = await response.json();
+
+        if (!response.ok)
+          throw new Error(data.message || "Failed to fetch cart");
         setCartItems(data.cart || []);
       } catch (err) {
-        console.error(err);
+        console.error("Fetch cart failed:", err);
       } finally {
         setLoading(false);
       }
     };
 
     fetchCartItems();
-  }, []);
+  }, [userId]);
 
-  // Function to update the backend when quantity changes
-  const handleQuantityChange = async (itemId: string, newQuantity: number) => {
-    // Update frontend UI
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item._id === itemId ? { ...item, quantity: newQuantity } : item,
-      ),
-    );
-
-    // Update the backend
+  // Remove item
+  const handleRemoveFromCart = async (itemId: string) => {
     try {
       const item = cartItems.find((i) => i._id === itemId);
-      if (!item || !item.productId) return;
+      if (!item) return;
+
+      const response = await fetch(
+        `${API_BASE}/api/cart/${userId}/remove/${item.productId._id}`,
+        { method: "DELETE", headers },
+      );
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Remove failed");
+
+      setCartItems((prev) => prev.filter((i) => i._id !== itemId));
+    } catch (err) {
+      console.error("Remove failed:", err);
+    }
+  };
+
+  // Update quantity
+  const handleQuantityChange = async (itemId: string, newQuantity: number) => {
+    try {
+      const item = cartItems.find((i) => i._id === itemId);
+      if (!item) return;
 
       const response = await fetch(
         `${API_BASE}/api/cart/${userId}/update/${item.productId._id}`,
         {
-          method: "PATCH", // <-- changed here
-          headers: { "Content-Type": "application/json" },
+          method: "PATCH",
+          headers: { ...headers, "Content-Type": "application/json" },
           body: JSON.stringify({ quantity: newQuantity }),
         },
       );
-      const updatedCart = await response.json();
-      setCartItems(updatedCart.cart);
-      if (!response.ok) {
-        console.error("Failed to update quantity", await response.text());
-      }
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Update failed");
+
+      setCartItems(data.cart || []);
     } catch (err) {
-      console.error(err);
+      console.error("Update quantity failed:", err);
     }
   };
+
+  // UI states
   if (loading) return <p className="mt-4 text-center">Loading your cart...</p>;
   if (cartItems.length === 0)
     return (
@@ -102,11 +112,11 @@ const CartSection: React.FC = () => {
             image={item.productId.image}
             quantity={item.quantity}
             price={item.productId.price}
+            onRemoveProduct={() => handleRemoveFromCart(item._id)}
             onQuantityChange={handleQuantityChange}
           />
         ))}
     </div>
   );
 };
-
 export default CartSection;

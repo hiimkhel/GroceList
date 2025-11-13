@@ -18,7 +18,7 @@ const ShoppingCartPage = () => {
         <main className="flex flex-col">
           <section className="flex w-full flex-col gap-5 px-20 py-5">
             <h2>Your Cart</h2>
-            <div className="flex w-full flex-row justify-between gap-5">
+            <div className="grid h-screen grid-cols-[3fr_1fr] gap-5">
               <CartSection />
               <OrderSummary />
             </div>
