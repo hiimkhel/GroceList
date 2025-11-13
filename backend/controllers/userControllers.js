@@ -64,7 +64,7 @@ const deleteUser  = async (req, res, next) => {
 // @desc Updates user's address
 // @route PATCH /api/:userId
 // @access Public
-const updateAddress = async (req, res) => {
+const updateAddress = async (req, res, next) => {
     const {userId} = req.params;
     const {address} = req.body;
 
