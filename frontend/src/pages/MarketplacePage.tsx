@@ -13,7 +13,7 @@ const MarketPlacePage = () => {
       {/* Sidebar */}
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       {/* Page content */}
-      <div className={`} flex flex-1 flex-col transition-all duration-300`}>
+      <div className={`flex flex-1 flex-col transition-all duration-300`}>
         {/* Navbar */}
         <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
         {/* Main content */}
