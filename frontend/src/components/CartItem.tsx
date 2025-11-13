@@ -41,11 +41,30 @@ const CartItem: React.FC<Item> = ({
 
       {/* Item name and quantity */}
       <div>
-        <h4>{name}</h4>
 
-        {/* Item name and quantity */}
-        <div>
-          <h4>{name}</h4>
+        <h4>{name}</h4>
+        {/* Quantity Button */}
+
+
+        <div className="flex">
+
+
+          <button onClick={handleDecrement}>-</button>
+
+
+          {/* quantity */}
+
+
+          <div>{quantity}</div>
+
+
+          <button onClick={handleIncrement}>+</button>
+
+
+        </div>
+
+
+      </div>
 
           {/* Delete button and item price */}
           {/* Apply align self center sa tailwind css */}
@@ -56,8 +75,7 @@ const CartItem: React.FC<Item> = ({
             </button>
             <p>₱{price}</p>
           </div>
-        </div>
-      </div>
+    
     </div>
   );
 };
