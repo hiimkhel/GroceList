@@ -107,7 +107,7 @@ const seedProducts = async () => {
       {
         name: "Knorr Chicken Cubes 60g",
         price: 45,
-        image: "",
+        image: getProductImage("KnorrCubes.jpg"),
         stock: 50,
         description: "Chicken-flavored broth cubes for soups and sauces.",
         tag: "pantry"
@@ -117,7 +117,7 @@ const seedProducts = async () => {
       {
         name: "Lucky Me! Pancit Canton (Original)",
         price: 17,
-        image: "",
+        image: getProductImage("PancitCanton.jpg"),
         stock: 50,
         description: "Classic stir-fry noodles with savory seasoning.",
         tag: "instant-food"
@@ -125,7 +125,7 @@ const seedProducts = async () => {
       {
         name: "Lucky Me! Pancit Canton (Calamansi)",
         price: 17,
-        image: "",
+        image: getProductImage("PancitCantonCalamansi.jpg"),
         stock: 50,
         description: "Tangy calamansi-flavored stir-fry noodles.",
         tag: "instant-food"
@@ -133,7 +133,7 @@ const seedProducts = async () => {
       {
         name: "Lucky Me! Pancit Canton (Chilimansi)",
         price: 17,
-        image: "",
+        image: getProductImage("Chilimansi.jpg"),
         stock: 50,
         description: "Spicy and tangy version of classic pancit canton.",
         tag: "instant-food"
@@ -141,7 +141,7 @@ const seedProducts = async () => {
       {
         name: "Nissin Ramen (Seafood Flavor)",
         price: 35,
-        image: "",
+        image: getProductImage("NissinRamen.jpg"),
         stock: 50,
         description: "Instant ramen with rich seafood broth.",
         tag: "instant-food"
@@ -149,7 +149,7 @@ const seedProducts = async () => {
       {
         name: "Nissin Cup Noodles (Beef Flavor)",
         price: 35,
-        image: "",
+        image: getProductImage("NissinBeefNoodles.jpg"),
         stock: 50,
         description: "Quick beef-flavored instant cup noodles.",
         tag: "instant-food"
@@ -157,7 +157,7 @@ const seedProducts = async () => {
       {
         name: "Payless Xtra Big Pancit Canton (Sweet & Spicy)",
         price: 21,
-        image: "",
+        image: getProductImage("PancitCantonPayless.jpg"),
         stock: 50,
         description: "Larger serving with sweet and spicy flavor.",
         tag: "instant-food"
@@ -165,7 +165,7 @@ const seedProducts = async () => {
       {
         name: "Lucky Me! Instant Mami (Beef)",
         price: 17,
-        image: "",
+        image: getProductImage("LuckyMeBeef.jpg"),
         stock: 50,
         description: "Savory beef-flavored noodle soup.",
         tag: "instant-food"
@@ -173,7 +173,7 @@ const seedProducts = async () => {
       {
         name: "Century Tuna Caldereta 155g",
         price: 14,
-        image: "",
+        image: getProductImage("CenturyTunaCaldareta.jpg"),
         stock: 50,
         description: "Tuna flakes in rich caldereta-style sauce.",
         tag: "instant-food"
@@ -181,7 +181,7 @@ const seedProducts = async () => {
       {
         name: "Argentina Corned Beef 150g",
         price: 44,
-        image: "",
+        image: getProductImage("Argentina.png"),
         stock: 50,
         description: "Classic Filipino-style corned beef.",
         tag: "instant-food"
@@ -189,7 +189,7 @@ const seedProducts = async () => {
       {
         name: "Delimondo Corned Beef 260g",
         price: 99,
-        image: "",
+        image: getProductImage("CornedBeef.jpg"),
         stock: 50,
         description: "Premium corned beef with rich beef flavor.",
         tag: "instant-food"
@@ -198,7 +198,7 @@ const seedProducts = async () => {
       {
         name: "Head & Shoulders Anti-Dandruff Shampoo 170ml",
         price: 145,
-        image: "",
+        image: getProductImage("HeadanShoulders.jpg"),
         stock: 50,
         description: "Refreshing shampoo that removes dandruff and soothes scalp.",
         tag: "health-and-hygiene"
@@ -206,7 +206,7 @@ const seedProducts = async () => {
       {
         name: "Palmolive Naturals Conditioner 180ml",
         price: 130,
-        image: "",
+        image: getProductImage("Palmolive.jpg"),
         stock: 50,
         description: "Smooth, nourishing conditioner with natural extracts.",
         tag: "health-and-hygiene"
@@ -214,7 +214,7 @@ const seedProducts = async () => {
       {
         name: "Colgate Triple Action Toothpaste 100g",
         price: 75,
-        image: "",
+        image: getProductImage("Colgate.png"),
         stock: 50,
         description: "Toothpaste for cavity protection, whitening, and fresh breath.",
         tag: "health-and-hygiene"
@@ -222,7 +222,7 @@ const seedProducts = async () => {
       {
         name: "Oral-B Toothbrush (2-pack)",
         price: 120,
-        image: "",
+        image: getProductImage("OralBToothbrush.jpg"),
         stock: 50,
         description: "Durable soft-bristle toothbrush for daily oral care.",
         tag: "health-and-hygiene"
@@ -230,7 +230,7 @@ const seedProducts = async () => {
       {
         name: "Safeguard Pure White Bar Soap 90g",
         price: 34,
-        image: "",
+        image: getProductImage("SafeGuard.jpg"),
         stock: 50,
         description: "Antibacterial soap for all-around skin protection.",
         tag: "health-and-hygiene"
@@ -239,7 +239,7 @@ const seedProducts = async () => {
       {
         name: "Bananas (Lakatan) 1kg",
         price: 80,
-        image: "",
+        image: getProductImage("Banana.png"),
         stock: 50,
         description: "Sweet local banana variety rich in potassium.",
         tag: "fruits-and-vegetabels"
@@ -247,7 +247,7 @@ const seedProducts = async () => {
       {
         name: "Mango (Carabao) 1kg",
         price: 140,
-        image: "",
+        image: getProductImage("Mango.jpg"),
         stock: 50,
         description: "Sweet, juicy tropical mango variety.",
         tag: "fruits-and-vegetabels"
@@ -255,7 +255,7 @@ const seedProducts = async () => {
       {
         name: "Apples (Washington) 1kg",
         price: 180,
-        image: "",
+        image: getProductImage("Apples.jpg"),
         stock: 50,
         description: "Imported crisp red apples, mildly sweet.",
         tag: "fruits-and-vegetabels"
@@ -263,7 +263,7 @@ const seedProducts = async () => {
       {
         name: "Oranges (Valencia) 1kg",
         price: 160,
-        image: "",
+        image: getProductImage("Orange.jpg"),
         stock: 50,
         description: "Sweet and tangy imported oranges.",
         tag: "fruits-and-vegetabels"
@@ -271,7 +271,7 @@ const seedProducts = async () => {
       {
         name: "Pineapple (whole)",
         price: 70,
-        image: "",
+        image: getProductImage("PineApple.jpg"),
         stock: 50,
         description: "Fresh whole pineapple, rich in vitamin C.",
         tag: "fruits-and-vegetabels"
@@ -279,7 +279,7 @@ const seedProducts = async () => {
       {
         name: "Tomatoes 1kg",
         price: 70,
-        image: "",
+        image: getProductImage("Tomato.jpg"),
         stock: 50,
         description: "Fresh red tomatoes ideal for cooking and salads.",
         tag: "fruits-and-vegetabels"
@@ -287,7 +287,7 @@ const seedProducts = async () => {
       {
         name: "Onions (Red) 1kg",
         price: 100,
-        image: "",
+        image: getProductImage("Onion.jpg"),
         stock: 50,
         description: "Locally grown red onions for flavoring dishes.",
         tag: "fruits-and-vegetabels"
@@ -295,7 +295,7 @@ const seedProducts = async () => {
       {
         name: "Garlic 250g",
         price: 45,
-        image: "",
+        image: getProductImage("Garlic.webp"),
         stock: 50,
         description: "Aromatic garlic for everyday cooking.",
         tag: "fruits-and-vegetabels"
@@ -303,7 +303,7 @@ const seedProducts = async () => {
       {
         name: "Potatoes 1kg",
         price: 90,
-        image: "",
+        image: getProductImage("Potato.jpg"),
         stock: 50,
         description: "Starchy vegetable used in soups and fries.",
         tag: "fruits-and-vegetabels"
@@ -311,7 +311,7 @@ const seedProducts = async () => {
       {
         name: "String Beans (Sitaw) 1 bundle",
         price: 25,
-        image: "",
+        image: getProductImage("StringBeans.webp"),
         stock: 50,
         description: "Long green beans for stir-fries and stews.",
         tag: "fruits-and-vegetabels"
@@ -319,7 +319,7 @@ const seedProducts = async () => {
       {
         name: "Cabbage 1 head",
         price: 65,
-        image: "",
+        image: getProductImage("Cabbage.jpg"),
         stock: 50,
         description: "Leafy vegetable for soups, salads, and stir-fries.",
         tag: "fruits-and-vegetabels"
@@ -327,7 +327,7 @@ const seedProducts = async () => {
       {
         name: "Ampalaya 1 piece",
         price: 25,
-        image: "",
+        image: getProductImage("Ampalaya.webp"),
         stock: 50,
         description: "Bitter melon rich in nutrients and antioxidants.",
         tag: "fruits-and-vegetabels"
@@ -336,7 +336,7 @@ const seedProducts = async () => {
       {
         name: "Chicken Drumstick 1kg",
         price: 190,
-        image: "",
+        image: getProductImage("ChickenDrumstick.jpg"),
         stock: 50,
         description: "Fresh chicken legs ideal for frying or stews.",
         tag: "meat-and-seafood"
@@ -344,7 +344,7 @@ const seedProducts = async () => {
       {
         name: "Chicken Breast Fillet 1kg",
         price: 260,
-        image: "",
+        image: getProductImage("ChickenBreast.webp"),
         stock: 50,
         description: "Boneless, skinless chicken meat for grilling or salads.",
         tag: "meat-and-seafood"
@@ -352,7 +352,7 @@ const seedProducts = async () => {
       {
         name: "Pork Liempo 1kg",
         price: 330,
-        image: "",
+        image: getProductImage("PorkLiempo.jpg"),
         stock: 50,
         description: "Pork belly cut, perfect for grilling or roasting.",
         tag: "meat-and-seafood"
@@ -360,7 +360,7 @@ const seedProducts = async () => {
       {
         name: "Beef Tapa Slices 1kg",
         price: 480,
-        image: "",
+        image: getProductImage("BeefTapa.webp"),
         stock: 50,
         description: "Marinated beef slices for traditional Filipino tapa.",
         tag: "meat-and-seafood"
@@ -368,7 +368,7 @@ const seedProducts = async () => {
       {
         name: "Ground Beef 1kg",
         price: 420,
-        image: "",
+        image: getProductImage("GroundBeef.jpg"),
         stock: 50,
         description: "Freshly ground beef for patties and sauces.",
         tag: "meat-and-seafood"
@@ -376,7 +376,7 @@ const seedProducts = async () => {
       {
         name: "Bangus (Milkfish) 1 piece",
         price: 180,
-        image: "",
+        image: getProductImage("Bangus.jpg"),
         stock: 50,
         description: "Whole milkfish, a popular Filipino staple fish.",
         tag: "meat-and-seafood"
@@ -384,7 +384,7 @@ const seedProducts = async () => {
       {
         name: "Tilapia 1kg",
         price: 160,
-        image: "",
+        image: getProductImage("Tilapia.jpg"),
         stock: 50,
         description: "Freshwater fish, mild taste, great for frying.",
         tag: "meat-and-seafood"
@@ -392,7 +392,7 @@ const seedProducts = async () => {
       {
         name: "Galunggong (Round Scad) 1kg",
         price: 170,
-        image: "",
+        image: getProductImage("Galunggong.webp"),
         stock: 50,
         description: "Common local fish, flavorful when fried.",
         tag: "meat-and-seafood"
@@ -400,7 +400,7 @@ const seedProducts = async () => {
       {
         name: "Shrimp (Medium) 1kg",
         price: 450,
-        image: "",
+        image: getProductImage("Shrimp.webp"),
         stock: 50,
         description: "Medium-sized shrimp, good for sinigang or tempura.",
         tag: "meat-and-seafood"
@@ -408,7 +408,7 @@ const seedProducts = async () => {
       {
         name: "Squid (Calamari Rings) 500g",
         price: 220,
-        image: "",
+        image: getProductImage("SquidRings.webp"),
         stock: 50,
         description: "Cleaned squid rings for frying or grilling.",
         tag: "meat-and-seafood"
@@ -417,7 +417,7 @@ const seedProducts = async () => {
       {
         name: "Purefoods Tender Juicy Hotdog 1kg",
         price: 250,
-        image: "",
+        image: getProductImage("HotDog.webp"),
         stock: 50,
         description: "Popular red hotdog, tender and juicy classic favorite.",
         tag: "frozen-foods"
@@ -425,7 +425,7 @@ const seedProducts = async () => {
       {
         name: "CDO Idol Cheesedog 1kg",
         price: 240,
-        image: "",
+        image: getProductImage("CheeseDog.webp"),
         stock: 50,
         description: "Hotdogs filled with creamy cheese bits.",
         tag: "frozen-foods"
@@ -433,7 +433,7 @@ const seedProducts = async () => {
       {
         name: "Pampanga’s Best Tocino 500g",
         price: 180,
-        image: "",
+        image: getProductImage("Tocino.webp"),
         stock: 50,
         description: "Sweet-cured pork tocino ready for frying.",
         tag: "frozen-foods"
@@ -441,7 +441,7 @@ const seedProducts = async () => {
       {
         name: "Mekeni Skinless Longganisa 500g",
         price: 170,
-        image: "",
+        image: getProductImage("Longanisa.jpg"),
         stock: 50,
         description: "Filipino-style garlicky sweet longganisa.",
         tag: "frozen-foods"
@@ -449,7 +449,7 @@ const seedProducts = async () => {
       {
         name: "Bounty Fresh Chicken Nuggets 250g",
         price: 110,
-        image: "",
+        image: getProductImage("ChickenNuggets.webp"),
         stock: 50,
         description: "Breaded bite-size chicken pieces for frying.",
         tag: "frozen-foods"
@@ -457,7 +457,7 @@ const seedProducts = async () => {
       {
         name: "Fries King French Fries 1kg",
         price: 120,
-        image: "",
+        image: getProductImage("FrenchFries.webp"),
         stock: 50,
         description: "Frozen potato fries for air-fry or deep-fry use.",
         tag: "frozen-foods"
@@ -465,7 +465,7 @@ const seedProducts = async () => {
       {
         name: "Golden Phoenix Frozen Siomai 500g",
         price: 160,
-        image: "",
+        image: getProductImage("Siomai.jpg"),
         stock: 50,
         description: "Ready-to-cook pork siomai for steaming or frying.",
         tag: "frozen-foods"
@@ -473,7 +473,7 @@ const seedProducts = async () => {
       {
         name: "San Miguel Purefoods Ham 500g",
         price: 250,
-        image: "",
+        image: getProductImage("Ham.webp"),
         stock: 50,
         description: "Ready-to-eat sweet ham slices for sandwiches or meals.",
         tag: "frozen-foods"
@@ -481,7 +481,7 @@ const seedProducts = async () => {
       {
         name: "Virginia Hotdog Jumbo 1kg",
         price: 235,
-        image: "",
+        image: getProductImage("HotdogJumbo.jpg"),
         stock: 50,
         description: "Jumbo-sized hotdogs with firm texture and rich flavor.",
         tag: "frozen-foods"
@@ -489,7 +489,7 @@ const seedProducts = async () => {
       {
         name: "Swift Premium Corned Beef Tapa 250g",
         price: 165,
-        image: "",
+        image: getProductImage("CornedBeef.jpg"),
         stock: 50,
         description: "Premium corned beef tapa, ready to fry.",
         tag: "frozen-foods"
@@ -498,7 +498,7 @@ const seedProducts = async () => {
       {
         name: "Alaska Fresh Milk 1L",
         price: 95,
-        image: "",
+        image: getProductImage("AlaskaFreshMilk.webp"),
         stock: 50,
         description: "Pasteurized full cream milk for daily drinking.",
         tag: "dairy"
@@ -506,7 +506,7 @@ const seedProducts = async () => {
       {
         name: "Bear Brand Powdered Milk Drink 800g",
         price: 310,
-        image: "",
+        image: getProductImage("BearBrand.webp"),
         stock: 50,
         description: "Fortified powdered milk for energy and nutrition.",
         tag: "dairy"
@@ -514,7 +514,7 @@ const seedProducts = async () => {
       {
         name: "Eden Melt Sarap Cheese 165g",
         price: 60,
-        image: "",
+        image: getProductImage("Eden.png"),
         stock: 50,
         description: "Processed cheese block ideal for melting or grating.",
         tag: "dairy"
@@ -522,7 +522,7 @@ const seedProducts = async () => {
       {
         name: "Nestlé Fresh Milk 1L",
         price: 110,
-        image: "",
+        image: getProductImage("NestleFreshMilk.webp"),
         stock: 50,
         description: "Premium UHT milk rich in calcium and protein.",
         tag: "dairy"
@@ -530,7 +530,7 @@ const seedProducts = async () => {
       {
         name: "Selecta Ice Cream (Cookies & Cream) 1.5L",
         price: 330,
-        image: "",
+        image: getProductImage("CookiesnCream.avif"),
         stock: 50,
         description: "Creamy ice cream with cookie bits.",
         tag: "dairy"
@@ -538,7 +538,7 @@ const seedProducts = async () => {
       {
         name: "Selecta Ice Cream (Rocky Road) 1.5L",
         price: 330,
-        image: "",
+        image: getProductImage("RockyRoad.avif"),
         stock: 50,
         description: "Chocolate ice cream with mallows and nuts.",
         tag: "dairy"
@@ -546,7 +546,7 @@ const seedProducts = async () => {
       {
         name: "Nestlé Cream 250ml",
         price: 80,
-        image: "",
+        image: getProductImage("NestleCream.jpg"),
         stock: 50,
         description: "All-purpose cream for desserts and cooking.",
         tag: "dairy"
@@ -554,7 +554,7 @@ const seedProducts = async () => {
       {
         name: "Anchor Butter Salted 227g",
         price: 185,
-        image: "",
+        image: getProductImage("Butter.png"),
         stock: 50,
         description: "Premium New Zealand dairy butter.",
         tag: "dairy"
@@ -562,7 +562,7 @@ const seedProducts = async () => {
       {
         name: "Dutch Mill Yogurt Drink 180ml",
         price: 25,
-        image: "",
+        image: getProductImage("DutchMill.jpg"),
         stock: 50,
         description: "Sweet cultured yogurt drink with probiotics.",
         tag: "dairy"
@@ -571,7 +571,7 @@ const seedProducts = async () => {
       {
         name: "Angelina Classic White Bread 600g",
         price: 85,
-        image: "",
+        image: getProductImage("Angelina.jpg"),
         stock: 50,
         description: "Soft white loaf bread ideal for sandwiches and breakfast.",
         tag: "bakery"
@@ -579,7 +579,7 @@ const seedProducts = async () => {
       {
         name: "Angelina Whole Wheat Bread 600g",
         price: 95,
-        image: "",
+        image: getProductImage("WholeWheat.jpg"),
         stock: 50,
         description: "Healthy whole wheat loaf rich in fiber.",
         tag: "bakery"
@@ -588,7 +588,7 @@ const seedProducts = async () => {
       {
         name: "Piattos Cheese 85g",
         price: 45,
-        image: "",
+        image: getProductImage("Piattos.jpg"),
         stock: 50,
         description: "Hexagon-shaped potato crisps with cheese flavor.",
         tag: "snacks"
@@ -596,7 +596,7 @@ const seedProducts = async () => {
       {
         name: "Nova Multigrain Snacks 80g",
         price: 40,
-        image: "",
+        image: getProductImage("Nova.jpg"),
         stock: 50,
         description: "Crunchy multigrain chips high in fiber.",
         tag: "snacks"
@@ -604,7 +604,7 @@ const seedProducts = async () => {
       {
         name: "Vcut Spicy BBQ 80g",
         price: 40,
-        image: "",
+        image: getProductImage("VCut.jpg"),
         stock: 50,
         description: "Wavy potato chips with spicy barbecue flavor.",
         tag: "snacks"
@@ -612,7 +612,7 @@ const seedProducts = async () => {
       {
         name: "Oishi Prawn Crackers 60g",
         price: 35,
-        image: "",
+        image: getProductImage("PrawnCrackers.jpg"),
         stock: 50,
         description: "Crispy shrimp-flavored cracker snack.",
         tag: "snacks"
@@ -620,7 +620,7 @@ const seedProducts = async () => {
       {
         name: "Chippy BBQ 110g",
         price: 40,
-        image: "",
+        image: getProductImage("Chippy.jpg"),
         stock: 50,
         description: "Corn chips with smoky barbecue seasoning.",
         tag: "snacks"
@@ -628,7 +628,7 @@ const seedProducts = async () => {
       {
         name: "Roller Coaster Cheese 60g",
         price: 35,
-        image: "",
+        image: getProductImage("RollerCoaster.jpg"),
         stock: 50,
         description: "Ring-shaped crunchy chips with cheese flavor.",
         tag: "snacks"
@@ -636,7 +636,7 @@ const seedProducts = async () => {
       {
         name: "Cloud 9 Chocolate Bar 25g",
         price: 20,
-        image: "",
+        image: getProductImage("Cloud9.jpg"),
         stock: 50,
         description: "Chewy chocolate bar with caramel and peanuts.",
         tag: "snacks"
@@ -645,7 +645,7 @@ const seedProducts = async () => {
       {
         name: "Wilkins Distilled Water 1L",
         price: 30,
-        image: "",
+        image: getProductImage("Wilkins.avif"),
         stock: 50,
         description: "Purified bottled water for safe hydration.",
         tag: "beverage"
@@ -653,7 +653,7 @@ const seedProducts = async () => {
       {
         name: "Natures Spring Drinking Water 500ml",
         price: 15,
-        image: "",
+        image: getProductImage("NatureSpring.jpg"),
         stock: 50,
         description: "Affordable purified water in handy size.",
         tag: "beverage"
@@ -661,7 +661,7 @@ const seedProducts = async () => {
       {
         name: "Coca-Cola 1.5L",
         price: 85,
-        image: "",
+        image: getProductImage("Coke.png"),
         stock: 50,
         description: "Classic carbonated soft drink.",
         tag: "beverage"
@@ -669,7 +669,7 @@ const seedProducts = async () => {
       {
         name: "Sprite 1.5L",
         price: 85,
-        image: "",
+        image: getProductImage("Sprite.webp"),
         stock: 50,
         description: "Lemon-lime flavored soda.",
         tag: "beverage"
@@ -677,7 +677,7 @@ const seedProducts = async () => {
       {
         name: "Pepsi 1.5L",
         price: 80,
-        image: "",
+        image: getProductImage("Pepsi.jpg"),
         stock: 50,
         description: "Refreshing cola-flavored soft drink.",
         tag: "beverage"
@@ -685,7 +685,7 @@ const seedProducts = async () => {
       {
         name: "Mountain Dew 1L",
         price: 60,
-        image: "",
+        image: getProductImage("MountainDew.jpg"),
         stock: 50,
         description: "Citrus-flavored soft drink with caffeine.",
         tag: "beverage"
@@ -693,7 +693,7 @@ const seedProducts = async () => {
       {
         name: "Red Horse Beer 500ml",
         price: 60,
-        image: "",
+        image: getProductImage("RedHorse.webp"),
         stock: 50,
         description: "Extra strong beer with bold flavor.",
         tag: "beverage"
@@ -701,7 +701,7 @@ const seedProducts = async () => {
       {
         name: "San Miguel Pale Pilsen 330ml",
         price: 55,
-        image: "",
+        image: getProductImage("SanMiguel.webp"),
         stock: 50,
         description: "Classic Filipino lager beer.",
         tag: "beverage"
@@ -709,7 +709,7 @@ const seedProducts = async () => {
       {
         name: "Tanduay Light 350ml",
         price: 75,
-        image: "",
+        image: getProductImage("Tanduay.jpg"),
         stock: 50,
         description: "Light rum with smooth and mellow taste.",
         tag: "beverage"
