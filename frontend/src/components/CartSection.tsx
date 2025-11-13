@@ -63,7 +63,7 @@ const CartSection: React.FC = () => {
 
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Remove failed");
-
+      
       setCartItems((prev) => prev.filter((i) => i._id !== itemId));
     } catch (err) {
       console.error("Remove failed:", err);

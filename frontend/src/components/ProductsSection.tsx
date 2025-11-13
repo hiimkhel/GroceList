@@ -41,7 +41,6 @@ const ProductsSection: React.FC = () => {
   }, []);
 
   const handleAddToCart = async (productId: string) => {
-    // TODO: Implement add to cart logic
       const userId = getUserId();
       try{
         const response = await fetch(`${API_BASE}/api/cart/${userId}/add`,

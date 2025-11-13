@@ -29,6 +29,15 @@ const CartItem: React.FC<Item> = ({
     if (quantity > 1) onQuantityChange(id, quantity - 1);
   };
 
+  const handleRemove = () => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to remove "${name}" from your cart?`
+    );
+    if (confirmDelete) {
+      onRemoveProduct(id);
+    }
+  };
+
   return (
     <div className="border-secondary flex h-40 w-auto flex-row items-center gap-12 rounded-xl border p-4">
       {/* Item Image */}
@@ -71,7 +80,7 @@ const CartItem: React.FC<Item> = ({
           <div className="flex items-center justify-end space-x-2">
             {/* Delete button */}
             <button className="text-2l flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600">
-              <img src={DeleteIcon} alt="" className="h-5 w-5" />
+              <img src={DeleteIcon} alt="" className="h-5 w-5" onClick={handleRemove}/>
             </button>
             <p>₱{price}</p>
           </div>
