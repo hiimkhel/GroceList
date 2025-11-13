@@ -7,10 +7,12 @@ interface Item{
     quantity: number,
     price: number,
     onQuantityChange: (id: string, newQuantity: number) => void
+    onRemoveProduct: (id: string) => void
 }
 
-const CartItem: React.FC<Item> = ({id, name, image, quantity, price, onQuantityChange}) => {
-        
+const CartItem: React.FC<Item> = ({id, name, image, quantity, price, onQuantityChange, onRemoveProduct}) => {
+
+    // Function to handle product quantity value change
     const handleIncrement = () => {
         onQuantityChange(id, quantity + 1);
     };
@@ -18,6 +20,8 @@ const CartItem: React.FC<Item> = ({id, name, image, quantity, price, onQuantityC
     const handleDecrement = () => {
         if (quantity > 1) onQuantityChange(id, quantity - 1);
     };
+
+
     return(
         <div className='flex gap-12 border border-b border-secondary h-40 w-200 p-4'>
             {/* Item Image */}
@@ -46,7 +50,7 @@ const CartItem: React.FC<Item> = ({id, name, image, quantity, price, onQuantityC
             {/* Apply align self center sa tailwind css */}
             <div className='flex items-center justify-end space-x-2'>
                 {/* Delete button */}
-                <button className='bg-red-500 hover:bg-red-600 text-white rounded-full h-10 w-10 flex items-center justify-center text-2l'>
+                <button className='bg-red-500 hover:bg-red-600 text-white rounded-full h-10 w-10 flex items-center justify-center text-2l' onClick={() => onRemoveProduct(id)}>
                     🗑 {/* temporary trash icon */}
                 </button>
                 <p>₱{price}</p>

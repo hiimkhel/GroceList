@@ -83,6 +83,32 @@ const CartSection: React.FC = () => {
             console.error(err);
         }
     }
+
+    // Function to handle remove of product from the user's cart
+     // Handle product removal
+    const handleRemoveFromCart = async (itemId: string) => {
+        try {
+        const item = cartItems.find((i) => i._id === itemId);
+        if (!item || !item.productId) return;
+
+        const response = await fetch(
+            `${API_BASE}/api/cart/${userId}/remove/${item.productId._id}`,
+            {
+            method: "DELETE",
+            headers,
+            }
+        );
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || "Remove failed");
+
+        // Update UI instantly
+        setCartItems((prev) => prev.filter((i) => i._id !== itemId));
+        } catch (err) {
+        console.error(err);
+        }
+    };
+    
     if (loading) return <p className="text-center mt-4">Loading your cart...</p>;
     if (cartItems.length === 0)
         return <p className="text-center mt-4 text-gray-500">Your cart is empty.</p>;
@@ -100,6 +126,7 @@ const CartSection: React.FC = () => {
                 quantity={item.quantity}
                 price={item.productId.price}
                 onQuantityChange={handleQuantityChange}
+                onRemoveProduct={handleRemoveFromCart}
                 />
             ))}
         </div>
