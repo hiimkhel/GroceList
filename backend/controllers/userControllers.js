@@ -93,7 +93,7 @@ const updateAddress = async (req, res, next) => {
                 address,
                 location: {
                 type: "Point",
-                coordinates: [longitude, latitude], // GeoJSON format
+                coordinates: [long, lat], // GeoJSON format
                 },
             },
             { new: true }
