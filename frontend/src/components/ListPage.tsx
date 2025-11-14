@@ -203,6 +203,9 @@ const ListPage: React.FC<Item> = () => {
                     ))}
                 </div>
             </div>
+            <Button onClick={() => window.location.href = "/lists"}>
+                    Return To Grocery Lists
+            </Button>
         </div>
     )
 }
