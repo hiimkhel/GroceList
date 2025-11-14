@@ -11,7 +11,7 @@ interface Item{
     quantity: number;
     isChecked: boolean;
 }
-const ListPage: React.FC = () => {
+const ListPage: React.FC<Item> = () => {
     const { listId } = useParams();
     const [list, setList] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -44,7 +44,10 @@ const ListPage: React.FC = () => {
     try{
         const response = await fetch(`${API_BASE}/api/lists/${userId}/${listId}/add-item`, {
             method: "POST",
-            headers: headers,
+            headers: {
+                "Content-Type": "application/json",
+                ...headers
+            },
             body: JSON.stringify({
                 item: {
                     name: itemName,
@@ -64,6 +67,29 @@ const ListPage: React.FC = () => {
     }
   }
 
+  // Function to handle the backend request to delete the list
+  const handleDeleteList = async  () => {
+    try{
+        const confirmDelete = window.confirm(
+            `Are you sure you want to remove "${name}" list? `
+        )
+        if(confirmDelete){
+            const response = await fetch(`${API_BASE}/api/lists/${userId}/${listId}/delete`, {
+                method: "DELETE",
+                headers: headers
+            });
+            const data = await response.json();
+
+            // Error handling 
+            if (!response.ok) throw new Error(data.message || "Adding item failed");
+            console.log("");
+            window.location.href = "/lists"
+        }
+        return;
+    }catch(err){
+        console.error(err);
+    }
+  }
   if (loading) return <p>Loading list...</p>;
   if (!list) return <p>List not found.</p>;
 
@@ -78,12 +104,12 @@ const ListPage: React.FC = () => {
                 <Button onClick={handleAddItem}>
                     Add Item
                 </Button>
-                <button>Clear All</button> {/* TODO: backend logic */}
+                <button onClick={handleDeleteList}>Delete List</button> {/* TODO: backend logic */}
             </div>
             <div>
                 <div>
                     {list.items.map((item: Item) => (
-                        <div className="flex">
+                        <div className="flex" key={item._id}>
                             <p>{item.name}</p>
                             <div>
                                 <button>Edit</button>
