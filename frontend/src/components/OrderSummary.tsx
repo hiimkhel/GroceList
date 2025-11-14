@@ -89,12 +89,14 @@ const OrderSummary: React.FC = () => {
 
         {/* Coupon Section */}
         <h4 className="mb-2 font-medium">Add a coupon</h4>
+        <div></div>
         <Input
           className="bg-white text-black"
           type="text"
           placeholder="Enter coupon code..."
           icon={Send}
           iconPosition="right"
+          onIconClick={() => alert(" Coupon added!")}
         ></Input>
 
         {/* Total */}

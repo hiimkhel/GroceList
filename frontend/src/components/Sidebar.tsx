@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState, } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import Menu from "../components/Menu";
@@ -8,13 +8,12 @@ import Checklist from "../assets/Checklist.svg";
 import Cart from "../assets/ShoppingCart.svg";
 import Location from "../assets/Location.svg";
 import Logout from "../assets/Exit.svg";
+import Arrow from "../assets/Arrow.svg";
 import { getAuthHeaders, getUserId } from "../utils/authUtils";
 import "../index.css";
 
 // Import backend url from .env
 const API_BASE = import.meta.env.VITE_API_BASE;
-
-   
 
 // Create a blueprint for the expected data
 interface User {
@@ -37,19 +36,18 @@ const Sidebar: React.FC<{
 
   // fetches the users data from the backend
   useEffect(() => {
-
     // Async function to fetch the user data
     const fetchUserData = async () => {
       try {
-         // Apply utility
-         const userId = getUserId();
+        // Apply utility
+        const userId = getUserId();
         if (!userId) {
           console.warn("User not logged in");
           return;
         }
         // store the response of the upcoming data from backend
         const response = await fetch(`${API_BASE}/api/user/${userId}`, {
-          headers: getAuthHeaders()
+          headers: getAuthHeaders(),
         });
 
         // Store that data to a json
@@ -71,7 +69,7 @@ const Sidebar: React.FC<{
     localStorage.removeItem("user");
 
     redirect("/");
-  }
+  };
 
   return (
     <>
@@ -100,7 +98,7 @@ const Sidebar: React.FC<{
                 <>
                   <div className="flex items-center gap-3">
                     {/* User Avatar */}
-                    <div className="bg-secondary h-12 w-12 rounded-full flex-shrink-0"></div>
+                    <div className="bg-secondary h-12 w-12 flex-shrink-0 rounded-full"></div>
 
                     {/* Card Info */}
                     <div>
@@ -108,9 +106,9 @@ const Sidebar: React.FC<{
                         {user.name}
                       </p>
                       <p className="text-primary text-sm">{user.email}</p>
-                      <div className="flex items-center space-x-1 text-sm">
-                        <img src={Location} />
-                        <p className="text-sm text-gray-600 italic line-clamp-2">
+                      <div className="flex flex-row items-start space-x-1 text-sm">
+                        <img className="mt-1.5" src={Location} />
+                        <p className="line-clamp-2 text-sm text-gray-600 italic">
                           {user.address}
                         </p>
                       </div>
@@ -118,8 +116,10 @@ const Sidebar: React.FC<{
                   </div>
 
                   {/* Link to view profile */}
-                  <Link to="/user" className="mt-2 text-sm text-blue-600">
-                    View Profile
+                  <Link to="/user">
+                    <p className="text-primary hover:text-secondary mt-2 text-sm underline">
+                      View Profile
+                    </p>
                   </Link>
                 </>
               ) : (
@@ -154,10 +154,7 @@ const Sidebar: React.FC<{
           </div>
 
           <div className="border-secondary flex flex-row items-center gap-4 border-t-2 px-3 py-2.5 hover:bg-red-500/80">
-            <button
-              onClick={handleLogout}
-              className="flex"
-            >
+            <button onClick={handleLogout} className="flex">
               <img className="h-5 w-auto" src={Logout} />
               <h4>Log Out</h4>
             </button>
