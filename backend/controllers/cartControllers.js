@@ -75,6 +75,13 @@ const addToCart = async (req, res, next) => {
       throw error;
     }
 
+    // Check stock availability
+    if (product.stock < quantity) {
+      return res
+        .status(400)
+        .json({ message: "Not enough stock available" });
+    }
+
     // Check if the product is already in the cart
     const existingItem = user.cart.find(
       (item) => item.productId.toString() === productId
@@ -87,7 +94,9 @@ const addToCart = async (req, res, next) => {
       // Add new item
       user.cart.push({ productId, quantity });
     }
+    product.stock -= quantity; // Update that product stock
 
+    await product.save();
     await user.save();
 
     res.status(200).json({
@@ -220,6 +229,14 @@ const removeFromCart = async (req, res, next) => {
         error.statusCode = 404;
         throw error;
       }
+
+      // Get product to remove quantity
+      const quantityToRestore = user.cart[productIndex].quantity;
+
+      product.stock += quantityToRestore;
+      await product.save();
+
+      
       user.cart.splice(productIndex, 1);
       await user.save();
       
