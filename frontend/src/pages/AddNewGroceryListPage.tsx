@@ -2,6 +2,7 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getUserId, getAuthHeaders } from "../utils/authUtils";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
@@ -12,7 +13,7 @@ const AddNewGroceryListPage = () => {
 
     const userId = getUserId();
     const headers = getAuthHeaders();
-
+    const redirect = useNavigate();
     // Call backend API for creating a new list with empty cart
         const createNewList = async () => {
             if (!title) return;
@@ -24,6 +25,7 @@ const AddNewGroceryListPage = () => {
                     body: JSON.stringify({ title: title }),
                 });
                 const data = await res.json();
+                redirect("/lists");
                 
                 console.log(data);
             } catch (err) {
