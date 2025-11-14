@@ -10,6 +10,7 @@
   import GroceryListPage from "./pages/GroceryListPage";
   import AddNewGroceryListPage from "./pages/AddNewGroceryListPage";
 import PrivateRoutes from "./components/PrivateRoutes";
+import ListPage from "./components/ListPage";
   function App() {
     return (
       <BrowserRouter>
@@ -27,6 +28,7 @@ import PrivateRoutes from "./components/PrivateRoutes";
 
             {/* Sub Pages */}
             <Route path="/lists/add" element={<AddNewGroceryListPage />}/>
+            <Route path="/lists/:listId" element={<ListPage />} />
           </Route>
        </Routes>
         

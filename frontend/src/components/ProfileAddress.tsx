@@ -86,9 +86,11 @@ const ProfileAddress: React.FC = () => {
       if (response.ok) {
         setMessage("✅ Address updated successfully!");
         setIsEditing(false);
+        window.location.reload();
       } else {
         setMessage(`❌ ${data.message || "Failed to update address"}`);
       }
+
     } catch (error) {
       setMessage("⚠️ Network error — please try again.");
     } finally {

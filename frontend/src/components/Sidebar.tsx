@@ -111,7 +111,7 @@ const Sidebar: React.FC<{
                       <div className="flex items-center space-x-1 text-sm">
                         <img src={Location} />
                         <p className="text-sm text-gray-600 italic line-clamp-2">
-                          {user.address}
+                          {JSON.stringify(user.address)}
                         </p>
                       </div>
                     </div>

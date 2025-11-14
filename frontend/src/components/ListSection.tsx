@@ -52,7 +52,7 @@ const ListSection:React.FC = () => {
             </Link>
             <div>
                 {lists.map((list) => (
-                    <Link to={`lists/${list._id}`}
+                    <Link to={`/lists/${list._id}`}
                     key={list._id}>
                         <h4>{list.title}</h4>
                         <p>{list.items.length} items</p>

@@ -43,7 +43,11 @@ const LoginForm: React.FC = () => {
 
     // Request Backend using the values inputted
     try{
-        const address = "testaddress" // temporary variable since wala pa address sa registration
+       // temporary variable since wala pa address sa registration
+        const address = {
+          type: "Point",
+          coordinates: [0, 0]
+        };
         const response = await fetch(`${API_BASE}/api/auth/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -51,10 +55,10 @@ const LoginForm: React.FC = () => {
         });
 
       const data = await response.json();
-
+      
       // Error handling 
        if (!response.ok) throw new Error(data.message || "Registration failed");
-
+      console.log(data)
       // Store token and user to localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
