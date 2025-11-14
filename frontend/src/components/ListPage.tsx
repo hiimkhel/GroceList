@@ -90,6 +90,32 @@ const ListPage: React.FC<Item> = () => {
         console.error(err);
     }
   }
+
+  // Function to handle backend request to delete an item from user's list
+  const handleItemDelete = async (name: string, id: string) => {
+    try{
+        const confirmDelete = window.confirm(
+            `Are you sure you want to remove "${name}" from the list?`
+        );
+        if (!confirmDelete) return;
+
+        const response = await fetch(`${API_BASE}/api/lists/${userId}/${listId}/delete-item/${id}`,
+            {
+                method: "DELETE",
+                headers: headers
+            }
+        );
+
+        const data = await response.json();
+        // Error handling 
+        if (!response.ok) throw new Error(data.message || "Adding item failed");
+        console.log("");
+        
+        window.location.href = `/lists/${listId}`
+    }catch(Err){
+        console.error(Err);
+    }
+  }
   if (loading) return <p>Loading list...</p>;
   if (!list) return <p>List not found.</p>;
 
@@ -113,7 +139,7 @@ const ListPage: React.FC<Item> = () => {
                             <p>{item.name}</p>
                             <div>
                                 <button>Edit</button>
-                                <button>Delete</button>
+                                <button onClick={() => handleItemDelete(item.name, item._id)}>Delete</button>
                             </div>
                         </div>
                     ))}
