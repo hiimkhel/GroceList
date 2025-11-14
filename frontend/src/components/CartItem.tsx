@@ -31,7 +31,7 @@ const CartItem: React.FC<Item> = ({
 
   const handleRemove = () => {
     const confirmDelete = window.confirm(
-      `Are you sure you want to remove "${name}" from your cart?`
+      `Are you sure you want to remove "${name}" from your cart?`,
     );
     if (confirmDelete) {
       onRemoveProduct(id);
@@ -39,7 +39,7 @@ const CartItem: React.FC<Item> = ({
   };
 
   return (
-    <div className="border-secondary flex h-40 w-auto flex-row items-center gap-12 rounded-xl border p-4">
+    <div className="border-secondary flex h-40 w-auto flex-row items-center gap-12 rounded-xl border p-4 shadow-lg">
       {/* Item Image */}
       <div>
         <img
@@ -50,41 +50,34 @@ const CartItem: React.FC<Item> = ({
 
       {/* Item name and quantity */}
       <div>
-
         <h4>{name}</h4>
         {/* Quantity Button */}
 
-
         <div className="flex">
-
-
           <button onClick={handleDecrement}>-</button>
-
 
           {/* quantity */}
 
-
           <div>{quantity}</div>
 
-
           <button onClick={handleIncrement}>+</button>
-
-
         </div>
-
-
       </div>
 
-          {/* Delete button and item price */}
-          {/* Apply align self center sa tailwind css */}
-          <div className="flex items-center justify-end space-x-2">
-            {/* Delete button */}
-            <button className="text-2l flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600">
-              <img src={DeleteIcon} alt="" className="h-5 w-5" onClick={handleRemove}/>
-            </button>
-            <p>₱{price}</p>
-          </div>
-    
+      {/* Delete button and item price */}
+      {/* Apply align self center sa tailwind css */}
+      <div className="flex items-center justify-end space-x-2">
+        {/* Delete button */}
+        <button className="text-2l flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600">
+          <img
+            src={DeleteIcon}
+            alt=""
+            className="h-5 w-5"
+            onClick={handleRemove}
+          />
+        </button>
+        <p>₱{price}</p>
+      </div>
     </div>
   );
 };

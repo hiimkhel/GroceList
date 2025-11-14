@@ -60,7 +60,7 @@ const OrderSummary: React.FC = () => {
   const total = subtotal + VAT + DELIVERY_FEE;
 
   return (
-    <main className="bg-primary sticky flex h-140 flex-col justify-between rounded-lg px-6 py-8 text-white shadow-md">
+    <main className="bg-primary sticky flex h-140 flex-col justify-between rounded-lg px-6 py-8 text-white shadow-lg">
       <section className="w-full">
         <h3 className="mb-2 text-3xl font-semibold text-white">
           Order Summary
