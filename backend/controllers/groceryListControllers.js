@@ -231,4 +231,30 @@ const deleteItemFromList = async (req, res, next) => {
         next(err);
     }
 };
-module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, addItemToList, deleteItemFromList};
+// [7] FETCH SINGLE LIST
+// @desc  Fetches a single list from ause
+// @route GET /api/list/:userId/:listId
+// @access Private
+const getGroceryList = async (req, res, next) => {
+    const {userId, listId} = req.params;
+    try{
+        // Find list by ID
+        const list = await GroceryList.findById(listId);
+
+        // If list doesn't exist
+        if (!list) {
+            return res.status(404).json({ message: "List not found" });
+        }
+
+        // Check if list belongs to the user
+        if (list.userId.toString() !== userId) {
+            return res.status(403).json({ message: "Unauthorized access to this list" });
+        }
+
+        // Success
+        return res.status(200).json(list);
+    }catch(err){
+        next(err);
+    }
+}
+module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, addItemToList, deleteItemFromList, getGroceryList};
