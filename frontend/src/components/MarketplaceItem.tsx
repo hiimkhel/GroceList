@@ -25,7 +25,7 @@ const MarketplaceItem: React.FC<ItemProps> = ({
   const [isExpanded, setIsExpanded] = useState(false); // track description toggle
   return (
     // Item Card
-    <div className="border-secondary flex flex-col items-center justify-between gap-2 rounded-3xl border-2 p-4 shadow-md transition-all duration-300">
+    <div className="border-secondary flex flex-col items-center justify-between gap-2 rounded-3xl border-2 p-4 shadow-lg transition-all duration-300">
       {/* Upper section */}
       <section className="flex flex-col gap-2">
         {/* Image */}

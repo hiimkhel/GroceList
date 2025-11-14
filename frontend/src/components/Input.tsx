@@ -8,6 +8,7 @@ interface InputProps {
   className?: string;
   icon?: string; // image source (optional)
   iconPosition?: "left" | "right";
+  onIconClick?: () => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,14 +19,17 @@ const Input: React.FC<InputProps> = ({
   className = "",
   icon,
   iconPosition = "left",
+  onIconClick,
 }) => {
   return (
     <div className="relative w-full">
       {icon && iconPosition === "left" && (
-        <img
-          src={icon}
-          className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400"
-        />
+        <button type="button" onClick={onIconClick}>
+          <img
+            src={icon}
+            className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400"
+          />
+        </button>
       )}
 
       <input
@@ -39,10 +43,16 @@ const Input: React.FC<InputProps> = ({
       />
 
       {icon && iconPosition === "right" && (
-        <img
-          src={icon}
-          className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400"
-        />
+        <button
+          className="hover:bg-secondary/20 cursor-pointer"
+          type="button"
+          onClick={onIconClick}
+        >
+          <img
+            src={icon}
+            className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400"
+          />
+        </button>
       )}
     </div>
   );

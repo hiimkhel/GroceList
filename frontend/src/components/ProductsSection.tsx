@@ -41,32 +41,29 @@ const ProductsSection: React.FC = () => {
   }, []);
 
   const handleAddToCart = async (productId: string) => {
-      const userId = getUserId();
-      try{
-        const response = await fetch(`${API_BASE}/api/cart/${userId}/add`,
-          {
-            method: "POST",
-            headers: getAuthHeaders(),
-            body: JSON.stringify({ productId, quantity: 1})
-          }
-        )
+    const userId = getUserId();
+    try {
+      const response = await fetch(`${API_BASE}/api/cart/${userId}/add`, {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ productId, quantity: 1 }),
+      });
 
-        const data = await response.json();
-        
-        // Error handling 
-       if (!response.ok) throw new Error(data.message || "Add to cart failed");
-      alert("Product added to cart successfully")
-      }catch(err){
-        console.error(err);
-      }
+      const data = await response.json();
 
+      // Error handling
+      if (!response.ok) throw new Error(data.message || "Add to cart failed");
+      alert("Product added to cart successfully");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   if (loading) return <p>Loading products...</p>;
   if (products.length === 0) return <p>No products found.</p>;
 
   return (
-    <div className="grid w-auto grid-cols-2 gap-2 md:grid-cols-5">
+    <div className="grid w-auto grid-cols-2 gap-4 md:grid-cols-5 md:gap-x-2 md:gap-y-4">
       {products.map((product) => (
         <MarketplaceItem
           key={product._id}
