@@ -15,7 +15,7 @@ interface GroceryList {
   title: string;
   items: { _id: string; name: string; quantity: number; isChecked: boolean }[];
   updatedAt: Date;
-  isActive: boolean
+  isActive: boolean;
 }
 
 const ListSection: React.FC = () => {
@@ -79,10 +79,10 @@ const ListSection: React.FC = () => {
       {/* Display all lists with active and add new */}
       <div className="mt-4 grid w-full grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4 sm:gap-x-4 sm:gap-y-4">
         {/* Add Button */}
-        <div className="flex w-full flex-col items-center justify-start">
+        <div className="flex w-full flex-col items-center justify-start gap-1">
           {/* <Link to="/lists/add"> */}
           <button
-            className="bg-secondary flex h-55 w-full cursor-pointer flex-col items-center justify-center rounded-2xl px-18 shadow-md"
+            className="bg-secondary flex h-45 w-full cursor-pointer flex-col items-center justify-center rounded-2xl px-18 shadow-md"
             onClick={() => setIsDialogOpen(true)}
           >
             <img className="h-10 w-10" src={Add} alt="" />
@@ -125,56 +125,60 @@ const ListSection: React.FC = () => {
         </Dialog>
         {/* Other Lists */}
         {lists.map((list) => (
-  <div
-    key={list._id}
-    className="flex w-full flex-col items-center justify-start"
-  >
-    <Link to={`/lists/${list._id}`}>
-      <div className="border-primary flex h-55 w-60 flex-col items-start justify-start border-2 bg-white p-3 shadow-md overflow-y-auto">
-        {list.items.map((item) => (
-          <label key={item._id} className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={item.isChecked}
-              readOnly
-              className="h-4 w-4"
-            />
-            <span className={item.isChecked ? "line-through text-gray-400" : ""}>
-              {item.name}
-            </span>
-          </label>
+          <div
+            key={list._id}
+            className="flex w-full flex-col items-center justify-start"
+          >
+            <Link to={`/lists/${list._id}`}>
+              <div className="border-primary flex h-45 w-40 flex-col items-start justify-start overflow-y-auto border-2 bg-white p-3 shadow-md">
+                {list.items.map((item) => (
+                  <label key={item._id} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={item.isChecked}
+                      readOnly
+                      className="h-4 w-4"
+                    />
+                    <span
+                      className={
+                        item.isChecked ? "text-gray-400 line-through" : ""
+                      }
+                    >
+                      {item.name}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </Link>
+
+            {/* Title + Active Badge */}
+            <p className="text-primary mt-1 flex items-center gap-2 font-semibold">
+              {list.isActive && (
+                <span className="bg-secondary rounded-full px-2 py-0.5 text-xs">
+                  Active
+                </span>
+              )}
+              {list.title}
+            </p>
+
+            {/* Date and Time */}
+            <p className="flex items-center gap-2 text-xs text-gray-500">
+              {new Date(list.updatedAt).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+
+              {/* Small circle separator */}
+              <div className="h-1.5 w-1.5 rounded-full bg-gray-400" />
+
+              {new Date(list.updatedAt).toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </p>
+          </div>
         ))}
-      </div>
-    </Link>
-
-        {/* Title + Active Badge */}
-        <p className="flex items-center gap-2 mt-1 font-semibold text-primary">
-          {list.isActive && (
-            <span className="rounded-full bg-secondary px-2 py-0.5 text-xs">
-              Active
-            </span>
-          )}
-          {list.title}
-        </p>
-
-        {/* Date and Time */}
-        <p className="flex items-center gap-2 text-sm text-gray-500">
-          {new Date(list.updatedAt).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })}
-          
-          {/* Small circle separator */}
-          <div className="w-1.5 h-1.5 rounded-full bg-gray-400" />
-
-          {new Date(list.updatedAt).toLocaleTimeString("en-US", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </p>
-      </div>
-    ))}
       </div>
     </div>
   );
