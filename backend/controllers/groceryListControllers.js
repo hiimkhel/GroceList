@@ -257,4 +257,50 @@ const getGroceryList = async (req, res, next) => {
         next(err);
     }
 }
-module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, addItemToList, deleteItemFromList, getGroceryList};
+
+// [8] UPDATES ITEM
+// @desc Updates an item to the grocery list
+// @route PUT /api/list/:userId/:listId/edit-item/:itemId
+// @access Private
+const editItem = async (req, res, next) => {
+    try {
+        const { userId, listId, itemId } = req.params;
+        const { name } = req.body;
+
+        if (!name || name.trim() === "") {
+            return res.status(400).json({ message: "Item name cannot be empty" });
+        }
+
+        const list = await GroceryList.findOne({
+            _id: listId,
+            userId: userId
+        });
+
+        if (!list) {
+            const error = new Error("List not found!")
+            error.statusCode = 404;
+            throw error;
+        }
+
+        const item = list.items.id(itemId);
+        if (!item) {
+            const error = new Error("Item not found!")
+            error.statusCode = 404;
+            throw error;
+        }
+
+        // Update item name
+        item.name = name;
+        await list.save();
+
+        return res.status(200).json({
+            message: "Item updated successfully",
+            updatedItem: item
+        });
+
+    } catch (error) {
+        console.error("Edit item error:", error);
+        next(err);
+    }
+};
+module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, addItemToList, deleteItemFromList, getGroceryList, editItem};

@@ -11,12 +11,16 @@ interface Item{
     quantity: number;
     isChecked: boolean;
 }
-const ListPage: React.FC = () => {
+const ListPage: React.FC<Item> = () => {
     const { listId } = useParams();
     const [list, setList] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     const [itemName, setItemName] = useState("");
+
+    // States for item edit
+    const [editingItemId, setEditingItemId] = useState<string | null>(null);
+    const [editedName, setEditedName] = useState("");
 
   const headers = getAuthHeaders();
   const userId = getUserId();
@@ -44,7 +48,10 @@ const ListPage: React.FC = () => {
     try{
         const response = await fetch(`${API_BASE}/api/lists/${userId}/${listId}/add-item`, {
             method: "POST",
-            headers: headers,
+            headers: {
+                "Content-Type": "application/json",
+                ...headers
+            },
             body: JSON.stringify({
                 item: {
                     name: itemName,
@@ -64,6 +71,87 @@ const ListPage: React.FC = () => {
     }
   }
 
+  // Function to handle the backend request to delete the list
+  const handleDeleteList = async  () => {
+    try{
+        const confirmDelete = window.confirm(
+            `Are you sure you want to remove "${name}" list? `
+        )
+        if(confirmDelete){
+            const response = await fetch(`${API_BASE}/api/lists/${userId}/${listId}/delete`, {
+                method: "DELETE",
+                headers: headers
+            });
+            const data = await response.json();
+
+            // Error handling 
+            if (!response.ok) throw new Error(data.message || "Adding item failed");
+            console.log("");
+            window.location.href = "/lists"
+        }
+        return;
+    }catch(err){
+        console.error(err);
+    }
+  }
+
+  // Function to handle backend request to delete an item from user's list
+  const handleItemDelete = async (name: string, id: string) => {
+    try{
+        const confirmDelete = window.confirm(
+            `Are you sure you want to remove "${name}" from the list?`
+        );
+        if (!confirmDelete) return;
+
+        const response = await fetch(`${API_BASE}/api/lists/${userId}/${listId}/delete-item/${id}`,
+            {
+                method: "DELETE",
+                headers: headers
+            }
+        );
+
+        const data = await response.json();
+        // Error handling 
+        if (!response.ok) throw new Error(data.message || "Adding item failed");
+        console.log("");
+        
+        window.location.href = `/lists/${listId}`
+    }catch(Err){
+        console.error(Err);
+    }
+  }
+
+    // Item Editing Helper function
+    const startEditing = (item: Item) => {
+        setEditingItemId(item._id);
+        setEditedName(item.name);
+        fetchList();
+    };
+
+
+    // Function to handle edit
+    const handleSaveEdit = async (id: string) => {
+        try {
+            const response = await fetch(`${API_BASE}/api/lists/${userId}/${listId}/edit-item/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    ...headers
+                },
+                body: JSON.stringify({ name: editedName })
+            });
+
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message);
+
+            setEditingItemId(null);
+            fetchList();
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+
   if (loading) return <p>Loading list...</p>;
   if (!list) return <p>List not found.</p>;
 
@@ -78,21 +166,46 @@ const ListPage: React.FC = () => {
                 <Button onClick={handleAddItem}>
                     Add Item
                 </Button>
-                <button>Clear All</button> {/* TODO: backend logic */}
+                <button onClick={handleDeleteList}>Delete List</button> {/* TODO: backend logic */}
             </div>
             <div>
                 <div>
                     {list.items.map((item: Item) => (
-                        <div className="flex">
-                            <p>{item.name}</p>
+                        <div className="flex" key={item._id}>
+                            
+                            {editingItemId === item._id ? (
+                                // EDIT MODE
+                                <input
+                                    value={editedName}
+                                    onChange={(e) => setEditedName(e.target.value)}
+                                    className="border px-2"
+                                />
+                            ) : (
+                                // VIEW MODE
+                                <p>{item.name}</p>
+                            )}
+
                             <div>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                {editingItemId === item._id ? (
+                                    <>
+                                        <button onClick={() => handleSaveEdit(item._id)}>Save</button>
+                                        <button onClick={() => setEditingItemId(null)}>Cancel</button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button onClick={() => startEditing(item)}>Edit</button>
+                                        <button onClick={() => handleItemDelete(item.name, item._id)}>Delete</button>
+                                    </>
+                                )}
                             </div>
+
                         </div>
                     ))}
                 </div>
             </div>
+            <Button onClick={() => window.location.href = "/lists"}>
+                    Return To Grocery Lists
+            </Button>
         </div>
     )
 }

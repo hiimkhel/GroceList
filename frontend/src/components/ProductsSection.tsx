@@ -1,10 +1,12 @@
-// Section of all Products
 // src/pages/Marketplace.tsx
 import React, { useEffect, useState } from "react";
 import MarketplaceItem from "../components/MarketplaceItem";
 import { getUserId, getAuthHeaders } from "../utils/authUtils";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
-const API_BASE = import.meta.env.VITE_API_BASE; // BACKEND API
+const API_BASE = import.meta.env.VITE_API_BASE;
+
 interface Product {
   _id: string;
   name: string;
@@ -23,15 +25,15 @@ const ProductsSection: React.FC = () => {
       try {
         const response = await fetch(`${API_BASE}/api/marketplace/`);
         if (!response.ok) {
-          console.error("Failed to fetch products:", response.status);
+          toastr.error("Failed to fetch products");
           setLoading(false);
           return;
         }
         const data = await response.json();
-
         setProducts(data.products || []);
       } catch (err) {
         console.error("Error fetching products:", err);
+        toastr.error("Error fetching products");
       } finally {
         setLoading(false);
       }
@@ -51,11 +53,14 @@ const ProductsSection: React.FC = () => {
 
       const data = await response.json();
 
-      // Error handling
       if (!response.ok) throw new Error(data.message || "Add to cart failed");
-      alert("Product added to cart successfully");
+
+      // Success notification
+      toastr.success("Product added to cart successfully");
     } catch (err) {
       console.error(err);
+      // Error notification
+      toastr.error("Add to cart failed");
     }
   };
 
