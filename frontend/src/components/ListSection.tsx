@@ -77,12 +77,12 @@ const ListSection: React.FC = () => {
         </Button>
       </div>
       {/* Display all lists with active and add new */}
-      <div className="mt-4 grid w-full grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4 sm:gap-x-4 sm:gap-y-4">
+      <div className="mt-4 grid w-full grid-cols-[repeat(auto-fill,180px)] justify-items-center gap-4 sm:gap-x-4 sm:gap-y-4">
         {/* Add Button */}
         <div className="flex w-full flex-col items-center justify-start gap-1">
           {/* <Link to="/lists/add"> */}
           <button
-            className="bg-secondary flex h-45 w-full cursor-pointer flex-col items-center justify-center rounded-2xl px-18 shadow-md"
+            className="bg-secondary flex h-45 w-40 cursor-pointer flex-col items-center justify-center rounded-2xl px-18 shadow-md"
             onClick={() => setIsDialogOpen(true)}
           >
             <img className="h-10 w-10" src={Add} alt="" />
