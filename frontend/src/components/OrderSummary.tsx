@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import Send from "../assets/Send.svg";
@@ -12,20 +13,40 @@ interface Item {
   quantity: number;
 }
 
+interface Coupon {
+  code: string;
+  discountPercentage: number;
+}
+
+const coupons: Coupon[] = [{ code: "ADRIAN100", discountPercentage: 100 }];
+
 const DELIVERY_FEE = 50;
 
 const OrderSummary: React.FC<{ cart: Item[] }> = ({ cart }) => {
+  const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null);
+  const [couponInput, setCouponInput] = useState("");
+  // calculate subtotal
   const subtotal = cart.reduce(
     (acc, item) => acc + item.productId.price * item.quantity,
-    0
+    0,
   );
+
+  // apply coupon if any
+  const discount = appliedCoupon
+    ? (subtotal * appliedCoupon.discountPercentage) / 100
+    : 0;
   const VAT = subtotal * 0.12;
-  const total = subtotal + VAT + DELIVERY_FEE;
+  const total =
+    appliedCoupon?.discountPercentage === 100
+      ? 0
+      : subtotal + VAT + DELIVERY_FEE - discount;
 
   return (
     <main className="bg-primary sticky flex h-140 flex-col justify-between rounded-lg px-6 py-8 text-white shadow-lg">
       <section className="w-full">
-        <h3 className="mb-2 text-3xl font-semibold text-white">Order Summary</h3>
+        <h3 className="mb-2 text-3xl font-semibold text-white">
+          Order Summary
+        </h3>
 
         <hr className="text-secondary my-2" />
 
@@ -58,7 +79,23 @@ const OrderSummary: React.FC<{ cart: Item[] }> = ({ cart }) => {
           placeholder="Enter coupon code..."
           icon={Send}
           iconPosition="right"
-          onIconClick={() => alert("Coupon added!")}
+          value={couponInput}
+          onChange={(e) => setCouponInput(e.target.value)}
+          onIconClick={() => {
+            const coupon = coupons.find(
+              (c) => c.code.toUpperCase() === couponInput.toUpperCase(),
+            );
+
+            if (coupon) {
+              setAppliedCoupon(coupon);
+              toastr.success(
+                `Coupon applied! ${coupon.discountPercentage}% off`,
+              );
+            } else {
+              toastr.error("Invalid coupon");
+              setAppliedCoupon(null);
+            }
+          }}
         />
 
         <hr className="text-secondary my-2" />
