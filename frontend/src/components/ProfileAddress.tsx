@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import Location from "../assets/Location.svg";
+import Button from "../components/Button";
+import Input from "../components/Input";
 import { getUserId } from "../utils/authUtils";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
@@ -32,8 +35,8 @@ const ProfileAddress: React.FC = () => {
   const geocodeAddress = async (query: string) => {
     const res = await fetch(
       `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-        query
-      )}`
+        query,
+      )}`,
     );
     const data = await res.json();
     if (data.length > 0) {
@@ -48,7 +51,7 @@ const ProfileAddress: React.FC = () => {
   // Reverse geocode coordinates → address
   const reverseGeocode = async (lat: number, lon: number) => {
     const res = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`,
     );
     const data = await res.json();
     if (data.display_name) setAddress(data.display_name);
@@ -65,22 +68,19 @@ const ProfileAddress: React.FC = () => {
     setMessage("");
 
     try {
-      const response = await fetch(
-        `${API_BASE}/api/user/${userId}/address`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            // Add Authorization header if your route is protected
-            // Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            address,
-            lat: position[0],
-            long: position[1],
-          }),
-        }
-      );
+      const response = await fetch(`${API_BASE}/api/user/${userId}/address`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          // Add Authorization header if your route is protected
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          address,
+          lat: position[0],
+          long: position[1],
+        }),
+      });
 
       const data = await response.json();
       if (response.ok) {
@@ -90,7 +90,6 @@ const ProfileAddress: React.FC = () => {
       } else {
         setMessage(`❌ ${data.message || "Failed to update address"}`);
       }
-
     } catch (error) {
       setMessage("⚠️ Network error — please try again.");
     } finally {
@@ -123,38 +122,47 @@ const ProfileAddress: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-full">
-      <h2 className="text-xl font-semibold mb-3">📍 Address</h2>
+    <div className="flex h-full flex-col">
+      <div className="flex flex-row gap-2">
+        <img className="h-5 w-5" src={Location} alt="" />
+        <h2 className="mb-3 text-xl font-semibold">Address</h2>
+      </div>
 
       {!isEditing ? (
-        <div className="flex flex-col flex-1">
-          <p className="text-gray-700 flex-1">
+        <div className="flex flex-1 flex-col">
+          <p className="flex-1 text-gray-700">
             {address || "No address added yet."}
           </p>
-          <button
+          <Button
             onClick={() => setIsEditing(true)}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 self-start"
+            className=""
+            variant="primary"
+            size="md"
           >
+            {" "}
             Edit Address
-          </button>
+          </Button>
         </div>
       ) : (
-        <div className="flex flex-col flex-1">
-          <input
+        <div className="flex flex-1 flex-col">
+          <Input
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="Enter address"
-            className="border px-3 py-2 rounded-lg mb-3"
+            className="bg-bg mb-3 rounded-lg border px-3 py-2"
           />
-          <button
+          <Button
             onClick={() => geocodeAddress(address)}
-            className="mb-3 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 self-start"
+            className="mb-2"
+            variant="primary"
+            size="md"
           >
+            {" "}
             Search
-          </button>
+          </Button>
 
-          <div className="flex-1 mb-3">
+          <div className="mb-3 flex-1">
             <MapContainer
               center={position || defaultPosition}
               zoom={13}
@@ -170,16 +178,17 @@ const ProfileAddress: React.FC = () => {
           </div>
 
           <div className="flex justify-end gap-2">
-            <button
+            <Button
               onClick={() => setIsEditing(false)}
-              className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+              className="hover:bg-secondary hover:border-secondary rounded-lg bg-white px-4 py-2 text-black"
+              size="md"
             >
               Cancel
-            </button>
+            </Button>
             <button
               onClick={saveAddress}
               disabled={loading}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="bg-primary hover:bg-secondary cursor-pointer rounded-xl px-4 py-2 font-semibold text-white transition-all duration-200 hover:text-black"
             >
               {loading ? "Saving..." : "Save"}
             </button>

@@ -23,7 +23,7 @@ const MarketPlacePage = () => {
             <div className="flex w-full flex-row items-center gap-2">
               {/* Search.tsx */}
               <div className="flex-1">
-                <Search></Search>
+                <Search placeholder="Search for a product..."></Search>
               </div>
               <Filter></Filter>
             </div>

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import EmailIcon from "../assets/Email.svg";
 import PasswordIcon from "../assets/Password.svg";
-import EditIcon from "../assets/Edit.svg";
-import DeleteIcon from "../assets/Delete.svg";
+import Edit from "../assets/Edit.svg";
+import Delete from "../assets/Delete.svg";
 import ShownIcon from "../assets/VisibleIcon.svg";
 import HiddenIcon from "../assets/InvisibleIcon.svg";
 import Button from "../components/Button";
@@ -131,18 +131,25 @@ const Profile: React.FC = () => {
       </div>
 
       {/* Edit and Delete Buttons */}
-      <div className="flex">
+      <div className="flex flex-row gap-2">
         <Button
+          className="flex flex-row items-center justify-center gap-1 border-none bg-white text-black shadow-sm hover:text-white"
           size="md"
           variant="primary"
-          icon=""
-          onClick={handleDeleteAccount}
+          icon={Edit}
+          // onClick={handleEditAccount}
         >
           Edit Profile
         </Button>
-        <button>
-          <img></img> {/* INSERT ICON */}
-        </button>
+        <Button
+          className="flex flex-row items-center justify-center gap-1 border-none bg-red-500 shadow-sm"
+          size="md"
+          variant="primary"
+          icon={Delete}
+          onClick={handleDeleteAccount}
+        >
+          Delete Account
+        </Button>
 
         {/* <button onClick={handleDeleteAccount} disabled={isDeleting}>
           Delete Account

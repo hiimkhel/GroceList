@@ -2,7 +2,7 @@ const express = require("express");
 
 const verifyToken = require("../middleware/authMiddleware");
 const router = express.Router();
-const {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, deleteItemFromList, addItemToList, getGroceryList, editItem} = require("../controllers/groceryListControllers");
+const {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, deleteItemFromList, addItemToList, getGroceryList, editItem, checkAnItem} = require("../controllers/groceryListControllers");
 
 // [ROUTE ENDPOINTS]
 router.get("/:userId", verifyToken, getGroceryLists);
@@ -13,4 +13,5 @@ router.patch("/:userId/:listId/update", verifyToken, updateGroceryList);
 router.put("/:userId/:listId/edit-item/:itemId", verifyToken, editItem);
 router.delete("/:userId/:listId/delete", verifyToken, deleteGroceryList);
 router.delete("/:userId/:listId/delete-item/:itemId", verifyToken, deleteItemFromList);
+router.put("/:userId/:listId/toggle-check/:itemId", verifyToken, checkAnItem);
 module.exports = router;
