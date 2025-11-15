@@ -19,7 +19,6 @@ interface GroceryList {
 const ListSection: React.FC = () => {
   const [lists, setLists] = useState<GroceryList[]>([]);
   const [loading, setLoading] = useState(true);
-  const [newTitle, setNewTitle] = useState("");
   const [title, setTitle] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 

@@ -8,7 +8,7 @@ import Edit from "../assets/Edit.svg";
 import Delete from "../assets/Delete.svg";
 import Navbar from "../components/AppNavbar";
 import Sidebar from "../components/Sidebar";
-
+import toastr from "toastr";
 const API_BASE = import.meta.env.VITE_API_BASE;
 interface Item {
   _id: string;
@@ -73,9 +73,11 @@ const ListPage: React.FC<Item> = () => {
       // Error handling
       if (!response.ok) throw new Error(data.message || "Adding item failed");
 
+      toastr.success("Item added to list!");
       setItemName(""); // clear input
       fetchList(); // refresh list instead of redirect
     } catch (err) {
+      toastr.error("Failed to add item!")
       console.error(err);
     }
   };
@@ -98,11 +100,12 @@ const ListPage: React.FC<Item> = () => {
 
         // Error handling
         if (!response.ok) throw new Error(data.message || "Adding item failed");
-        console.log("");
-        window.location.href = "/lists";
+        toastr.success("Item deleted!");
+        fetchList();
       }
       return;
     } catch (err) {
+      toastr.error("Item deletion failed!")
       console.error(err);
     }
   };
@@ -126,10 +129,12 @@ const ListPage: React.FC<Item> = () => {
       const data = await response.json();
       // Error handling
       if (!response.ok) throw new Error(data.message || "Adding item failed");
-      console.log("");
+      toastr.success("Item deleted!");
 
-      window.location.href = `/lists/${listId}`;
+
+      fetchList();
     } catch (Err) {
+      toastr.error("Deleting item failed!");
       console.error(Err);
     }
   };
@@ -159,9 +164,11 @@ const ListPage: React.FC<Item> = () => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
 
+      toastr.success("Item edited!");
       setEditingItemId(null);
       fetchList();
     } catch (err) {
+      toastr.error("Failed to edit item!");
       console.error(err);
     }
   };
@@ -217,7 +224,8 @@ const ListPage: React.FC<Item> = () => {
               type="text"
               placeholder="Enter item name..."
               value={itemName}
-              onChange={(e) => setItemName(e.target.value)}
+              onChange={(e) => setItemName(e.target.value)
+              }
             />
             <Button variant="primary" className="w-30" onClick={handleAddItem}>
               Add Item
