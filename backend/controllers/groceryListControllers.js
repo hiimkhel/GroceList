@@ -303,4 +303,42 @@ const editItem = async (req, res, next) => {
         next(err);
     }
 };
-module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, addItemToList, deleteItemFromList, getGroceryList, editItem};
+
+// [9] UPDATES ITEM isChecked field
+// @desc Updates an item isChecked field to the grocery list
+// @route PUT /api/lists/:userId/:listId/toggle-check/:itemId
+// @access Private
+const checkAnItem =  async (req, res, next) => {
+  const { userId, listId, itemId } = req.params;
+  const { isChecked } = req.body;
+
+  try {
+    const list = await GroceryList.findOne({ _id: listId, userId });
+
+    if (!list) {
+      return res.status(404).json({ message: "List not found" });
+    }
+
+    // Find the item inside the list
+    const item = list.items.find(i => i._id.toString() === itemId);
+
+    if (!item) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    // Update ONLY isChecked
+    item.isChecked = isChecked;
+
+    await list.save();
+
+    return res.json({
+      message: "Item updated successfully",
+      item,
+    });
+
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+}
+module.exports = {getGroceryLists, addGroceryList, updateGroceryList, deleteGroceryList, addItemToList, deleteItemFromList, getGroceryList, editItem, checkAnItem};
