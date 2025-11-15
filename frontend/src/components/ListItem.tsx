@@ -55,7 +55,7 @@ export default function ListItem({
           ) : (
             <p
               className={`${
-                item.isChecked ? "line-through text-gray-400" : ""
+                item.isChecked ? "text-gray-400 line-through" : ""
               }`}
             >
               {item.name}
@@ -77,16 +77,14 @@ export default function ListItem({
             >
               Save
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => setIsEditing(false)}
-            >
+            <Button variant="outline" onClick={() => setIsEditing(false)}>
               Cancel
             </Button>
           </>
         ) : (
           <>
             <Button
+              className="flex flex-row items-center justify-center gap-1 border-none shadow-md"
               variant="outline"
               icon={Edit}
               iconPosition="left"
@@ -95,8 +93,7 @@ export default function ListItem({
               Edit
             </Button>
             <Button
-              className="bg-red-500"
-              variant="primary"
+              className="flex flex-row items-center justify-center gap-1 border-none bg-red-500 shadow-md"
               icon={Delete}
               iconPosition="left"
               onClick={() => onDelete(item.name, item._id)}

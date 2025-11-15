@@ -81,7 +81,7 @@ const ListPage: React.FC<Item> = () => {
       setItemName(""); // clear input
       fetchList(); // refresh list instead of redirect
     } catch (err) {
-      toastr.error("Failed to add item!")
+      toastr.error("Failed to add item!");
       console.error(err);
     }
   };
@@ -109,7 +109,7 @@ const ListPage: React.FC<Item> = () => {
       }
       return;
     } catch (err) {
-      toastr.error("Item deletion failed!")
+      toastr.error("Item deletion failed!");
       console.error(err);
     }
   };
@@ -134,7 +134,6 @@ const ListPage: React.FC<Item> = () => {
       // Error handling
       if (!response.ok) throw new Error(data.message || "Adding item failed");
       toastr.success("Item deleted!");
-
 
       fetchList();
     } catch (Err) {
@@ -177,7 +176,6 @@ const ListPage: React.FC<Item> = () => {
     }
   };
 
-
   // Function to handle the checkbox of each item
   // Toggle + resort
   const toggleItem = async (id: string, checked: boolean) => {
@@ -186,7 +184,7 @@ const ListPage: React.FC<Item> = () => {
       ...prev,
       items: prev.items
         .map((item: Item) =>
-          item._id === id ? { ...item, isChecked: checked } : item
+          item._id === id ? { ...item, isChecked: checked } : item,
         )
         .sort((a: Item, b: Item) => Number(a.isChecked) - Number(b.isChecked)),
     }));
@@ -201,7 +199,7 @@ const ListPage: React.FC<Item> = () => {
             ...headers,
           },
           body: JSON.stringify({ isChecked: checked }),
-        }
+        },
       );
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
@@ -240,8 +238,7 @@ const ListPage: React.FC<Item> = () => {
               type="text"
               placeholder="Enter item name..."
               value={itemName}
-              onChange={(e) => setItemName(e.target.value)
-              }
+              onChange={(e) => setItemName(e.target.value)}
             />
             <Button variant="primary" className="w-30" onClick={handleAddItem}>
               Add Item
@@ -260,7 +257,10 @@ const ListPage: React.FC<Item> = () => {
           <div className="flex w-full flex-col gap-2">
             <div className="flex w-full flex-col gap-2">
               {list.items
-                .sort((a: Item, b: Item) => Number(a.isChecked) - Number(b.isChecked)) // sorting!!
+                .sort(
+                  (a: Item, b: Item) =>
+                    Number(a.isChecked) - Number(b.isChecked),
+                ) // sorting!!
                 .map((item: Item) => (
                   <ListItem
                     key={item._id}
