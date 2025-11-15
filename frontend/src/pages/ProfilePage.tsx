@@ -21,13 +21,13 @@ const ProfilePage = () => {
           <h2>Profile</h2>
           <section className="flex w-full grow flex-row gap-2">
             {/* Profile, Address */}
-            <article className="flex flex-col gap-8 rounded-2xl bg-[#F7F7F7] p-8 shadow-sm">
+            <article className="bg-secondary/5 flex flex-col gap-8 rounded-2xl p-8 shadow-sm">
               <Profile />
               {/* Address component */}
               <ProfileAddress />
             </article>
             {/* Transaction History */}
-            <article className="flex grow flex-col rounded-2xl bg-[#F7F7F7] p-8 shadow-sm">
+            <article className="bg-secondary/0 flex grow flex-col rounded-2xl p-8 shadow-sm">
               <TransactionHistory></TransactionHistory>
             </article>
           </section>

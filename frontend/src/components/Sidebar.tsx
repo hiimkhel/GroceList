@@ -8,7 +8,6 @@ import Checklist from "../assets/Checklist.svg";
 import Cart from "../assets/ShoppingCart.svg";
 import Location from "../assets/Location.svg";
 import Logout from "../assets/Exit.svg";
-import Arrow from "../assets/Arrow.svg";
 import { getAuthHeaders, getUserId } from "../utils/authUtils";
 import "../index.css";
 

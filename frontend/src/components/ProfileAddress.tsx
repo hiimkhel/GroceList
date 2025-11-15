@@ -150,7 +150,7 @@ const ProfileAddress: React.FC = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="Enter address"
-            className="mb-3 rounded-lg border px-3 py-2"
+            className="bg-bg mb-3 rounded-lg border px-3 py-2"
           />
           <Button
             onClick={() => geocodeAddress(address)}
