@@ -9,6 +9,7 @@ import Delete from "../assets/Delete.svg";
 import Navbar from "../components/AppNavbar";
 import Sidebar from "../components/Sidebar";
 import toastr from "toastr";
+import ListItem from "../components/ListItem";
 const API_BASE = import.meta.env.VITE_API_BASE;
 interface Item {
   _id: string;
@@ -28,6 +29,8 @@ const ListPage: React.FC<Item> = () => {
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [editedName, setEditedName] = useState("");
 
+  const [items, setItems] = useState<Item[]>([]);
+
   const headers = getAuthHeaders();
   const userId = getUserId();
 
@@ -37,6 +40,7 @@ const ListPage: React.FC<Item> = () => {
       const data = await res.json();
 
       setList(data);
+      setItems(data.items);
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -173,8 +177,20 @@ const ListPage: React.FC<Item> = () => {
     }
   };
 
-  //Handle toggle checkbox
-  const handleToggleCheck = async (id: string, isChecked: boolean) => {
+
+  // Function to handle the checkbox of each item
+  // Toggle + resort
+  const toggleItem = async (id: string, checked: boolean) => {
+    // Optimistic UI update
+    setList((prev: any) => ({
+      ...prev,
+      items: prev.items
+        .map((item: Item) =>
+          item._id === id ? { ...item, isChecked: checked } : item
+        )
+        .sort((a: Item, b: Item) => Number(a.isChecked) - Number(b.isChecked)),
+    }));
+
     try {
       const response = await fetch(
         `${API_BASE}/api/lists/${userId}/${listId}/toggle-check/${id}`,
@@ -184,19 +200,19 @@ const ListPage: React.FC<Item> = () => {
             "Content-Type": "application/json",
             ...headers,
           },
-          body: JSON.stringify({ isChecked }),
-        },
+          body: JSON.stringify({ isChecked: checked }),
+        }
       );
-
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
 
-      fetchList();
+      toastr.success("Item updated!");
+      fetchList(); // refresh from backend to be safe
     } catch (err) {
+      toastr.error("Failed to update item!");
       console.error(err);
     }
   };
-
   if (loading) return <p>Loading list...</p>;
   if (!list) return <p>List not found.</p>;
 
@@ -242,87 +258,19 @@ const ListPage: React.FC<Item> = () => {
 
           {/* ITEM */}
           <div className="flex w-full flex-col gap-2">
-            {list.items.map((item: Item, index: number) => (
-              <div
-                key={item._id}
-                className={`flex w-full flex-row items-center justify-between rounded-4xl px-4 py-2 ${
-                  index % 2 === 0 ? "bg-[#F7F7F7]" : "bg-[#E3F8F0]"
-                }`}
-              >
-                {editingItemId === item._id ? (
-                  // EDIT MODE
-                  <Input
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                    className="w-max border px-2"
+            <div className="flex w-full flex-col gap-2">
+              {list.items
+                .sort((a: Item, b: Item) => Number(a.isChecked) - Number(b.isChecked)) // sorting!!
+                .map((item: Item) => (
+                  <ListItem
+                    key={item._id}
+                    item={item}
+                    onToggle={toggleItem}
+                    onDelete={handleItemDelete}
+                    onEdit={handleSaveEdit}
                   />
-                ) : (
-                  // VIEW MODE
-                  <div className="flex items-center gap-3">
-                    <label className="flex cursor-pointer items-center gap-3 select-none">
-                      <input
-                        type="checkbox"
-                        checked={item.isChecked}
-                        onChange={() =>
-                          handleToggleCheck(item._id, !item.isChecked)
-                        }
-                        className="peer sr-only"
-                      />
-
-                      {/* Custom checkbox */}
-                      <span className="border-secondary peer-checked:border-secondary h-5 w-5 rounded border-2 transition-all duration-200"></span>
-
-                      {/* Item name */}
-                      <p className="peer-checked:text-black-300 peer-checked:line-through">
-                        {item.name}
-                      </p>
-                    </label>
-                  </div>
-                )}
-
-                <div className="flex flex-row gap-2">
-                  {editingItemId === item._id ? (
-                    <>
-                      <Button
-                        className="flex flex-row items-center justify-center gap-1 rounded-3xl border-none shadow-sm"
-                        variant="primary"
-                        onClick={() => handleSaveEdit(item._id)}
-                      >
-                        Save
-                      </Button>
-                      <Button
-                        className="flex flex-row items-center justify-center gap-1 rounded-3xl border-none bg-white text-black shadow-sm"
-                        variant="outline"
-                        onClick={() => setEditingItemId(null)}
-                      >
-                        Cancel
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        className="flex flex-row items-center justify-center gap-1 rounded-3xl border-none bg-white text-black shadow-sm"
-                        variant="outline"
-                        icon={Edit}
-                        iconPosition="left"
-                        onClick={() => startEditing(item)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        className="flex flex-row items-center justify-center gap-1 rounded-3xl border-none bg-red-500 shadow-sm"
-                        variant="primary"
-                        icon={Delete}
-                        iconPosition="left"
-                        onClick={() => handleItemDelete(item.name, item._id)}
-                      >
-                        Delete
-                      </Button>
-                    </>
-                  )}
-                </div>
-              </div>
-            ))}
+                ))}
+            </div>
           </div>
         </main>
       </div>
