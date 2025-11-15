@@ -17,7 +17,7 @@ interface Item {
   quantity: number;
   isChecked: boolean;
 }
-const ListPage: React.FC<Item> = () => {
+const ListPage: React.FC = () => {
   const { listId } = useParams();
   const [list, setList] = useState<any>(null);
   const [loading, setLoading] = useState(true);
