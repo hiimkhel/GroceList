@@ -44,32 +44,38 @@ const ListSection: React.FC = () => {
     <div>
       <h2>Your Lists</h2>
       <div className="flex w-full flex-1 flex-row items-center gap-3">
-        <Search></Search>
+        <Search placeholder="Search for a list..."></Search>
         <Button variant="primary" size="md" className="w-50">
           Set an Active List
         </Button>
       </div>
       {/* Display all lists with active and add new */}
-      <div className="mt-4 grid w-auto grid-cols-2 gap-4 md:grid-cols-5 md:gap-x-2 md:gap-y-4">
+      <div className="mt-4 grid w-full grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-4 sm:gap-x-2 sm:gap-y-4">
         {/* Add Button */}
-        <div className="flex w-max flex-col items-center justify-center">
+        <div className="flex w-full flex-col items-center justify-start">
           <Link to="/lists/add">
-            <button className="bg-secondary flex h-45 w-40 cursor-pointer flex-col items-center justify-center rounded-2xl">
-              <img src={Add} alt="" />
+            <button className="bg-secondary flex h-55 w-full flex-col items-center justify-center rounded-2xl px-18">
+              <img className="h-10 w-10" src={Add} alt="" />
             </button>
           </Link>
           <p className="text-primary font-semibold">Add New List</p>
         </div>
 
         {/* Other Lists */}
-        <div>
-          {lists.map((list) => (
-            <Link to={`/lists/${list._id}`} key={list._id}>
-              <h4>{list.title}</h4>
-              <p>{list.items.length} items</p>
+        {lists.map((list) => (
+          <div
+            key={list._id}
+            className="flex w-full flex-col items-center justify-start"
+          >
+            <Link to={`/lists/${list._id}`}>
+              <div className="border-primary flex h-55 w-full flex-col items-center justify-center rounded-2xl border-2 bg-white px-10 py-2 shadow">
+                {/* content */}
+              </div>
             </Link>
-          ))}
-        </div>
+            <p className="text-primary font-semibold">{list.title}</p>
+            <p className="text-sm text-gray-500">{list.items.length} items</p>
+          </div>
+        ))}
       </div>
     </div>
   );
