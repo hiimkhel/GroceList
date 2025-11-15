@@ -2,7 +2,7 @@ import CartSection from "../components/CartSection";
 import OrderSummary from "../components/OrderSummary";
 import SideBar from "../components/Sidebar";
 import Navbar from "../components/AppNavbar";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { getUser, getUserId, getAuthHeaders } from "../utils/authUtils";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
@@ -23,6 +23,13 @@ interface Item {
   quantity: number;
   addedAt: string;
 }
+
+interface Coupon {
+  code: string;
+  discountPercentage: number; // 100 for free, 50 for half, etc.
+}
+
+const coupons: Coupon[] = [{ code: "ADRIAN100", discountPercentage: 100 }];
 
 const ShoppingCartPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +63,7 @@ const ShoppingCartPage = () => {
           method: "PATCH",
           headers: { ...headers, "Content-Type": "application/json" },
           body: JSON.stringify({ quantity: newQuantity }),
-        }
+        },
       );
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Update failed");
@@ -64,7 +71,6 @@ const ShoppingCartPage = () => {
       // Success notification
       toastr.success("Product updated successfully");
       fetchCart(); // refresh cart after update
-      
     } catch (err) {
       // Error notification
       toastr.error("Product update failed!");
@@ -79,7 +85,7 @@ const ShoppingCartPage = () => {
 
       const res = await fetch(
         `${API_BASE}/api/cart/${userId}/remove/${item.productId._id}`,
-        { method: "DELETE", headers }
+        { method: "DELETE", headers },
       );
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Remove failed");
